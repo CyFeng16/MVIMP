@@ -21,13 +21,22 @@ import random
 import numpy as np
 import numpy
 from DAIN import networks
-from DAIN.my_args import args
+from DAIN.my_args import parser
 from scipy.misc import imread, imsave
 from DAIN.AverageMeter import *
 import shutil
 
 torch.backends.cudnn.benchmark = True  # to speed up the
 
+parser.add_argument(
+    "--frame_split",
+    "-sp",
+    default=False,
+    type=bool,
+    help="split the frames when handling 1080p videos",
+)
+
+args = parser.parse_args()
 
 def continue_frames_insertion_helper(
     input_dir: str, output_dir: str, model, time_step: float
