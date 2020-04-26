@@ -69,6 +69,7 @@ if __name__ == "__main__":
     LOC = os.getcwd()
     if LOC.split("/")[-1] != "MVIMP":
         raise ValueError("Please change directory to the root of MVIMP.")
+    storage_preparation()
 
     ANIMEGAN_PREFIX = os.path.join(LOC, "AnimeGAN")
     DAIN_PREFIX = os.path.join(LOC, "DAIN")
