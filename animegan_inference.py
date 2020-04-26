@@ -1,6 +1,15 @@
 import os
 import sys
 import tensorflow as tf
+import shutil
+
+
+def file_transfer(src, dst):
+    file_list = os.listdir(src)
+    for i in range(len(file_list)):
+        shutil.copy(os.path.join(src, file_list[i]), dst)
+
+    shutil.rmtree(src)
 
 
 def main(argv):
@@ -21,6 +30,9 @@ def main(argv):
         f"--style_name {default_style_name}"
     )
 
+    ori_output_data_dir = os.path.join(ANIMEGAN_PREFIX, "results/" + default_style_name)
+    file_transfer(src=ori_output_data_dir, dst=output_data_dir)
+
 
 if __name__ == "__main__":
     LOC = os.getcwd()
@@ -34,6 +46,5 @@ if __name__ == "__main__":
     checkpoint_dir = "checkpoint/AnimeGAN_Hayao_lsgan_300_300_1_3_10"
     input_data_dir = os.path.join(LOC, "Data/Input")
     output_data_dir = os.path.join(LOC, "Data/Output")
-    ori_output_data_dir = os.path.join(ANIMEGAN_PREFIX, "Data/Output")
 
     main(sys.argv)
