@@ -1,9 +1,15 @@
 import os
 import sys
 
-LOC = os.getcwd()
-ANIMEGAN_PREFIX = os.path.join(LOC, "AnimeGAN")
-DAIN_PREFIX = os.path.join(LOC, "DAIN")
+
+def storage_preparation():
+    input_data_dir = os.path.join(LOC, "Data/Input")
+    output_data_dir = os.path.join(LOC, "Data/Output")
+
+    if not os.path.exists(input_data_dir):
+        os.makedirs(input_data_dir)
+    if not os.path.exists(output_data_dir):
+        os.makedirs(output_data_dir)
 
 
 def anime_preparation():
@@ -29,17 +35,19 @@ def anime_preparation():
 
 
 def dain_preparation():
-    os.chdir(os.path.join(DAIN_PREFIX, "my_package"))
-    os.system(f"sh {os.path.join(DAIN_PREFIX, 'my_package/build.sh')}")
-
-    os.chdir(os.path.join(DAIN_PREFIX, "PWCNet/correlation_package_pytorch1_0"))
-    os.system(
-        f"sh {os.path.join(DAIN_PREFIX, 'PWCNet/correlation_package_pytorch1_0/build.sh')}"
+    my_package_dir = os.path.join(DAIN_PREFIX, "my_package")
+    nvidia_pwcnet_dir = os.path.join(
+        DAIN_PREFIX, "PWCNet/correlation_package_pytorch1_0"
     )
+    model_weights_dir = os.path.join(DAIN_PREFIX, "model_weights")
 
-    os.chdir(DAIN_PREFIX)
-    os.system("mkdir model_weights")
-    os.chdir(os.path.join(DAIN_PREFIX, "model_weights"))
+    os.chdir(my_package_dir)
+    os.system(f"sh {os.path.join(my_package_dir, 'build.sh')}")
+    os.chdir(nvidia_pwcnet_dir)
+    os.system(f"sh {os.path.join(nvidia_pwcnet_dir, 'build.sh')}")
+
+    os.makedirs(model_weights_dir)
+    os.chdir(model_weights_dir)
     os.system("wget http://vllab1.ucmerced.edu/~wenbobao/DAIN/best.pth")
 
     os.system("pip install Pillow scipy==1.1.0")
@@ -58,4 +66,11 @@ def main(argv):
 
 
 if __name__ == "__main__":
+    LOC = os.getcwd()
+    if LOC.split("/")[-1] != "MVIMP":
+        raise ValueError("Please change directory to the root of MVIMP.")
+
+    ANIMEGAN_PREFIX = os.path.join(LOC, "AnimeGAN")
+    DAIN_PREFIX = os.path.join(LOC, "DAIN")
+
     main(sys.argv)
