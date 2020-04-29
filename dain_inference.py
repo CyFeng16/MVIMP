@@ -1,29 +1,20 @@
 """It's a helper for continues frames insertion.
 
-Input: numbered frames listed as [%4d.png]
-    e.g.: 1230.png 1231.png 1232.png ... etc
-Output: numbered frames listed as [%4d%2d.png]
-    e.g.: 123000.png 123001.png 123002.png 123003.png
-         123100.png 123101.png ... etc
-    p.s.: %2d is related with the slowmotion parameter you used [2x, 4x, 8x ... etc]
-
-Attention: Redistribution under the MIT License.
-
+# Todo(C.Feng, 202004291900, UTC+08)
 # Use scipy ver 1.1.0, for now.
 # Use imageio to optimize after reconstruct a whole close-loop test.
 """
-
-import time
-import os
+import sys
 from torch.autograd import Variable
 import torch
-import random
 import numpy as np
 import numpy
 from DAIN import networks
 from DAIN.my_args import parser
 from scipy.misc import imread, imsave
-from DAIN.AverageMeter import *
+from ffmpeg_helper import video_fusion, video_extract, frames_info, fps_info
+from file_op_helper import file_order, clean_folder
+import os
 import shutil
 
 torch.backends.cudnn.benchmark = True  # to speed up the
@@ -37,6 +28,7 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
+
 
 def continue_frames_insertion_helper(
     input_dir: str, output_dir: str, model, time_step: float
@@ -204,37 +196,37 @@ def model_inference_helper(x_0: np.array, x_1: np.array):
     return y_0
 
 
-if __name__ == "__main__":
-    LOC = os.getcwd()
-    if LOC.split("/")[-1] != "MVIMP":
-        raise ValueError("Please change directory to the root of MVIMP.")
-    DAIN_PREFIX = os.path.join(LOC, "DAIN")
-    os.chdir(DAIN_PREFIX)
-
-    print(f"Current PyTorch version is {torch.__version__}")
-
-    input_data_dir = os.path.join(LOC, "Data/Input")
-    output_data_dir = os.path.join(LOC, "Data/Output")
-
-    if len(os.listdir(input_data_dir)) < 2:
+def main(argv):
+    # STAGE 1: video pre-processing
+    if len(os.listdir(input_data_dir)) > 1:
+        raise FileExistsError("You can only process one video at a time..")
+    file_link = os.path.join(input_data_dir, argv[1])
+    if frames_info(file_link) < 2:
         raise FileNotFoundError("You need more than 2 frames to generate insertion.")
+    fps = fps_info(file_link)
+    video_extract(src=file_link, dst=input_data_dir, thread=4)
+    os.remove(file_link)
 
-    # use cuda as default
-    assert args.use_cuda, "CUDA only."
+    # STAGE 2: video processing
+    args.use_cuda = True
+    args.netName = "DAIN_slowmotion"
+    args.SAVED_MODEL = "./model_weights/best.pth"
+    args.time_step = float(argv[2])
+    if argv[3] == "True":
+        args.frame_split = True
 
     # model select
-    model = networks.__dict__[args.netName](
+    model = networks.__dict__["args.netName"](
         channel=args.channels,
         filter_size=args.filter_size,
         timestep=args.time_step,
         training=False,
     )
-
     model = model.cuda()
 
-    args.SAVED_MODEL = "./model_weights/best.pth"
+    # load weight
     if os.path.exists(args.SAVED_MODEL):
-        print("The testing model weight is: " + args.SAVED_MODEL)
+        print("The model weight is: " + args.SAVED_MODEL)
         pretrained_dict = torch.load(args.SAVED_MODEL)
 
         model_dict = model.state_dict()
@@ -247,12 +239,10 @@ if __name__ == "__main__":
         # 4. release the pretrained dict for saving memory
         pretrained_dict = []
     else:
-        print("*****************************************************************")
-        print("**** We don't load any trained weights **************************")
-        print("*****************************************************************")
-
+        raise FileNotFoundError("We don't load any trained weights.")
     model = model.eval()  # deploy mode
 
+    # model inference
     with torch.no_grad():
         continue_frames_insertion_helper(
             input_dir=input_data_dir,
@@ -260,3 +250,32 @@ if __name__ == "__main__":
             model=model,
             time_step=args.time_step,
         )
+
+    # STAGE 3: video post-processing
+    clean_folder(input_data_dir)
+    file_order(src=output_data_dir, dst=input_data_dir)
+    video_fusion(src=input_data_dir, dst=output_data_dir + "%10.png", fps=fps, thread=4)
+    clean_folder(input_data_dir)
+
+
+if __name__ == "__main__":
+    """
+    argv[1]: input video file
+    argv[2]: time step, e.g. 0.5 for 2x, 0.25 for 4x
+    argv[3]: pixel resolution, True for 1080p and upper, default False for lower. 
+    """
+
+    LOC = os.getcwd()
+    if LOC.split("/")[-1] != "MVIMP":
+        raise ValueError("Please change directory to the root of MVIMP.")
+    DAIN_PREFIX = os.path.join(LOC, "DAIN")
+    os.chdir(DAIN_PREFIX)
+
+    print(f"Current PyTorch version is {torch.__version__}")
+
+    input_data_dir = os.path.join(LOC, "Data/Input")
+    output_data_dir = os.path.join(LOC, "Data/Output")
+
+    model = ""
+
+    main(sys.argv)
