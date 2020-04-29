@@ -1,15 +1,7 @@
 import os
 import sys
 import tensorflow as tf
-import shutil
-
-
-def file_transfer(src, dst):
-    file_list = os.listdir(src)
-    for i in range(len(file_list)):
-        shutil.copy(os.path.join(src, file_list[i]), dst)
-
-    shutil.rmtree(src)
+from file_op_helper import file_transfer, clean_folder
 
 
 def main(argv):
@@ -32,6 +24,7 @@ def main(argv):
 
     ori_output_data_dir = os.path.join(ANIMEGAN_PREFIX, "results/" + default_style_name)
     file_transfer(src=ori_output_data_dir, dst=output_data_dir)
+    clean_folder(input_data_dir)
 
 
 if __name__ == "__main__":
