@@ -4,6 +4,8 @@
 # Use scipy ver 1.1.0, for now.
 # Use imageio to optimize after reconstruct a whole close-loop test.
 """
+import os
+
 import sys
 from torch.autograd import Variable
 import torch
@@ -14,7 +16,6 @@ from DAIN.my_args import parser
 from scipy.misc import imread, imsave
 from ffmpeg_helper import video_fusion, video_extract, frames_info, fps_info
 from file_op_helper import file_order, clean_folder
-import os
 import shutil
 
 torch.backends.cudnn.benchmark = True  # to speed up the
@@ -212,7 +213,7 @@ def main(argv):
     args.netName = "DAIN_slowmotion"
     args.SAVED_MODEL = "./model_weights/best.pth"
     args.time_step = float(argv[2])
-    if argv[3] == "True":
+    if argv[3] and argv[3] == "True":
         args.frame_split = True
 
     # model select
