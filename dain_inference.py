@@ -12,7 +12,8 @@ from torch.autograd import Variable
 import torch
 import numpy as np
 import numpy
-from DAIN import networks
+# from DAIN import networks
+from DAIN.networks import DAIN_slowmotion
 from DAIN.my_args import parser
 from scipy.misc import imread, imsave
 from ffmpeg_helper import video_fusion, video_extract, frames_info, fps_info
@@ -218,7 +219,7 @@ def main(argv):
         args.frame_split = True
 
     # model select
-    model = networks.__dict__["args.netName"](
+    model = DAIN_slowmotion(
         channel=args.channels,
         filter_size=args.filter_size,
         timestep=args.time_step,
