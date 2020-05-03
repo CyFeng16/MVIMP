@@ -4,9 +4,10 @@
 # Use scipy ver 1.1.0, for now.
 # Use imageio to optimize after reconstruct a whole close-loop test.
 """
-import os
-
 import sys
+sys.path.append("./DAIN")
+
+import os
 from torch.autograd import Variable
 import torch
 import numpy as np
