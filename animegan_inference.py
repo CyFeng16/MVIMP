@@ -15,8 +15,10 @@ def main(argv):
         else:
             raise ValueError(f"{argv[1]} is not a correct style name")
 
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    os.environ["TF_ENABLE_GPU_GARBAGE_COLLECTION"] = 'true'
     os.system(
-        f"CUDA_VISIBLE_DEVICES=0 python3 test.py "
+        f"python3 test.py "
         f"--checkpoint_dir {checkpoint_dir} "
         f"--test_dir {input_data_dir} "
         f"--style_name {default_style_name}"
