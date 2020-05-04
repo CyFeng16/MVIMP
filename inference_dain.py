@@ -5,14 +5,14 @@
 # Use imageio to optimize after reconstruct a whole close-loop test.
 """
 import sys
+
 sys.path.append("./DAIN")
 
-import os
+from location import *
 from torch.autograd import Variable
 import torch
 import numpy as np
 import numpy
-# from DAIN import networks
 from DAIN.networks import DAIN_slowmotion
 from DAIN.my_args import parser
 from scipy.misc import imread, imsave
@@ -268,17 +268,7 @@ if __name__ == "__main__":
     argv[3]: pixel resolution, True for 1080p and upper, default False for lower. 
     """
 
-    LOC = os.getcwd()
-    if LOC.split("/")[-1] != "MVIMP":
-        raise ValueError("Please change directory to the root of MVIMP.")
-    DAIN_PREFIX = os.path.join(LOC, "DAIN")
     os.chdir(DAIN_PREFIX)
-
     print(f"Current PyTorch version is {torch.__version__}")
-
-    input_data_dir = os.path.join(LOC, "Data/Input")
-    output_data_dir = os.path.join(LOC, "Data/Output")
-
     model = ""
-
     main(sys.argv)
