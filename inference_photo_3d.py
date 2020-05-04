@@ -34,12 +34,16 @@ def main(argv):
         f"sed -i 's/longer_side_len: 960/longer_side_len: {longer_side_len}/g' curr_argument.yml"
     )
 
-    # inference and transfer files
+    # transfer inputs
     actual_input_dir = os.path.join(Photo_3D, "image")
-    actual_output_dir = os.path.join(Photo_3D, "video")
     file_transfer(src=input_data_dir, dst=actual_input_dir)
     clean_folder(input_data_dir)
+
+    # inference
     os.system("python3 main.py --config curr_argument.yml")
+
+    # transfer outputs
+    actual_output_dir = os.path.join(Photo_3D, "video")
     file_transfer(src=actual_output_dir, dst=output_data_dir)
     clean_folder(output_data_dir)
     os.remove(curr_cfg_file)

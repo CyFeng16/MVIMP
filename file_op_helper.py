@@ -6,7 +6,7 @@ def file_transfer(src: str, dst: str) -> None:
     file_list = os.listdir(src)
     for i in range(len(file_list)):
         shutil.copy(os.path.join(src, file_list[i]), dst)
-    shutil.rmtree(src)
+    # shutil.rmtree(src)
 
 
 def file_order(src: str, dst: str) -> None:
