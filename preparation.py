@@ -1,11 +1,9 @@
-import os
 import sys
+import shutil
+from location import *
 
 
 def storage_preparation():
-    input_data_dir = os.path.join(LOC, "Data/Input")
-    output_data_dir = os.path.join(LOC, "Data/Output")
-
     if not os.path.exists(input_data_dir):
         os.makedirs(input_data_dir)
     if not os.path.exists(output_data_dir):
@@ -53,25 +51,46 @@ def dain_preparation():
     os.system("pip install Pillow scipy==1.1.0")
 
 
+def photo_inpainting_3d_preparation():
+    os.chdir(Photo_3D)
+    checkpoints_dir = os.path.join(Photo_3D, "checkpoints")
+    os.makedirs(checkpoints_dir, exist_ok=True)
+    model_weights = {
+        "color-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/color-model.pth",
+        "depth-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/depth-model.pth",
+        "edge-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/edge-model.pth",
+        "MiDaS-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/model.pt",
+    }
+    os.system(
+        f"wget {model_weights['color-model']} "
+        f"{model_weights['depth-model']} "
+        f"{model_weights['edge-model']} "
+        f"{model_weights['MiDaS-model']}"
+    )
+    shutil.move("color-model.pth", "checkpoints")
+    shutil.move("depth-model.pth", "checkpoints")
+    shutil.move("edge-model.pth", "checkpoints")
+    shutil.move("model.pt", "MiDaS")
+
+    os.system(f"pip install Cython decorator pyyaml")
+    os.system(f"pip install -r requirements.txt")
+
+
 def main(argv):
     if argv[1] == "animegan":
         anime_preparation()
     elif argv[1] == "dain":
         dain_preparation()
+    elif argv[1] == "3dphoto":
+        photo_inpainting_3d_preparation()
     elif argv[1] == "all":
         anime_preparation()
         dain_preparation()
+        photo_inpainting_3d_preparation()
     else:
         raise ValueError("Please select correct function to prepare.")
 
 
 if __name__ == "__main__":
-    LOC = os.getcwd()
-    if LOC.split("/")[-1] != "MVIMP":
-        raise ValueError("Please change directory to the root of MVIMP.")
     storage_preparation()
-
-    ANIMEGAN_PREFIX = os.path.join(LOC, "AnimeGAN")
-    DAIN_PREFIX = os.path.join(LOC, "DAIN")
-
     main(sys.argv)
