@@ -1,8 +1,9 @@
 import os.path
 import random
+
 # import glob
 import math
-from .listdatasets import ListDataset,Vimeo_90K_loader
+from .listdatasets import ListDataset, Vimeo_90K_loader
 
 
 def make_dataset(root, list_file):
@@ -13,11 +14,12 @@ def make_dataset(root, list_file):
     assert len(raw_im_list) > 0
     random.shuffle(raw_im_list)
 
-    return  raw_im_list
+    return raw_im_list
 
-def Vimeo_90K_interp(root, split=1.0, single=False, task = 'interp' ):
-    train_list = make_dataset(root,"tri_trainlist.txt")
-    test_list = make_dataset(root,"tri_testlist.txt")
+
+def Vimeo_90K_interp(root, split=1.0, single=False, task="interp"):
+    train_list = make_dataset(root, "tri_trainlist.txt")
+    test_list = make_dataset(root, "tri_testlist.txt")
     train_dataset = ListDataset(root, train_list, loader=Vimeo_90K_loader)
     test_dataset = ListDataset(root, test_list, loader=Vimeo_90K_loader)
     return train_dataset, test_dataset

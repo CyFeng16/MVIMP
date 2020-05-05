@@ -1,1 +1,1 @@
-from   .BasicBlock import *
+from .BasicBlock import *

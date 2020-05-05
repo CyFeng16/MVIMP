@@ -5,18 +5,21 @@ from torch.optim.optimizer import Optimizer
 class _LRScheduler(object):
     def __init__(self, optimizer, last_epoch=-1):
         if not isinstance(optimizer, Optimizer):
-            raise TypeError('{} is not an Optimizer'.format(
-                type(optimizer).__name__))
+            raise TypeError("{} is not an Optimizer".format(type(optimizer).__name__))
         self.optimizer = optimizer
         if last_epoch == -1:
             for group in optimizer.param_groups:
-                group.setdefault('initial_lr', group['lr'])
+                group.setdefault("initial_lr", group["lr"])
         else:
             for i, group in enumerate(optimizer.param_groups):
-                if 'initial_lr' not in group:
-                    raise KeyError("param 'initial_lr' is not specified "
-                                   "in param_groups[{}] when resuming an optimizer".format(i))
-        self.base_lrs = list(map(lambda group: group['initial_lr'], optimizer.param_groups))
+                if "initial_lr" not in group:
+                    raise KeyError(
+                        "param 'initial_lr' is not specified "
+                        "in param_groups[{}] when resuming an optimizer".format(i)
+                    )
+        self.base_lrs = list(
+            map(lambda group: group["initial_lr"], optimizer.param_groups)
+        )
         self.step(last_epoch + 1)
         self.last_epoch = last_epoch
 
@@ -28,7 +31,7 @@ class _LRScheduler(object):
             epoch = self.last_epoch + 1
         self.last_epoch = epoch
         for param_group, lr in zip(self.optimizer.param_groups, self.get_lr()):
-            param_group['lr'] = lr
+            param_group["lr"] = lr
 
 
 class LambdaLR(_LRScheduler):
@@ -52,22 +55,27 @@ class LambdaLR(_LRScheduler):
         >>>     train(...)
         >>>     validate(...)
     """
+
     def __init__(self, optimizer, lr_lambda, last_epoch=-1):
         self.optimizer = optimizer
         if not isinstance(lr_lambda, list) and not isinstance(lr_lambda, tuple):
             self.lr_lambdas = [lr_lambda] * len(optimizer.param_groups)
         else:
             if len(lr_lambda) != len(optimizer.param_groups):
-                raise ValueError("Expected {} lr_lambdas, but got {}".format(
-                    len(optimizer.param_groups), len(lr_lambda)))
+                raise ValueError(
+                    "Expected {} lr_lambdas, but got {}".format(
+                        len(optimizer.param_groups), len(lr_lambda)
+                    )
+                )
             self.lr_lambdas = list(lr_lambda)
         self.last_epoch = last_epoch
         super(LambdaLR, self).__init__(optimizer, last_epoch)
 
     def get_lr(self):
-        return [base_lr * lmbda(self.last_epoch)
-                for lmbda, base_lr in zip(self.lr_lambdas, self.base_lrs)]
-
+        return [
+            base_lr * lmbda(self.last_epoch)
+            for lmbda, base_lr in zip(self.lr_lambdas, self.base_lrs)
+        ]
 
 
 class StepLR(_LRScheduler):
@@ -101,9 +109,10 @@ class StepLR(_LRScheduler):
         super(StepLR, self).__init__(optimizer, last_epoch)
 
     def get_lr(self):
-        return [base_lr * self.gamma ** (self.last_epoch // self.step_size)
-                for base_lr in self.base_lrs]
-
+        return [
+            base_lr * self.gamma ** (self.last_epoch // self.step_size)
+            for base_lr in self.base_lrs
+        ]
 
 
 class MultiStepLR(_LRScheduler):
@@ -132,16 +141,19 @@ class MultiStepLR(_LRScheduler):
 
     def __init__(self, optimizer, milestones, gamma=0.1, last_epoch=-1):
         if not list(milestones) == sorted(milestones):
-            raise ValueError('Milestones should be a list of'
-                             ' increasing integers. Got {}', milestones)
+            raise ValueError(
+                "Milestones should be a list of" " increasing integers. Got {}",
+                milestones,
+            )
         self.milestones = milestones
         self.gamma = gamma
         super(MultiStepLR, self).__init__(optimizer, last_epoch)
 
     def get_lr(self):
-        return [base_lr * self.gamma ** bisect_right(self.milestones, self.last_epoch)
-                for base_lr in self.base_lrs]
-
+        return [
+            base_lr * self.gamma ** bisect_right(self.milestones, self.last_epoch)
+            for base_lr in self.base_lrs
+        ]
 
 
 class ExponentialLR(_LRScheduler):
@@ -159,9 +171,7 @@ class ExponentialLR(_LRScheduler):
         super(ExponentialLR, self).__init__(optimizer, last_epoch)
 
     def get_lr(self):
-        return [base_lr * self.gamma ** self.last_epoch
-                for base_lr in self.base_lrs]
-
+        return [base_lr * self.gamma ** self.last_epoch for base_lr in self.base_lrs]
 
 
 class ReduceLROnPlateau(object):
@@ -209,23 +219,35 @@ class ReduceLROnPlateau(object):
         >>>     scheduler.step(val_loss)
     """
 
-    def __init__(self, optimizer, mode='min', factor=0.1, patience=10,
-                 verbose=False, threshold=1e-4, threshold_mode='rel',
-                 cooldown=0, min_lr=0, eps=1e-8):
+    def __init__(
+        self,
+        optimizer,
+        mode="min",
+        factor=0.1,
+        patience=10,
+        verbose=False,
+        threshold=1e-4,
+        threshold_mode="rel",
+        cooldown=0,
+        min_lr=0,
+        eps=1e-8,
+    ):
 
         if factor >= 1.0:
-            raise ValueError('Factor should be < 1.0.')
+            raise ValueError("Factor should be < 1.0.")
         self.factor = factor
 
         if not isinstance(optimizer, Optimizer):
-            raise TypeError('{} is not an Optimizer'.format(
-                type(optimizer).__name__))
+            raise TypeError("{} is not an Optimizer".format(type(optimizer).__name__))
         self.optimizer = optimizer
 
         if isinstance(min_lr, list) or isinstance(min_lr, tuple):
             if len(min_lr) != len(optimizer.param_groups):
-                raise ValueError("expected {} min_lrs, got {}".format(
-                    len(optimizer.param_groups), len(min_lr)))
+                raise ValueError(
+                    "expected {} min_lrs, got {}".format(
+                        len(optimizer.param_groups), len(min_lr)
+                    )
+                )
             self.min_lrs = list(min_lr)
         else:
             self.min_lrs = [min_lr] * len(optimizer.param_groups)
@@ -243,8 +265,9 @@ class ReduceLROnPlateau(object):
         self.is_better = None
         self.eps = eps
         self.last_epoch = -1
-        self._init_is_better(mode=mode, threshold=threshold,
-                             threshold_mode=threshold_mode)
+        self._init_is_better(
+            mode=mode, threshold=threshold, threshold_mode=threshold_mode
+        )
         self._reset()
 
     def _reset(self):
@@ -276,34 +299,36 @@ class ReduceLROnPlateau(object):
 
     def _reduce_lr(self, epoch):
         for i, param_group in enumerate(self.optimizer.param_groups):
-            old_lr = float(param_group['lr'])
+            old_lr = float(param_group["lr"])
             new_lr = max(old_lr * self.factor, self.min_lrs[i])
             if old_lr - new_lr > self.eps:
-                param_group['lr'] = new_lr
+                param_group["lr"] = new_lr
                 if self.verbose:
-                    print('Epoch {:5d}: reducing learning rate'
-                          ' of group {} to {:.4e}.'.format(epoch, i, new_lr))
+                    print(
+                        "Epoch {:5d}: reducing learning rate"
+                        " of group {} to {:.4e}.".format(epoch, i, new_lr)
+                    )
 
     @property
     def in_cooldown(self):
         return self.cooldown_counter > 0
 
     def _init_is_better(self, mode, threshold, threshold_mode):
-        if mode not in {'min', 'max'}:
-            raise ValueError('mode ' + mode + ' is unknown!')
-        if threshold_mode not in {'rel', 'abs'}:
-            raise ValueError('threshold mode ' + mode + ' is unknown!')
-        if mode == 'min' and threshold_mode == 'rel':
-            rel_epsilon = 1. - threshold
+        if mode not in {"min", "max"}:
+            raise ValueError("mode " + mode + " is unknown!")
+        if threshold_mode not in {"rel", "abs"}:
+            raise ValueError("threshold mode " + mode + " is unknown!")
+        if mode == "min" and threshold_mode == "rel":
+            rel_epsilon = 1.0 - threshold
             self.is_better = lambda a, best: a < best * rel_epsilon
-            self.mode_worse = float('Inf')
-        elif mode == 'min' and threshold_mode == 'abs':
+            self.mode_worse = float("Inf")
+        elif mode == "min" and threshold_mode == "abs":
             self.is_better = lambda a, best: a < best - threshold
-            self.mode_worse = float('Inf')
-        elif mode == 'max' and threshold_mode == 'rel':
-            rel_epsilon = threshold + 1.
+            self.mode_worse = float("Inf")
+        elif mode == "max" and threshold_mode == "rel":
+            rel_epsilon = threshold + 1.0
             self.is_better = lambda a, best: a > best * rel_epsilon
-            self.mode_worse = -float('Inf')
+            self.mode_worse = -float("Inf")
         else:  # mode == 'max' and epsilon_mode == 'abs':
             self.is_better = lambda a, best: a > best + threshold
-            self.mode_worse = -float('Inf')
+            self.mode_worse = -float("Inf")

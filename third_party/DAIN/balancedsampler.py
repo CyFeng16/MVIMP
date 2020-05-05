@@ -1,6 +1,7 @@
 from torch.utils.data.sampler import Sampler
 import torch
 
+
 class RandomBalancedSampler(Sampler):
     """Samples elements randomly, with an arbitrary size, independant from dataset length.
     this is a balanced sampling that will sample the whole dataset with a random permutation.
@@ -16,9 +17,9 @@ class RandomBalancedSampler(Sampler):
 
     def __next__(self):
         if self.index == 0:
-            #re-shuffle the sampler
+            # re-shuffle the sampler
             self.indices = torch.randperm(self.data_size)
-        self.index = (self.index+1)%self.data_size
+        self.index = (self.index + 1) % self.data_size
         return self.indices[self.index]
 
     def next(self):
@@ -28,7 +29,12 @@ class RandomBalancedSampler(Sampler):
         return self
 
     def __len__(self):
-        return min(self.data_size,self.epoch_size) if self.epoch_size>0 else self.data_size
+        return (
+            min(self.data_size, self.epoch_size)
+            if self.epoch_size > 0
+            else self.data_size
+        )
+
 
 class SequentialBalancedSampler(Sampler):
     """Samples elements dequentially, with an arbitrary size, independant from dataset length.
@@ -44,7 +50,7 @@ class SequentialBalancedSampler(Sampler):
         self.index = 0
 
     def __next__(self):
-        self.index = (self.index+1)%self.data_size
+        self.index = (self.index + 1) % self.data_size
         return self.index
 
     def next(self):
@@ -54,4 +60,8 @@ class SequentialBalancedSampler(Sampler):
         return self
 
     def __len__(self):
-        return min(self.data_size,self.epoch_size) if self.epoch_size>0 else self.data_size
+        return (
+            min(self.data_size, self.epoch_size)
+            if self.epoch_size > 0
+            else self.data_size
+        )

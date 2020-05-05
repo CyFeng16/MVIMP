@@ -1,1 +1,1 @@
-from  .minDepthFlowProjectionModule import *
+from .minDepthFlowProjectionModule import *
