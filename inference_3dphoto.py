@@ -2,11 +2,11 @@ import sys
 
 sys.path.append("./3d-photo-inpainting")
 
-from location import *
+from utils.location import *
 import torch
 import os
 import sys
-from file_op_helper import file_transfer, clean_folder
+from utils.file_op_helper import file_transfer, clean_folder
 import shutil
 
 

@@ -1,6 +1,6 @@
 import sys
 import shutil
-from location import *
+from utils.location import *
 
 
 def storage_preparation():

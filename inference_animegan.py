@@ -1,7 +1,7 @@
 import sys
 import tensorflow as tf
-from file_op_helper import file_transfer, clean_folder
-from location import *
+from utils.file_op_helper import file_transfer, clean_folder
+from utils.location import *
 
 
 def main(argv):

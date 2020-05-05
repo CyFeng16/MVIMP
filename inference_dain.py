@@ -6,31 +6,22 @@
 """
 import sys
 
-sys.path.append("./DAIN")
+sys.path.append("./DAIN/")
+sys.path.append("./DAIN/MegaDepth/models/")
 
-from location import *
+from utils.location import *
 from torch.autograd import Variable
 import torch
 import numpy as np
 import numpy
 from DAIN.networks import DAIN_slowmotion
-from DAIN.my_args import parser
+from utils.dain_args import args
 from scipy.misc import imread, imsave
-from ffmpeg_helper import video_fusion, video_extract, frames_info, fps_info
-from file_op_helper import file_order, clean_folder
+from utils.ffmpeg_helper import video_fusion, video_extract, frames_info, fps_info
+from utils.file_op_helper import file_order, clean_folder
 import shutil
 
 torch.backends.cudnn.benchmark = True  # to speed up the
-
-parser.add_argument(
-    "--frame_split",
-    "-sp",
-    default=False,
-    type=bool,
-    help="split the frames when handling 1080p videos",
-)
-
-args = parser.parse_args()
 
 
 def continue_frames_insertion_helper(
@@ -62,10 +53,10 @@ def continue_frames_insertion_helper(
 
     # handle the last frame.
     shutil.copy(
-        end_frame,
-        os.path.join(output_dir, f"{os.path.split(end_frame)[-1].split('.')[0]}00.png"),
+        os.path.join(input_dir, f"{all_frames[-1]}"),
+        os.path.join(output_dir, f"{all_frames[-1].split('.')[0]}00.png"),
     )
-    print(f"************** current image {end_frame} processed. **************")
+    print(f"************** current image {all_frames[-1]} processed. **************")
 
 
 def frames_insertion_helper(
@@ -199,11 +190,11 @@ def model_inference_helper(x_0: np.array, x_1: np.array):
     return y_0
 
 
-def main(argv):
+def main():
     # STAGE 1: video pre-processing
     if len(os.listdir(input_data_dir)) > 1:
         raise FileExistsError("You can only process one video at a time..")
-    file_link = os.path.join(input_data_dir, argv[1])
+    file_link = os.path.join(input_data_dir, args.input_video)
     if frames_info(file_link) < 2:
         raise FileNotFoundError("You need more than 2 frames to generate insertion.")
     fps = fps_info(file_link)
@@ -214,11 +205,6 @@ def main(argv):
     args.use_cuda = True
     args.netName = "DAIN_slowmotion"
     args.SAVED_MODEL = "./model_weights/best.pth"
-    args.time_step = float(argv[2])
-    if argv[3] and argv[3] == "True":
-        args.frame_split = True
-
-    # model select
     model = DAIN_slowmotion(
         channel=args.channels,
         filter_size=args.filter_size,
@@ -271,4 +257,4 @@ if __name__ == "__main__":
     os.chdir(DAIN_PREFIX)
     print(f"Current PyTorch version is {torch.__version__}")
     model = ""
-    main(sys.argv)
+    main()
