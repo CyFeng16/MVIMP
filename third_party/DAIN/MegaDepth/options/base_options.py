@@ -52,7 +52,7 @@ class BaseOptions:
             help="name of the experiment. It decides where to store samples and models",
         )
         # self.parser.add_argument('--align_data', action='store_true',
-        # help='if True, the datasets are loaded from "test" and "train" directories and the data pairs are aligned')
+        # help='if True, the datasets are loaded from "test" and "train" directories and the data_loader pairs are aligned')
         self.parser.add_argument(
             "--model",
             type=str,
@@ -61,7 +61,7 @@ class BaseOptions:
         )
         # self.parser.add_argument('--which_direction', type=str, default='AtoB', help='AtoB or BtoA')
         self.parser.add_argument(
-            "--nThreads", default=2, type=int, help="# threads for loading data"
+            "--nThreads", default=2, type=int, help="# threads for loading data_loader"
         )
         self.parser.add_argument(
             "--checkpoints_dir",

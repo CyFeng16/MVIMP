@@ -61,7 +61,7 @@ class SeparableConvFlowLayer(Function):
             )
 
         else:
-            # output = torch.cuda.FloatTensor(input1.data.size())
+            # output = torch.cuda.FloatTensor(input1.data_loader.size())
             err = my_lib.SeparableConvFlowLayer_cpu_forward(
                 input1, input2, input3, flow_ouput
             )

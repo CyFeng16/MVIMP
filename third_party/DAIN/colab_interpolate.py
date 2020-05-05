@@ -4,10 +4,10 @@ from torch.autograd import Variable
 import torch
 import numpy as np
 import numpy
-import networks
-from my_args import args
+from third_party.DAIN import networks
+from third_party.DAIN.my_args import args
 from imageio import imread, imsave
-from AverageMeter import *
+from third_party.DAIN.AverageMeter import *
 import shutil
 import datetime
 

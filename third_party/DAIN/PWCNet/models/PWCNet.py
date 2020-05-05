@@ -184,8 +184,8 @@ class PWCDCNet(nn.Module):
         mask = nn.functional.grid_sample(mask, vgrid)
 
         # if W==128:
-        # np.save('mask.npy', mask.cpu().data.numpy())
-        # np.save('warp.npy', output.cpu().data.numpy())
+        # np.save('mask.npy', mask.cpu().data_loader.numpy())
+        # np.save('warp.npy', output.cpu().data_loader.numpy())
 
         mask[mask < 0.9999] = 0
         mask[mask > 0] = 1

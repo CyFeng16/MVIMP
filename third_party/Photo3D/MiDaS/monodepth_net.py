@@ -66,7 +66,7 @@ class MonoDepthNet(nn.Module):
         """Forward pass.
 
         Args:
-            x (tensor): input data (image)
+            x (tensor): input data_loader (image)
 
         Returns:
             tensor: depth
@@ -125,7 +125,7 @@ class Interpolate(nn.Module):
             x (tensor): input
 
         Returns:
-            tensor: interpolated data
+            tensor: interpolated data_loader
         """
         x = self.interp(
             x, scale_factor=self.scale_factor, mode=self.mode, align_corners=False

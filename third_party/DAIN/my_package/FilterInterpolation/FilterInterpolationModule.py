@@ -91,10 +91,10 @@ class AdaptiveWeightInterpolationModule(Module):
         #                ), dim = 1,keepdim =True)
         # flow1_grad = self.padder1(flow1_grad)
         # if input1.is_cuda:
-        #     err = gradcheck(self.calc_weight1,(Variable(input1.data,requires_grad=True),
-        #                                        Variable(input2 .data,requires_grad=True),
-        #                                        Variable(input3.data,requires_grad= True),
-        #                                         # Variable(flow1_grad.data,requires_grad=True)
+        #     err = gradcheck(self.calc_weight1,(Variable(input1.data_loader,requires_grad=True),
+        #                                        Variable(input2 .data_loader,requires_grad=True),
+        #                                        Variable(input3.data_loader,requires_grad= True),
+        #                                         # Variable(flow1_grad.data_loader,requires_grad=True)
         #                                        ), eps=1e-3)
         #     print(err)
         # pass
@@ -103,11 +103,11 @@ class AdaptiveWeightInterpolationModule(Module):
 
         flow_weight1 = self.calc_weight1(input1, input2, input3)
         # if flow1_grad.is_cuda:
-        # err = gradcheck(self.interpolate1,(Variable(input1.data,requires_grad=True),
-        #                                    Variable(input3.data,requires_grad= True),
-        #                                     Variable(flow_weight1.data,requires_grad=True)), eps=1e-3)
-        # err = gradcheck(self.interpolate1_1, (Variable(input3.data,requires_grad=True),
-        #                                       Variable(flow_weight1.data, requires_grad =True)),eps=1e-3)
+        # err = gradcheck(self.interpolate1,(Variable(input1.data_loader,requires_grad=True),
+        #                                    Variable(input3.data_loader,requires_grad= True),
+        #                                     Variable(flow_weight1.data_loader,requires_grad=True)), eps=1e-3)
+        # err = gradcheck(self.interpolate1_1, (Variable(input3.data_loader,requires_grad=True),
+        #                                       Variable(flow_weight1.data_loader, requires_grad =True)),eps=1e-3)
         # err = gradcheck(self.interpolate_R1_1,(input3,),eps=1e-3)
         # print(err)
         # print(flow_weight1[0,:,50:100,50:100])
@@ -126,7 +126,7 @@ class AdaptiveWeightInterpolationModule(Module):
         r1 = pw1
         rw1 = self.interpolate_R1_1(input3)
         w1 = (r1) / (rw1 + self.threshold)
-        # if torch.sum(w1 <= 0).cpu().data.numpy()[0] > 0:
+        # if torch.sum(w1 <= 0).cpu().data_loader.numpy()[0] > 0:
         #   pass
         # print("there are holes in i1 :" )
         # print(torch.sum(w1 <= 0))
@@ -155,7 +155,7 @@ class AdaptiveWeightInterpolationModule(Module):
         r2 = pw2
         rw2 = self.interpolate_R2_1(input4)
         w2 = (r2) / (rw2 + self.threshold)
-        # if torch.sum(w2 <= 0).cpu().data.numpy()[0] > 0:
+        # if torch.sum(w2 <= 0).cpu().data_loader.numpy()[0] > 0:
         #    pass
         #    print("there are holes in i2 :" )
         #    print(torch.sum(w2 <= 0))
@@ -167,7 +167,7 @@ class AdaptiveWeightInterpolationModule(Module):
         i_r = (i1_r * w1 + i2_r * w2) / (w + self.threshold)  # (w1 + w2)
         i_g = (i1_g * w1 + i2_g * w2) / (w + self.threshold)  # (w1 + w2)
         i_b = (i1_b * w1 + i2_b * w2) / (w + self.threshold)  # (w1 + w2)
-        # if torch.sum(w <= 0).cpu().data.numpy()[0] > 0:
+        # if torch.sum(w <= 0).cpu().data_loader.numpy()[0] > 0:
         #    print("there are holes in i :")
         #    print(torch.sum(w <= 0))
         if not self.training:

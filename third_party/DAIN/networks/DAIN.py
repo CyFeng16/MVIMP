@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 import torch
 import torch.nn as nn
-from my_package.FilterInterpolation import FilterInterpolationModule
-from my_package.FlowProjection import FlowProjectionModule  # ,FlowFillholeModule
-from my_package.DepthFlowProjection import DepthFlowProjectionModule
+from third_party.DAIN.my_package.FilterInterpolation import FilterInterpolationModule
+from third_party.DAIN.my_package.FlowProjection import (
+    FlowProjectionModule,
+)  # ,FlowFillholeModule
+from third_party.DAIN.my_package.DepthFlowProjection import DepthFlowProjectionModule
 
 from Stack import Stack
 
-import PWCNet
-import S2D_models
-import Resblock
-import MegaDepth
+from third_party.DAIN import PWCNet
+from third_party.DAIN import S2D_models
+from third_party.DAIN import Resblock
+from third_party.DAIN import MegaDepth
 import time
 
 
@@ -69,13 +71,13 @@ class DAIN(torch.nn.Module):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 # n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                # m.weight.data.normal_(0, math.sqrt(2. / n))
+                # m.weight.data_loader.normal_(0, math.sqrt(2. / n))
                 # print(m)
                 count += 1
                 # print(count)
-                # weight_init.xavier_uniform(m.weight.data)
+                # weight_init.xavier_uniform(m.weight.data_loader)
                 nn.init.xavier_uniform_(m.weight.data)
-                # weight_init.kaiming_uniform(m.weight.data, a = 0, mode='fan_in')
+                # weight_init.kaiming_uniform(m.weight.data_loader, a = 0, mode='fan_in')
                 if m.bias is not None:
                     m.bias.data.zero_()
             elif isinstance(m, nn.BatchNorm2d):
@@ -116,7 +118,7 @@ class DAIN(torch.nn.Module):
             assert input.size(0) == 2
             input_0, input_2 = torch.squeeze(input, dim=0)
 
-        # prepare the input data of current scale
+        # prepare the input data_loader of current scale
         cur_input_0 = input_0
         if self.training == True:
             cur_input_1 = input_1

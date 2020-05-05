@@ -33,7 +33,7 @@ class InterpolationChLayer(Function):
             output = torch.cuda.FloatTensor().resize_(input1.size()).zero_()
             my_lib.InterpolationChLayer_gpu_forward(input1, input2, output)
         else:
-            # output = torch.cuda.FloatTensor(input1.data.size())
+            # output = torch.cuda.FloatTensor(input1.data_loader.size())
             output = torch.FloatTensor().resize_(input1.size()).zero_()
             my_lib.InterpolationChLayer_cpu_forward(input1, input2, output)
         ctx.save_for_backward(input1, input2)

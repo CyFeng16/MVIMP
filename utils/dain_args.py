@@ -189,7 +189,7 @@ parser.add_argument(
     "--dtype",
     default=torch.cuda.FloatTensor,
     choices=[torch.cuda.FloatTensor, torch.FloatTensor],
-    help="tensor data type ",
+    help="tensor data_loader type ",
 )
 
 

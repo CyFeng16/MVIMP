@@ -2,7 +2,7 @@ import os
 import datetime
 import argparse
 import numpy
-import networks
+from third_party.DAIN import networks
 import torch
 
 modelnames = networks.__all__
@@ -168,7 +168,7 @@ parser.add_argument(
     "--dtype",
     default=torch.cuda.FloatTensor,
     choices=[torch.cuda.FloatTensor, torch.FloatTensor],
-    help="tensor data type ",
+    help="tensor data_loader type ",
 )
 # parser.add_argument('--resume', default='', type=str, help='path to latest checkpoint (default: none)')
 

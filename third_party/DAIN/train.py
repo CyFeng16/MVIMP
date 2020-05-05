@@ -5,15 +5,15 @@ import threading
 import torch
 from torch.autograd import Variable
 import torch.utils.data
-from lr_scheduler import *
+from .lr_scheduler import *
 
 import numpy
-from AverageMeter import *
-from loss_function import *
-import datasets
-import balancedsampler
-import networks
-from my_args import args
+from .AverageMeter import *
+from .loss_function import *
+from third_party.DAIN import datasets
+from third_party.DAIN import balancedsampler
+from third_party.DAIN import networks
+from third_party.DAIN.my_args import args
 
 
 def train():

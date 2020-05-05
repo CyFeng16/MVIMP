@@ -2,11 +2,11 @@ import time
 import torch
 import sys
 
-from options.train_options import TrainOptions
+from .options.train_options import TrainOptions
 
 opt = TrainOptions().parse()  # set CUDA_VISIBLE_DEVICES before import torch
-from data.data_loader import CreateDataLoader_TEST
-from models.models import create_model
+from .data_loader.data_loader import CreateDataLoader_TEST
+from .models.models import create_model
 
 dataset_root = "/phoenix/S6/zl548/"
 test_list_dir_l = dataset_root + "/MegaDpeth_code/test_list/landscape/"

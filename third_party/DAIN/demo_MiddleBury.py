@@ -7,17 +7,17 @@ import torch
 import random
 import numpy as np
 import numpy
-import networks
-from my_args import args
+from third_party.DAIN import networks
+from third_party.DAIN.my_args import args
 
 from scipy.misc import imread, imsave
-from AverageMeter import *
+from third_party.DAIN.AverageMeter import *
 
 torch.backends.cudnn.benchmark = True  # to speed up the
 
 
 DO_MiddleBurryOther = True
-MB_Other_DATA = "./MiddleBurySet/other-data/"
+MB_Other_DATA = "./MiddleBurySet/other-data_loader/"
 MB_Other_RESULT = "./MiddleBurySet/other-result-author/"
 MB_Other_GT = "./MiddleBurySet/other-gt-interp/"
 if not os.path.exists(MB_Other_RESULT):

@@ -41,7 +41,7 @@ class DepthFlowProjectionLayer(Function):
                 input1, input2, count, output, fillhole
             )
         else:
-            # output = torch.cuda.FloatTensor(input1.data.size())
+            # output = torch.cuda.FloatTensor(input1.data_loader.size())
             count = (
                 torch.FloatTensor()
                 .resize_(input1.size(0), 1, input1.size(2), input1.size(3))

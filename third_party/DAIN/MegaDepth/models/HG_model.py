@@ -6,7 +6,7 @@ from .base_model import BaseModel
 import sys
 
 # import pytorch_DIW_scratch
-import MegaDepth.pytorch_DIW_scratch as pytorch_DIW_scratch
+from third_party.DAIN.MegaDepth import pytorch_DIW_scratch as pytorch_DIW_scratch
 
 
 class HGModel(BaseModel):
@@ -16,7 +16,7 @@ class HGModel(BaseModel):
     def __init__(self, opt, pretrained=None):
         BaseModel.initialize(self, opt)
 
-        # print("===========================================LOADING Hourglass NETWORK====================================================")
+        # print("================LOADING Hourglass NETWORK=========================")
         model = pytorch_DIW_scratch.pytorch_DIW_scratch
         # model_temp = model
         # model= torch.nn.parallel.DataParallel(model, device_ids = [0,1])
@@ -35,7 +35,7 @@ class HGModel(BaseModel):
             # print(len(pretrained_dict))
             # print(len(model_dict))
             # 1. filter out unnecessary keys
-            # the saved model contains a 'module.' prefix for the data.parallel reason
+            # the saved model contains a 'module.' prefix for the data_loader.parallel reason
             pretrained_dict = {
                 k[7:]: v for k, v in pretrained_dict.items()
             }  # and not k[:10]== 'rectifyNet'}

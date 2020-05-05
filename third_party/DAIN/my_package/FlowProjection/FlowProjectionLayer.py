@@ -122,7 +122,7 @@ class FlowFillholelayer(Function):
             # count = count.cuda()
             err = my_lib.FlowFillholelayer_gpu_forward(input1, output)
         else:
-            # output = torch.cuda.FloatTensor(input1.data.size())
+            # output = torch.cuda.FloatTensor(input1.data_loader.size())
             err = my_lib.FlowFillholelayer_cpu_forward(input1, output)
         if err != 0:
             print(err)

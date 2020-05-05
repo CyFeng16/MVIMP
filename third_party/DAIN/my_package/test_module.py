@@ -95,18 +95,18 @@ def test_SeparableConvFlowModule(input1, input2, input3, filtersize):
     # x = torch.max(torch.abs(x))
     # # print(x)
     #
-    # if (x.cpu().data.numpy()[0] > 1e-6):
+    # if (x.cpu().data_loader.numpy()[0] > 1e-6):
     #     print(x)
     # else:
     #     print("flow pass", end='\n')
     #
     print("Check the backward path between CPU and GPU...", end="\t")
     # x = (input1_cuda.grad - input1.grad.cuda()) * 2 /(torch.abs(input1_cuda.grad) + torch.abs(input1.grad).cuda())
-    # # y = x.cpu().data.numpy()
+    # # y = x.cpu().data_loader.numpy()
     # x = torch.max(torch.abs(x))
     # # print(x)
     #
-    # if (x.cpu().data.numpy()[0] > 1e-6):
+    # if (x.cpu().data_loader.numpy()[0] > 1e-6):
     #     print(x)
     #     print(torch.mean(input1_cuda.grad - input1.grad.cuda()))
     # else:
@@ -384,8 +384,8 @@ def test_InterpolationModule(input1, input2):
     # input2 = Variable(torch.zeros(12,2,64,64))
     # input2 = Variable(torch.ones(12,2,64,64) * (-2.1))
     # input2 = Variable(torch.cat((torch.ones(12,1,64,64) *0.251, torch.zeros(12,1,64,64)),dim=1))
-    # input1.data.uniform_()
-    # input2.data.uniform_(-5,5)
+    # input1.data_loader.uniform_()
+    # input2.data_loader.uniform_(-5,5)
 
     Interpolate = InterpolationModule()
 
@@ -478,8 +478,8 @@ def test_InterpolationChModule(input1, input2):
     # input2 = Variable(torch.zeros(12,2,64,64))
     # input2 = Variable(torch.ones(12,2,64,64) * (-2.1))
     # input2 = Variable(torch.cat((torch.ones(12,1,64,64) *0.251, torch.zeros(12,1,64,64)),dim=1))
-    # input1.data.uniform_()
-    # input2.data.uniform_(-5,5)
+    # input1.data_loader.uniform_()
+    # input2.data_loader.uniform_(-5,5)
 
     Interpolate = InterpolationChModule(input1.size(1))
 
@@ -572,8 +572,8 @@ def test_FlowProjectionModule(input1):
     # input2 = Variable(torch.zeros(12,2,64,64))
     # input2 = Variable(torch.ones(12,2,64,64) * (-2.1))
     # input2 = Variable(torch.cat((torch.ones(12,1,64,64) *0.251, torch.zeros(12,1,64,64)),dim=1))
-    # input1.data.uniform_()
-    # input2.data.uniform_(-5,5)
+    # input1.data_loader.uniform_()
+    # input2.data_loader.uniform_(-5,5)
 
     Project = FlowProjectionModule()
 
@@ -605,7 +605,7 @@ def test_FlowProjectionModule(input1):
     # input1_cuda = Variable(torch.arange(0.0, 12*3*64*64).view(12,3,64,64).type(torch.cuda.FloatTensor), requires_grad=True)
     # input2_cuda = Variable((torch.rand(12,2,64,64)*20).type(torch.cuda.FloatTensor), requires_grad= True)
     input1_cuda = Variable(input1.data.type(torch.cuda.FloatTensor), requires_grad=True)
-    # input2_cuda = Variable(input2.data.type(torch.cuda.FloatTensor), requires_grad = True)
+    # input2_cuda = Variable(input2.data_loader.type(torch.cuda.FloatTensor), requires_grad = True)
     Project = FlowProjectionModule()  # regnenerate
     t1 = time.time()
     output_cuda = Project(input1_cuda)
@@ -653,7 +653,7 @@ def test_FlowProjectionModule(input1):
         print("pass", end="\t")
     # x = input2_cuda.grad - input2.grad.cuda()
     # x = torch.max(torch.abs(x))
-    # if(x.cpu().data.numpy()[0] > 1e-6):
+    # if(x.cpu().data_loader.numpy()[0] > 1e-6):
     #     print(x)
     # else:
     #     print("pass",end='\n')
@@ -677,8 +677,8 @@ def test_DepthFlowProjectionModule(input1, input2):
     # input2 = Variable(torch.zeros(12,2,64,64))
     # input2 = Variable(torch.ones(12,2,64,64) * (-2.1))
     # input2 = Variable(torch.cat((torch.ones(12,1,64,64) *0.251, torch.zeros(12,1,64,64)),dim=1))
-    # input1.data.uniform_()
-    # input2.data.uniform_(-5,5)
+    # input1.data_loader.uniform_()
+    # input2.data_loader.uniform_(-5,5)
 
     # Project = DepthFlowProjectionModule()
 
@@ -687,7 +687,7 @@ def test_DepthFlowProjectionModule(input1, input2):
     # output = Project(input1,input2)
     # t2 = time.time()
 
-    # output.backward(output.data)
+    # output.backward(output.data_loader)
     # t3 = time.time()
 
     # print("CPU Forward and backward time is : " + str(t2-t1) +"s\t" + str(t3-t2) +"s\t")
@@ -776,8 +776,8 @@ def test_WeightedFlowProjectionModule(input1, input2, input3):
     # input2 = Variable(torch.zeros(12,2,64,64))
     # input2 = Variable(torch.ones(12,2,64,64) * (-2.1))
     # input2 = Variable(torch.cat((torch.ones(12,1,64,64) *0.251, torch.zeros(12,1,64,64)),dim=1))
-    # input1.data.uniform_()
-    # input2.data.uniform_(-5,5)
+    # input1.data_loader.uniform_()
+    # input2.data_loader.uniform_(-5,5)
 
     # Project = FlowProjectionModule()
     Project = WeightedFlowProjectionModule(threshold=20.0 / 255.0, requires_grad=True)
@@ -861,7 +861,7 @@ def test_WeightedFlowProjectionModule(input1, input2, input3):
         print("pass", end="\t")
     # x = input2_cuda.grad - input2.grad.cuda()
     # x = torch.max(torch.abs(x))
-    # if(x.cpu().data.numpy()[0] > 1e-6):
+    # if(x.cpu().data_loader.numpy()[0] > 1e-6):
     #     print(x)
     # else:
     #     print("pass",end='\n')
@@ -887,7 +887,7 @@ def test_AdaptiveWeightInterpolationModule(input1, input2, input3, input4):
     t2 = time.time()
 
     if training:
-        # output.backward(output.data)
+        # output.backward(output.data_loader)
         grad = output.data
         # grad = grad.zero_()
         output.backward(grad)
@@ -923,7 +923,7 @@ def test_AdaptiveWeightInterpolationModule(input1, input2, input3, input4):
     output_cuda = Interpolate(input1_cuda, input2_cuda, input3_cuda, input4_cuda)
     t2 = time.time()
     if training:
-        #        output_cuda.backward(output_cuda.data)
+        #        output_cuda.backward(output_cuda.data_loader)
         grad = output_cuda.data
         #         grad = grad.zero_()
         output_cuda.backward(grad)
@@ -1039,21 +1039,21 @@ def test_AdaptiveWeightInterpolationModule(input1, input2, input3, input4):
 # # input3 = Variable(torch.ones(12,16,64,64),requires_grad = True)
 # # input2 = Variable(torch.ones(12,///2,64,64) * (-2.1))
 # # input2 = Variable(torch.cat((torch.ones(12,1,64,64) *0.251, torch.zeros(12,1,64,64)),dim=1))
-# input1.data.uniform_(0, 1)
-# input2.data.uniform_(0, 1)
-# input3.data.uniform_(0, 1) # not have to be normalized to 1.0
-# # input4.data.uniform_(-1,1)
+# input1.data_loader.uniform_(0, 1)
+# input2.data_loader.uniform_(0, 1)
+# input3.data_loader.uniform_(0, 1) # not have to be normalized to 1.0
+# # input4.data_loader.uniform_(-1,1)
 # #
 # #
 # # ftimes = []
 # # btimes = []
 # # for i in range(10):
-# #     input1.data.uniform_(0, 1)
-# #     input2.data.uniform_(-1, 1)
-# #     input3.data.uniform_(0,1)
-# #     input1 = Variable(input1.clone().data, requires_grad = True) # to delete the graph in InterpolationModule
-# #     input2 = Variable(input2.clone().data, requires_grad = True)
-# #     input3 = Variable(input3.clone().data, requires_grad = True)
+# #     input1.data_loader.uniform_(0, 1)
+# #     input2.data_loader.uniform_(-1, 1)
+# #     input3.data_loader.uniform_(0,1)
+# #     input1 = Variable(input1.clone().data_loader, requires_grad = True) # to delete the graph in InterpolationModule
+# #     input2 = Variable(input2.clone().data_loader, requires_grad = True)
+# #     input3 = Variable(input3.clone().data_loader, requires_grad = True)
 # #     ftime, btime = test_FilterInterpolation(input1,input2,input3)
 # #     ftimes.append(ftime)
 # #     btimes.append(btime)
@@ -1064,8 +1064,8 @@ def test_AdaptiveWeightInterpolationModule(input1, input2, input3, input4):
 # # ftimes = []
 # # btimes = []
 # # for i in range(10):
-# #     input1 = Variable(input1.clone().data, requires_grad = True) # to delete the graph in InterpolationModule
-# #     input2 = Variable(input2.clone().data, requires_grad = True)
+# #     input1 = Variable(input1.clone().data_loader, requires_grad = True) # to delete the graph in InterpolationModule
+# #     input2 = Variable(input2.clone().data_loader, requires_grad = True)
 # #     ftime, btime = test_InterpolationModule(input1,input2)
 # #     ftimes.append(ftime)
 # #     btimes.append(btime)
@@ -1075,10 +1075,10 @@ def test_AdaptiveWeightInterpolationModule(input1, input2, input3, input4):
 # # ftimes = []
 # # btimes = []
 # # for i in range(10):
-# #     input1.data.uniform_(0, 1)
-# #     input2.data.uniform_(-16, 17)
-# #     input1 = Variable(input1.clone().data, requires_grad = True) # to delete the graph in InterpolationModule
-# #     input2 = Variable(input2.clone().data, requires_grad = True)
+# #     input1.data_loader.uniform_(0, 1)
+# #     input2.data_loader.uniform_(-16, 17)
+# #     input1 = Variable(input1.clone().data_loader, requires_grad = True) # to delete the graph in InterpolationModule
+# #     input2 = Variable(input2.clone().data_loader, requires_grad = True)
 # #     ftime, btime = test_InterpolationChModule(input1,input2)
 # #     ftimes.append(ftime)
 # #     btimes.append(btime)
@@ -1090,13 +1090,13 @@ def test_AdaptiveWeightInterpolationModule(input1, input2, input3, input4):
 # ftimes = []
 # btimes = []
 # for i in range(3):
-#     input1.data.uniform_(0.0, 1)
-#     input2.data.uniform_(1.0/filtersize, 1.1/filtersize)
-#     input3.data.uniform_(1.0/filtersize, 1.1/filtersize)  # not have to be normalized to 1.0
+#     input1.data_loader.uniform_(0.0, 1)
+#     input2.data_loader.uniform_(1.0/filtersize, 1.1/filtersize)
+#     input3.data_loader.uniform_(1.0/filtersize, 1.1/filtersize)  # not have to be normalized to 1.0
 #
-#     input1 = Variable(input1.clone().data, requires_grad=True)  # to delete the graph in InterpolationModule
-#     input2 = Variable(input2.clone().data, requires_grad=True)
-#     input3 = Variable(input3.clone().data, requires_grad=True)
+#     input1 = Variable(input1.clone().data_loader, requires_grad=True)  # to delete the graph in InterpolationModule
+#     input2 = Variable(input2.clone().data_loader, requires_grad=True)
+#     input3 = Variable(input3.clone().data_loader, requires_grad=True)
 #     # ftime, btime = test_SeparableConvModule(input1, input2, input3,filtersize)
 #     ftime, btime = test_SeparableConvFlowModule(input1, input2, input3,filtersize)
 #     ftimes.append(ftime)
@@ -1107,15 +1107,15 @@ def test_AdaptiveWeightInterpolationModule(input1, input2, input3, input4):
 #
 # #
 # # for i in range(10):
-# #     input1.data.uniform_(0.14, 0.405)
-# #     input2.data.uniform_(0.14, 0.405)
-# #     input3.data.uniform_(0.2, 0.501)  # not have to be normalized to 1.0
-# #     input4.data.uniform_(0.2, 0.501)
+# #     input1.data_loader.uniform_(0.14, 0.405)
+# #     input2.data_loader.uniform_(0.14, 0.405)
+# #     input3.data_loader.uniform_(0.2, 0.501)  # not have to be normalized to 1.0
+# #     input4.data_loader.uniform_(0.2, 0.501)
 # #
-# #     input1 = Variable(input1.clone().data, requires_grad = True) # to delete the graph in InterpolationModule
-# #     input2 = Variable(input2.clone().data, requires_grad = True)
-# #     input3 = Variable(input3.clone().data, requires_grad = True)
-# #     input4 = Variable(input4.clone().data, requires_grad = True)
+# #     input1 = Variable(input1.clone().data_loader, requires_grad = True) # to delete the graph in InterpolationModule
+# #     input2 = Variable(input2.clone().data_loader, requires_grad = True)
+# #     input3 = Variable(input3.clone().data_loader, requires_grad = True)
+# #     input4 = Variable(input4.clone().data_loader, requires_grad = True)
 # #     ftime,btime = test_AdaptiveWeightInterpolationModule(input1,input2,input3,input4)
 # #     ftimes.append(ftime)
 # #     btimes.append(btime)
@@ -1123,7 +1123,7 @@ def test_AdaptiveWeightInterpolationModule(input1, input2, input3, input4):
 #
 #
 # input1 = Variable(torch.arange(0.0, 12 * 2 * 64 * 64).view(12, 2, 64, 64), requires_grad=True)
-# input1.data.uniform_(-1.0,1.0)
+# input1.data_loader.uniform_(-1.0,1.0)
 # # input1 = Variable( - 0.5 * torch.ones(12,2,64,64).type(torch.FloatTensor), requires_grad = True)
 #
 #
@@ -1141,7 +1141,7 @@ btimes = []
 for i in range(10):
     input1.data.uniform_(-1.0, 1.0)
     input2.data.uniform_(0.1, 1.0)  # must be larger than zero
-    # input3.data.uniform_(0.0, 1.0)
+    # input3.data_loader.uniform_(0.0, 1.0)
     input1 = Variable(
         input1.clone().data, requires_grad=True
     )  # to delete the graph in InterpolationModule

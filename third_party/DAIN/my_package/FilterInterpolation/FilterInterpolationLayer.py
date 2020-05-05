@@ -125,7 +125,7 @@ class WeightLayer(Function):
             if err != 0:
                 print(err)
         else:
-            # output = torch.cuda.FloatTensor(input1.data.size())
+            # output = torch.cuda.FloatTensor(input1.data_loader.size())
             err = my_lib.WeightLayer_cpu_forward(
                 input1, input2, input3, output, self.lambda_e, self.lambda_v, self.Nw
             )
@@ -233,7 +233,7 @@ class PixelValueLayer(Function):
             if err != 0:
                 print(err)
         else:
-            # output = torch.cuda.FloatTensor(input1.data.size())
+            # output = torch.cuda.FloatTensor(input1.data_loader.size())
             err = my_lib.PixelValueLayer_cpu_forward(
                 input1,
                 input3,
@@ -344,7 +344,7 @@ class PixelWeightLayer(Function):
             if err != 0:
                 print(err)
         else:
-            # output = torch.cuda.FloatTensor(input1.data.size())
+            # output = torch.cuda.FloatTensor(input1.data_loader.size())
             err = my_lib.PixelWeightLayer_cpu_forward(
                 input3, flow_weights, output, self.sigma_d, self.tao_r, self.Prowindow
             )
@@ -447,7 +447,7 @@ class PixelWeightLayer(Function):
 #                        input3, flow_weight1, output,
 #                        self.sigma_d,    self.tao_r ,  self.Prowindow )
 #        else:
-#            # output = torch.cuda.FloatTensor(input1.data.size())
+#            # output = torch.cuda.FloatTensor(input1.data_loader.size())
 #            my_lib.ReliableValueLayer_cpu_forward(
 #                        input3, flow_weight1, output,
 #                        self.sigma_d,    self.tao_r ,  self.Prowindow )
@@ -531,7 +531,7 @@ class ReliableWeightLayer(Function):
             if err != 0:
                 print(err)
         else:
-            # output = torch.cuda.FloatTensor(input1.data.size())
+            # output = torch.cuda.FloatTensor(input1.data_loader.size())
             err = my_lib.ReliableWeightLayer_cpu_forward(
                 input3, output, self.sigma_d, self.tao_r, self.Prowindow
             )

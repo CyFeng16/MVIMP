@@ -5,7 +5,7 @@ import sys
 import threading
 import torch
 from torch.autograd import Variable
-from lr_scheduler import *
+from .lr_scheduler import *
 from torch.autograd import gradcheck
 
 import numpy

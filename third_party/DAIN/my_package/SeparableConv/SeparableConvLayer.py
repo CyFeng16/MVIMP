@@ -55,7 +55,7 @@ class SeparableConvLayer(Function):
             err = my_lib.SeparableConvLayer_gpu_forward(input1, input2, input3, output)
 
         else:
-            # output = torch.cuda.FloatTensor(input1.data.size())
+            # output = torch.cuda.FloatTensor(input1.data_loader.size())
             err = my_lib.SeparableConvLayer_cpu_forward(input1, input2, input3, output)
         if err != 0:
             print(err)

@@ -13,9 +13,7 @@ import os
 os.environ["PYTHON_EGG_CACHE"] = "tmp/"  # a writable directory
 # from .correlation_package.modules.corr import Correlation
 # from PWCNet.correlation_package_pytorch0_4.correlation import Correlation #pytorch0.4 version
-from PWCNet.correlation_package_pytorch1_0.correlation import (
-    Correlation,
-)  # pytorch0.4 version
+from .correlation_package_pytorch1_0.correlation import Correlation
 
 import numpy as np
 
@@ -213,8 +211,8 @@ class PWCDCNet(nn.Module):
         mask = nn.functional.grid_sample(mask, vgrid)
 
         # if W==128:
-        # np.save('mask.npy', mask.cpu().data.numpy())
-        # np.save('warp.npy', output.cpu().data.numpy())
+        # np.save('mask.npy', mask.cpu().data_loader.numpy())
+        # np.save('warp.npy', output.cpu().data_loader.numpy())
 
         mask[mask < 0.9999] = 0
         mask[mask > 0] = 1
