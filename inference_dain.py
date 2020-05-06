@@ -9,7 +9,7 @@ import sys
 sys.path.append("./DAIN/")
 sys.path.append("./DAIN/MegaDepth/models/")
 
-from utils.location import *
+from mvimp_utils.location import *
 from torch.autograd import Variable
 import torch
 import numpy as np
@@ -17,8 +17,8 @@ import numpy
 from DAIN.networks import DAIN_slowmotion
 from config.dain_args import args
 from scipy.misc import imread, imsave
-from utils.ffmpeg_helper import video_fusion, video_extract, frames_info, fps_info
-from utils.file_op_helper import file_order, clean_folder
+from mvimp_utils.ffmpeg_helper import video_fusion, video_extract, frames_info, fps_info
+from mvimp_utils.file_op_helper import file_order, clean_folder
 import shutil
 
 torch.backends.cudnn.benchmark = True  # to speed up the

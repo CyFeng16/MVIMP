@@ -1,6 +1,7 @@
 import sys
 import shutil
-from utils.location import *
+from mvimp_utils.location import *
+from mvimp_utils.file_op_helper import clean_folder
 import argparse
 
 
@@ -21,18 +22,17 @@ def storage_preparation():
 
 def anime_preparation():
     os.chdir(ANIMEGAN_PREFIX)
+
     pretrain_model_url = "https://github.com/TachibanaYoshino/AnimeGAN/releases/download/Haoyao-style_V1.0/Haoyao-style.zip"
-    pretrain_model_file = "./checkpoint/Haoyao-style.zip"
-    pretrain_model_dir = "./checkpoint/AnimeGAN_Hayao_lsgan_300_300_1_3_10"
+    pretrain_model_dir = "./checkpoint"
+    pretrain_model_file = os.path.join(pretrain_model_dir, "Haoyao-style.zip")
+
     vgg_url = "https://github.com/TachibanaYoshino/AnimeGAN/releases/download/vgg16%2F19.npy/vgg19.npy"
     vgg_dir = "./vgg19_weight"
     vgg_file = os.path.join(vgg_dir, "vgg19.npy")
 
-    os.system(f"rm -rf {pretrain_model_dir}")
-    os.system(f"rm -rf {vgg_dir}")
-
-    os.makedirs(f"{pretrain_model_dir}")
-    os.makedirs(f"{vgg_dir}")
+    os.makedirs(pretrain_model_dir, exist_ok=True)
+    os.makedirs(vgg_dir, exist_ok=True)
 
     os.system(f"wget -N {pretrain_model_url} -O {pretrain_model_file}")
     os.system(f"unzip {pretrain_model_file} -d {pretrain_model_dir}")

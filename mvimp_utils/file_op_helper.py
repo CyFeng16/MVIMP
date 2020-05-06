@@ -19,5 +19,6 @@ def file_order(src: str, dst: str) -> None:
 
 
 def clean_folder(src: str) -> None:
-    shutil.rmtree(src)
+    if os.path.exists(src):
+        shutil.rmtree(src)
     os.makedirs(src)

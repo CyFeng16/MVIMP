@@ -1,7 +1,8 @@
 import tensorflow as tf
 from tensorflow.contrib import slim
 from scipy import misc
-import os, cv2
+import os
+import cv2
 import numpy as np
 
 
