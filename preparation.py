@@ -1,6 +1,15 @@
 import sys
 import shutil
 from utils.location import *
+import argparse
+
+
+def config():
+    parser = argparse.ArgumentParser(description="MVIMP configuration.")
+    parser.add_argument(
+        "--function", "-f", type=str, help="Function or functions your wanna prepare.",
+    )
+    return parser.parse_args()
 
 
 def storage_preparation():
@@ -92,5 +101,17 @@ def main(argv):
 
 
 if __name__ == "__main__":
+    args = config()
     storage_preparation()
-    main(sys.argv)
+    if not args.function:
+        raise ValueError("Please select correct function to prepare.")
+    elif args.function == "animegan":
+        anime_preparation()
+    elif args.function == "dain":
+        dain_preparation()
+    elif args.function == "photo3d":
+        photo_inpainting_3d_preparation()
+    elif args.function == "all":
+        anime_preparation()
+        dain_preparation()
+        photo_inpainting_3d_preparation()

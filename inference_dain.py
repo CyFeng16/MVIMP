@@ -15,7 +15,7 @@ import torch
 import numpy as np
 import numpy
 from DAIN.networks import DAIN_slowmotion
-from utils.dain_args import args
+from config.dain_args import args
 from scipy.misc import imread, imsave
 from utils.ffmpeg_helper import video_fusion, video_extract, frames_info, fps_info
 from utils.file_op_helper import file_order, clean_folder

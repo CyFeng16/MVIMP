@@ -1,12 +1,12 @@
-import sys
-
-sys.path.append("./DAIN")
+# import sys
+#
+# sys.path.append("../third_party/DAIN")
 
 import os
 import datetime
 import argparse
 import numpy
-import networks
+from third_party.DAIN import networks
 import torch
 
 modelnames = networks.__all__
