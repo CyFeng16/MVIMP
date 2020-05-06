@@ -13,6 +13,7 @@ if __name__ == "__main__":
 
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     os.environ["TF_ENABLE_GPU_GARBAGE_COLLECTION"] = "true"
+    os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
     os.system(
         f"python3 test.py "
         f"--checkpoint_dir {checkpoint_dir} "
