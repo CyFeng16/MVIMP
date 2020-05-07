@@ -1,7 +1,5 @@
-import sys
 import shutil
 from mvimp_utils.location import *
-from mvimp_utils.file_op_helper import clean_folder
 import argparse
 
 
@@ -62,8 +60,14 @@ def dain_preparation():
 
 def photo_inpainting_3d_preparation():
     os.chdir(Photo_3D)
+
     checkpoints_dir = os.path.join(Photo_3D, "checkpoints")
+    images_dir = os.path.join(Photo_3D, "image")
+    videos_dir = os.path.join(Photo_3D, "video")
     os.makedirs(checkpoints_dir, exist_ok=True)
+    os.makedirs(images_dir, exist_ok=True)
+    os.makedirs(videos_dir, exist_ok=True)
+
     model_weights = {
         "color-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/color-model.pth",
         "depth-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/depth-model.pth",
@@ -76,28 +80,13 @@ def photo_inpainting_3d_preparation():
         f"{model_weights['edge-model']} "
         f"{model_weights['MiDaS-model']}"
     )
+
     shutil.move("color-model.pth", "checkpoints")
     shutil.move("depth-model.pth", "checkpoints")
     shutil.move("edge-model.pth", "checkpoints")
     shutil.move("model.pt", "MiDaS")
 
-    os.system(f"pip install Cython decorator pyyaml")
     os.system(f"pip install -r requirements.txt")
-
-
-def main(argv):
-    if argv[1] == "animegan":
-        anime_preparation()
-    elif argv[1] == "dain":
-        dain_preparation()
-    elif argv[1] == "3dphoto":
-        photo_inpainting_3d_preparation()
-    elif argv[1] == "all":
-        anime_preparation()
-        dain_preparation()
-        photo_inpainting_3d_preparation()
-    else:
-        raise ValueError("Please select correct function to prepare.")
 
 
 if __name__ == "__main__":

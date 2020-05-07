@@ -28,8 +28,8 @@ from skimage.transform import resize
 import copy
 import torch
 import os
-from .utils import refine_depth_around_edge, smooth_cntsyn_gap
-from .utils import require_depth_edge, filter_irrelevant_edge_new, open_small_mask
+from utils import refine_depth_around_edge, smooth_cntsyn_gap
+from utils import require_depth_edge, filter_irrelevant_edge_new, open_small_mask
 from skimage.feature import canny
 from scipy import ndimage
 import time

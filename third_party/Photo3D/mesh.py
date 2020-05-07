@@ -17,20 +17,20 @@ import time
 import copy
 import torch
 import os
-from .utils import (
+from utils import (
     path_planning,
     open_small_mask,
     clean_far_edge,
     refine_depth_around_edge,
 )
-from .utils import (
+from utils import (
     refine_color_around_edge,
     filter_irrelevant_edge_new,
     require_depth_edge,
     clean_far_edge_new,
 )
-from .utils import create_placeholder, refresh_node, find_largest_rect
-from .mesh_tools import (
+from utils import create_placeholder, refresh_node, find_largest_rect
+from mesh_tools import (
     get_depth_from_maps,
     get_map_from_ccs,
     get_edge_from_nodes,
@@ -44,7 +44,7 @@ from .mesh_tools import (
     relabel_node,
     depth_inpainting,
 )
-from .mesh_tools import (
+from mesh_tools import (
     refresh_bord_depth,
     enlarge_border,
     fill_dummy_bord,

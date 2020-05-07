@@ -9,18 +9,18 @@ from tqdm import tqdm
 import yaml
 import time
 import sys
-from .mesh import write_ply, read_ply, output_3d_photo
-from .utils import get_MiDaS_samples, read_MiDaS_depth
+from mesh import write_ply, read_ply, output_3d_photo
+from utils import get_MiDaS_samples, read_MiDaS_depth
 import torch
 import cv2
 from skimage.transform import resize
 import imageio
 import copy
-from .networks import Inpaint_Color_Net, Inpaint_Depth_Net, Inpaint_Edge_Net
-from .MiDaS.run import run_depth
-from .MiDaS.monodepth_net import MonoDepthNet
-from .MiDaS import MiDaS_utils
-from .bilateral_filtering import sparse_bilateral_filtering
+from networks import Inpaint_Color_Net, Inpaint_Depth_Net, Inpaint_Edge_Net
+from MiDaS.run import run_depth
+from MiDaS.monodepth_net import MonoDepthNet
+from MiDaS import MiDaS_utils
+from bilateral_filtering import sparse_bilateral_filtering
 
 parser = argparse.ArgumentParser()
 parser.add_argument(

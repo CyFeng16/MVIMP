@@ -33,7 +33,7 @@ context_thickness: 140
 background_thickness_2: 70
 context_thickness_2: 70
 discount_factor: 1.00
-log_depth: True
+log_depth: False
 largest_size: 512
 depth_edge_dilate: 10
 depth_edge_dilate_2: 5
