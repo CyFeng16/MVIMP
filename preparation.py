@@ -21,7 +21,10 @@ def storage_preparation():
 def anime_preparation():
     os.chdir(ANIMEGAN_PREFIX)
 
-    pretrain_model_url = "https://github.com/TachibanaYoshino/AnimeGAN/releases/download/Haoyao-style_V1.0/Haoyao-style.zip"
+    pretrain_model_url = (
+        "https://github.com/TachibanaYoshino/AnimeGAN/"
+        "releases/download/Haoyao-style_V1.0/Haoyao-style.zip"
+    )
     pretrain_model_dir = "./checkpoint"
     pretrain_model_file = os.path.join(pretrain_model_dir, "Haoyao-style.zip")
 
@@ -40,6 +43,8 @@ def anime_preparation():
 
 
 def dain_preparation():
+    os.chdir(DAIN_PREFIX)
+
     my_package_dir = os.path.join(DAIN_PREFIX, "my_package")
     nvidia_pwcnet_dir = os.path.join(
         DAIN_PREFIX, "PWCNet/correlation_package_pytorch1_0"
@@ -51,11 +56,11 @@ def dain_preparation():
     os.chdir(nvidia_pwcnet_dir)
     os.system(f"sh {os.path.join(nvidia_pwcnet_dir, 'build.sh')}")
 
-    os.makedirs(model_weights_dir)
-    os.chdir(model_weights_dir)
-    os.system("wget http://vllab1.ucmerced.edu/~wenbobao/DAIN/best.pth")
-
-    os.system("pip install Pillow scipy==1.1.0")
+    # os.makedirs(model_weights_dir)
+    # os.chdir(model_weights_dir)
+    # os.system("wget http://vllab1.ucmerced.edu/~wenbobao/DAIN/best.pth")
+    #
+    # os.system("pip install Pillow scipy==1.1.0")
 
 
 def photo_inpainting_3d_preparation():

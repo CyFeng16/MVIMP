@@ -6,7 +6,7 @@ from .base_model import BaseModel
 import sys
 
 # import pytorch_DIW_scratch
-from third_party.DAIN.MegaDepth import pytorch_DIW_scratch as pytorch_DIW_scratch
+from MegaDepth import pytorch_DIW_scratch as pytorch_DIW_scratch
 
 
 class HGModel(BaseModel):

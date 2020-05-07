@@ -2,20 +2,38 @@ import os
 import datetime
 import argparse
 import numpy
-from third_party.DAIN import networks
+import networks
 import torch
+import shutil
+
 
 modelnames = networks.__all__
 # import datasets
 datasetNames = "Vimeo_90K_interp"  # datasets.__all__
 
-parser = argparse.ArgumentParser(description="DAIN")
+parser = argparse.ArgumentParser(description="Using custom DAIN configuration args.")
+
+parser.add_argument(
+    "--high_resolution",
+    "-hr",
+    default=False,
+    type=bool,
+    help="split the frames when handling 1080p+ videos",
+)
+
+parser.add_argument(
+    "--src", type=str,
+)
+parser.add_argument(
+    "--dst", type=str,
+)
+
 
 parser.add_argument("--debug", action="store_true", help="Enable debug mode")
 parser.add_argument(
     "--netName",
     type=str,
-    default="DAIN",
+    default="DAIN_slowmotion",
     choices=modelnames,
     help="model architecture: " + " | ".join(modelnames) + " (default: DAIN)",
 )
@@ -127,7 +145,6 @@ parser.add_argument(
     default=0.001,
     help="relative learning rate w.r.t basic learning rate (default: 0.01)",
 )
-# parser.add_argument('--deblur_lr_coe', type = float, default=0.01, help = 'relative learning rate w.r.t basic learning rate (default: 0.01)')
 
 parser.add_argument(
     "--alpha",
@@ -156,7 +173,7 @@ parser.add_argument(
 parser.add_argument(
     "--pretrained",
     dest="SAVED_MODEL",
-    default=None,
+    default="./model_weights/best.pth",
     help="path to the pretrained model weights",
 )
 parser.add_argument(
@@ -170,7 +187,6 @@ parser.add_argument(
     choices=[torch.cuda.FloatTensor, torch.FloatTensor],
     help="tensor data_loader type ",
 )
-# parser.add_argument('--resume', default='', type=str, help='path to latest checkpoint (default: none)')
 
 
 parser.add_argument("--uid", type=str, default=None, help="unique id for the training")
@@ -178,29 +194,8 @@ parser.add_argument(
     "--force", action="store_true", help="force to override the given uid"
 )
 
-# Colab version
-parser.add_argument(
-    "--start_frame", type=int, default=1, help="first frame number to process"
-)
-parser.add_argument(
-    "--end_frame", type=int, default=100, help="last frame number to process"
-)
-parser.add_argument(
-    "--frame_input_dir",
-    type=str,
-    default="/content/DAIN/input_frames",
-    help="frame input directory",
-)
-parser.add_argument(
-    "--frame_output_dir",
-    type=str,
-    default="/content/DAIN/output_frames",
-    help="frame output directory",
-)
-
 args = parser.parse_args()
 
-import shutil
 
 if args.uid == None:
     unique_id = str(numpy.random.randint(0, 100000))
@@ -246,7 +241,7 @@ with open(args.arg, "w") as f:
     f.close()
 if args.use_cudnn:
     print("cudnn is used")
-    torch.backends.cudnn.benchmark = True  # to speed up the
+    torch.backends.cudnn.benchmark = True
 else:
     print("cudnn is not used")
-    torch.backends.cudnn.benchmark = False  # to speed up the
+    torch.backends.cudnn.benchmark = False

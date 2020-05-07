@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 import torch
 import torch.nn as nn
-from third_party.DAIN.my_package.FilterInterpolation import FilterInterpolationModule
-from third_party.DAIN.my_package.FlowProjection import FlowProjectionModule
-from third_party.DAIN.my_package.DepthFlowProjection import DepthFlowProjectionModule
+from my_package.FilterInterpolation import FilterInterpolationModule
+from my_package.FlowProjection import FlowProjectionModule
+from my_package.DepthFlowProjection import DepthFlowProjectionModule
 
 from Stack import Stack
 
-from third_party.DAIN import PWCNet
-from third_party.DAIN import S2D_models
-from third_party.DAIN import Resblock
-from third_party.DAIN import MegaDepth
+import PWCNet
+import S2D_models
+import Resblock
+import MegaDepth
 import time
 
 

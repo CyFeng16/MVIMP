@@ -30,9 +30,11 @@ def frames_info(src: str) -> int:
 
 def video_extract(src: str, dst: str, thread: int) -> None:
     """pre-processing video to png"""
-    os.system(f"ffmpeg -threads {thread} -i {src} {dst}+'%8d.png' ")
+    os.system(f"ffmpeg -threads {thread} -i {src} {dst}/%8d.png ")
 
 
 def video_fusion(src: str, dst: str, fps: float, thread: int) -> None:
     """post-processing png to video"""
-    os.system(f"ffmpeg -threads {thread} -y -r {fps} -i {src} -vcodec libx264 {dst}")
+    os.system(
+        f"ffmpeg -threads {thread} -y -r {fps} -i {src} -vcodec libx264 {dst}"
+    )
