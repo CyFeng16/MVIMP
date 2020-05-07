@@ -43,15 +43,23 @@ Original repository: [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-la
 a method for converting a single RGB-D input image into a 3D photo, i.e., a multi-layer representation for novel view synthesis that contains hallucinated color and depth structures in regions occluded in the original view. 
 
 Requirements:
-- PyTroch 1.15.2
-- CUDA 10.0(tested locally) / 10.1(colab)
+- PyTroch 1.5.0
+- CUDA 10.1(tested locally/colab)
 - Python 3.6.8(3.6+/3.7+/3.8+)
-- opencv
-- tqdm
-- numpy
-- glob
-- argparse
+- Other Python dependencies listed in requirements.txt (will be auto prepared through running `preparation.py`)
 
+Usage:
 
+```shell
+# Step 1: Prepare
+git clone https://github.com/CyFeng16/MVIMP.git
+cd MVIMP
+python3 preparation.py -f photo3d
+# Step 2: Put your photos into ./Data/Input/
+# Step 3: Infernece
+python3 inference_photo3d.py -f 40 -n 240 -l 960
+```
+
+Or you can try shared Colab in playground mode:
 
 https://colab.research.google.com/drive/1VAFCN8Wh4DAY_HDcwI-miNIBomx_MZc5?usp=sharing
