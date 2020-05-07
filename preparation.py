@@ -56,11 +56,11 @@ def dain_preparation():
     os.chdir(nvidia_pwcnet_dir)
     os.system(f"sh {os.path.join(nvidia_pwcnet_dir, 'build.sh')}")
 
-    # os.makedirs(model_weights_dir)
-    # os.chdir(model_weights_dir)
-    # os.system("wget http://vllab1.ucmerced.edu/~wenbobao/DAIN/best.pth")
-    #
-    # os.system("pip install Pillow scipy==1.1.0")
+    os.makedirs(model_weights_dir)
+    os.chdir(model_weights_dir)
+    os.system("wget http://vllab1.ucmerced.edu/~wenbobao/DAIN/best.pth")
+
+    os.system("pip install Pillow scipy==1.1.0")
 
 
 def photo_inpainting_3d_preparation():
