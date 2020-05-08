@@ -69,9 +69,7 @@ if __name__ == "__main__":
     # STAGE 3: video post-processing
     clean_folder(input_data_dir)
     file_order(src=output_data_dir, dst=input_data_dir)
-    output_video_file = (
-        f"{args.input_video.split('.')[0]}-{target_fps}.{args.input_video.split('.')[1]}"
-    )
+    output_video_file = f"{args.input_video.split('.')[0]}-{target_fps}.{args.input_video.split('.')[1]}"
 
     video_fusion(
         src=input_data_dir + "/%10d.png",
