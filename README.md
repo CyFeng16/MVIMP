@@ -1,5 +1,9 @@
 # MVIMP
 
+![GitHub last commit](https://img.shields.io/github/last-commit/CyFeng16/MVIMP)
+![GitHub issues](https://img.shields.io/github/issues/CyFeng16/MVIMP)
+![GitHub](https://img.shields.io/github/license/cyfeng16/MVIMP)
+
 **M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram
 
 Make AI easier to use, embrace out of the box AI ability to manipulate multimedia(video and photo for now), and, have fun!
