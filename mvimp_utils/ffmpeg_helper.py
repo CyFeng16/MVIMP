@@ -37,6 +37,8 @@ def video_extract(src: str, dst: str, thread: int) -> None:
 
 def video_fusion(src: str, dst: str, fps: float, thread: int) -> None:
     """post-processing png to video"""
-    cmd = f"ffmpeg -threads {thread} -r {fps} -f image2 -i {src} -y -vcodec libx264 {dst}"
+    cmd = (
+        f"ffmpeg -threads {thread} -r {fps} -f image2 -i {src} -y -vcodec libx264 {dst}"
+    )
     print(cmd)
     os.system(cmd)
