@@ -78,6 +78,8 @@ Or you can try following shared colab in playground mode:
 
 https://colab.research.google.com/drive/1VAFCN8Wh4DAY_HDcwI-miNIBomx_MZc5?usp=sharing
 
+P.S. Massive memory is occupied during operation(grows with `-l`). `Higher memory` runtime helps if you are Colab Pro user.
+
 ## DAIN
 
 Original repository: [baowenbo/DAIN](https://github.com/baowenbo/DAIN)
