@@ -8,6 +8,8 @@
 
 Make AI easier to use, embrace out of the box AI ability to manipulate multimedia(video and photo for now), and, have fun!
 
+[中文文档请移步](https://cyfeng.science/2020/05/05/introduce-to-MVIMP/)
+
 | Function/Model |  Input | Output |        Parallel        |
 |:--------------:|:------:|:------:|:----------------------:|
 |    AnimeGAN    | Images | Images |          True          |
@@ -132,3 +134,5 @@ https://colab.research.google.com/drive/1pIPHQAu7z4Z3LXztCUXiDyBaIlOqy4Me?usp=sh
 # TODO
 - [ ] Dockerized deployment.
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
+- [ ] tqdm instead of print loop
+- [x] Chinese Document
