@@ -1,12 +1,15 @@
-# MVIMP
+<p align="center">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/CyFeng16/MVIMP" />
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/CyFeng16/MVIMP" />
+    <img alt="GitHub License" src="https://img.shields.io/github/license/cyfeng16/MVIMP" />
+    <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" />
+</p>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/CyFeng16/MVIMP)
-![GitHub issues](https://img.shields.io/github/issues/CyFeng16/MVIMP)
-![GitHub](https://img.shields.io/github/license/cyfeng16/MVIMP)
+# MVIMP
 
 **M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram
 
-Make AI easier to use, embrace out of the box AI ability to manipulate multimedia(video and photo for now), and, have fun!
+I realize that training a good-performance AI model is kind of just one side of the story, make it easy to use for others is the other thing. So, this repository tries to embrace out-of-the-box AI ability to manipulate multimedia, also, I wish you have fun!
 
 [中文文档请移步](https://cyfeng.science/2020/05/05/introduce-to-MVIMP/)
 
@@ -86,6 +89,12 @@ https://colab.research.google.com/drive/1VAFCN8Wh4DAY_HDcwI-miNIBomx_MZc5?usp=sh
 
 P.S. Massive memory is occupied during operation(grows with `-l`). `Higher memory` runtime helps if you are Colab Pro user.
 
+3. Description of Parameters
+
+- `--fps`or`-f`: setup the FPS of output video.
+- `--frames`or`-n`: setup the number of frames of output video.
+- `--longer_side_len`or`-l`: set the longer side of output video(either height or width).
+
 ## DAIN
 
 Original repository: [baowenbo/DAIN](https://github.com/baowenbo/DAIN)
@@ -131,8 +140,18 @@ Or you can try following shared colab in playground mode:
 
 https://colab.research.google.com/drive/1pIPHQAu7z4Z3LXztCUXiDyBaIlOqy4Me?usp=sharing
 
+3. Description of Parameters
+
+- `--input_video`or`-input`: set the input video name.
+- `--time_step`or`-ts`: set the frame multiplier, 0.5 corresponds to 2X, 0.25 corresponds to 4X, and 0.125 corresponds to 8X.
+- `--high_resolution`or`-hr`: Default is False. Pascal V100 has not enough memory to run DAIN for the FHD video, set `-hr` True to split a single frame into four blocks and process them separately in order to reduce GPU memory usage.
+
 # TODO
+- [x] Chinese Document
 - [ ] Dockerized deployment.
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
 - [ ] tqdm instead of print loop
-- [x] Chinese Document
+
+# Acknowledgment
+
+This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting) and [baowenbo/DAIN](https://github.com/baowenbo/DAIN). Thanks to the contributors of those project.
