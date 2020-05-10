@@ -164,6 +164,7 @@ Usage:
     # Step 1: Prepare
     git clone https://github.com/CyFeng16/MVIMP.git
     cd MVIMP
+    python3 preparation.py
     # Step 2: Infernece
     python3 inference_deoldify.py -key quickstart-QUdJIGlzIGNvbWluZy4uLi4K
     # This trial code (`quickstart-QUdJIGlzIGNvbWluZy4uLi4K`) will be invalid after a few times. If you wanna keep doing this, sign up a DeepAI account and you will get $5 credit.
