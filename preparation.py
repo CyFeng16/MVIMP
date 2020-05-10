@@ -11,13 +11,6 @@ def config():
     return parser.parse_args()
 
 
-def storage_preparation():
-    if not os.path.exists(input_data_dir):
-        os.makedirs(input_data_dir)
-    if not os.path.exists(output_data_dir):
-        os.makedirs(output_data_dir)
-
-
 def anime_preparation():
     os.chdir(ANIMEGAN_PREFIX)
 
@@ -96,7 +89,6 @@ def photo_inpainting_3d_preparation():
 
 if __name__ == "__main__":
     args = config()
-    storage_preparation()
     if not args.function:
         raise ValueError("Please select correct function to prepare.")
     elif args.function == "animegan":

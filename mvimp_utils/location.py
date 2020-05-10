@@ -11,3 +11,7 @@ Photo_3D = os.path.join(LOC, "third_party/Photo3D")
 
 input_data_dir = os.path.join(LOC, "Data/Input")
 output_data_dir = os.path.join(LOC, "Data/Output")
+if not os.path.exists(input_data_dir):
+    os.makedirs(input_data_dir)
+if not os.path.exists(output_data_dir):
+    os.makedirs(output_data_dir)
