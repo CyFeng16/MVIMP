@@ -146,12 +146,41 @@ https://colab.research.google.com/drive/1pIPHQAu7z4Z3LXztCUXiDyBaIlOqy4Me?usp=sh
 - `--time_step`or`-ts`: set the frame multiplier, 0.5 corresponds to 2X, 0.25 corresponds to 4X, and 0.125 corresponds to 8X.
 - `--high_resolution`or`-hr`: Default is False. Pascal V100 has not enough memory to run DAIN for the FHD video, set `-hr` True to split a single frame into four blocks and process them separately in order to reduce GPU memory usage.
 
+## DeOldify
+
+Original repository: [jantic/DeOldify](https://github.com/jantic/DeOldify)
+
+DeOldify is a Deep Learning based project for colorizing and restoring old images and video! We currently try the easiest way to colorize images using DeOldify, which is using SaaS service provided by DeepAI(**For Now**). You must sign up DeepAI.
+
+Requirements:
+- None
+
+Usage:
+
+1. `Local`
+
+```shell
+# Step 1: Prepare
+git clone https://github.com/CyFeng16/MVIMP.git
+cd MVIMP
+# Step 2: Infernece
+python3 inference_dain.py -key quickstart-QUdJIGlzIGNvbWluZy4uLi4K
+# This trial code (`quickstart-QUdJIGlzIGNvbWluZy4uLi4K`) will be invalid after a few times. If you wanna keep doing this, sign up a DeepAI account and you will get $5 credit.
+```
+
+2. Description of Parameters
+
+- `--api_key`or`-key`: the API key of DeepAI, please sign up first.
+
 # TODO
 - [x] Chinese Document
+- [x] DeOldify for colorizing and restoring old images and videos
+- [ ] tqdm instead of print loop
+- [ ] Original DeOldify local as well as Colab
 - [ ] Dockerized deployment.
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
-- [ ] tqdm instead of print loop
+- [ ] MMSR for image and video super-resolution
 
 # Acknowledgment
 
-This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting) and [baowenbo/DAIN](https://github.com/baowenbo/DAIN). Thanks to the contributors of those project.
+This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting), [baowenbo/DAIN](https://github.com/baowenbo/DAIN) and [jantic/DeOldify](https://github.com/jantic/DeOldify). Thanks to the contributors of those project.
