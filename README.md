@@ -165,7 +165,7 @@ Usage:
     git clone https://github.com/CyFeng16/MVIMP.git
     cd MVIMP
     # Step 2: Infernece
-    python3 inference_dain.py -key quickstart-QUdJIGlzIGNvbWluZy4uLi4K
+    python3 inference_deoldify.py -key quickstart-QUdJIGlzIGNvbWluZy4uLi4K
     # This trial code (`quickstart-QUdJIGlzIGNvbWluZy4uLi4K`) will be invalid after a few times. If you wanna keep doing this, sign up a DeepAI account and you will get $5 credit.
     ```
 
@@ -176,7 +176,7 @@ Usage:
 # TODO
 - [x] Chinese Document
 - [x] DeOldify for colorizing and restoring old images and videos
-- [ ] tqdm instead of print loop
+- [x] tqdm instead of print loop
 - [ ] Original DeOldify local as well as Colab
 - [ ] Dockerized deployment.
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
