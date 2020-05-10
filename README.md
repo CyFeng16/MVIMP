@@ -13,11 +13,12 @@ I realize that training a good-performance AI model is kind of just one side of 
 
 [中文文档请移步](https://cyfeng.science/2020/05/05/introduce-to-MVIMP/)
 
-| Function/Model |  Input | Output |        Parallel        |
-|:--------------:|:------:|:------:|:----------------------:|
-|    AnimeGAN    | Images | Images |          True          |
-|      DAIN      |  Video |  Video |          False         |
-|     Photo3D    | Images | Videos | True(not recommmended) |
+| Parallel |  Input | Output |        Parallel        |
+|:--------:|:------:|:------:|:----------------------:|
+| AnimeGAN | Images | Images |          True          |
+|   DAIN   |  Video |  Video |          False         |
+|  Photo3D | Images | Videos | True(not recommmended) |
+| DeOldify | Images | Images |          True          |
 
 ## AnimeGAN
 
@@ -39,21 +40,21 @@ Usage:
 
 1. `Local`
 
-```shell
-# Step 1: Prepare
-git clone https://github.com/CyFeng16/MVIMP.git
-cd MVIMP
-python3 preparation.py -f animegan 
-# Step 2: Put your photos into ./Data/Input/
-# Step 3: Infernece
-python3 inference_animegan.py
-```
+    ```shell
+    # Step 1: Prepare
+    git clone https://github.com/CyFeng16/MVIMP.git
+    cd MVIMP
+    python3 preparation.py -f animegan 
+    # Step 2: Put your photos into ./Data/Input/
+    # Step 3: Infernece
+    python3 inference_animegan.py
+    ```
 
 2. `Colab`
 
-Or you can try following shared colab in playground mode:
+    Or you can try following shared colab in playground mode:
 
-https://colab.research.google.com/drive/1bpwUFcr5i38_P3a0r3Qm9Dvkl-MS_Y1y?usp=sharing
+    https://colab.research.google.com/drive/1bpwUFcr5i38_P3a0r3Qm9Dvkl-MS_Y1y?usp=sharing
 
 ## Photo3D
 
@@ -71,29 +72,29 @@ Usage:
 
 1. `Local`
 
-```shell
-# Step 1: Prepare
-git clone https://github.com/CyFeng16/MVIMP.git
-cd MVIMP
-python3 preparation.py -f photo3d
-# Step 2: Put your photos into ./Data/Input/
-# Step 3: Infernece
-python3 inference_photo3d.py -f 40 -n 240 -l 960
-```
+    ```shell
+    # Step 1: Prepare
+    git clone https://github.com/CyFeng16/MVIMP.git
+    cd MVIMP
+    python3 preparation.py -f photo3d
+    # Step 2: Put your photos into ./Data/Input/
+    # Step 3: Infernece
+    python3 inference_photo3d.py -f 40 -n 240 -l 960
+    ```
 
 2. `Colab`
 
-Or you can try following shared colab in playground mode:
+    Or you can try following shared colab in playground mode:
 
-https://colab.research.google.com/drive/1VAFCN8Wh4DAY_HDcwI-miNIBomx_MZc5?usp=sharing
+    https://colab.research.google.com/drive/1VAFCN8Wh4DAY_HDcwI-miNIBomx_MZc5?usp=sharing
 
-P.S. Massive memory is occupied during operation(grows with `-l`). `Higher memory` runtime helps if you are Colab Pro user.
+    P.S. Massive memory is occupied during operation(grows with `-l`). `Higher memory` runtime helps if you are Colab Pro user.
 
 3. Description of Parameters
 
-- `--fps`or`-f`: setup the FPS of output video.
-- `--frames`or`-n`: setup the number of frames of output video.
-- `--longer_side_len`or`-l`: set the longer side of output video(either height or width).
+   - `--fps`or`-f`: setup the FPS of output video.
+   - `--frames`or`-n`: setup the number of frames of output video.
+   - `--longer_side_len`or`-l`: set the longer side of output video(either height or width).
 
 ## DAIN
 
@@ -124,27 +125,27 @@ Usage:
 
 1. `Local`
 
-```shell
-# Step 1: Prepare
-git clone https://github.com/CyFeng16/MVIMP.git
-cd MVIMP
-python3 preparation.py -f dain
-# Step 2: Put a single video file into ./Data/Input/
-# Step 3: Infernece
-python3 inference_dain.py -input your_input.mp4 -ts 0.5 -hr False
-```
+    ```shell
+    # Step 1: Prepare
+    git clone https://github.com/CyFeng16/MVIMP.git
+    cd MVIMP
+    python3 preparation.py -f dain
+    # Step 2: Put a single video file into ./Data/Input/
+    # Step 3: Infernece
+    python3 inference_dain.py -input your_input.mp4 -ts 0.5 -hr False
+    ```
 
 2. `Colab`
 
-Or you can try following shared colab in playground mode:
+    Or you can try following shared colab in playground mode:
 
-https://colab.research.google.com/drive/1pIPHQAu7z4Z3LXztCUXiDyBaIlOqy4Me?usp=sharing
+    https://colab.research.google.com/drive/1pIPHQAu7z4Z3LXztCUXiDyBaIlOqy4Me?usp=sharing
 
 3. Description of Parameters
 
-- `--input_video`or`-input`: set the input video name.
-- `--time_step`or`-ts`: set the frame multiplier, 0.5 corresponds to 2X, 0.25 corresponds to 4X, and 0.125 corresponds to 8X.
-- `--high_resolution`or`-hr`: Default is False. Pascal V100 has not enough memory to run DAIN for the FHD video, set `-hr` True to split a single frame into four blocks and process them separately in order to reduce GPU memory usage.
+   - `--input_video`or`-input`: set the input video name.
+   - `--time_step`or`-ts`: set the frame multiplier, 0.5 corresponds to 2X, 0.25 corresponds to 4X, and 0.125 corresponds to 8X.
+   - `--high_resolution`or`-hr`: Default is False. Pascal V100 has not enough memory to run DAIN for the FHD video, set `-hr` True to split a single frame into four blocks and process them separately in order to reduce GPU memory usage.
 
 ## DeOldify
 
@@ -159,18 +160,18 @@ Usage:
 
 1. `Local`
 
-```shell
-# Step 1: Prepare
-git clone https://github.com/CyFeng16/MVIMP.git
-cd MVIMP
-# Step 2: Infernece
-python3 inference_dain.py -key quickstart-QUdJIGlzIGNvbWluZy4uLi4K
-# This trial code (`quickstart-QUdJIGlzIGNvbWluZy4uLi4K`) will be invalid after a few times. If you wanna keep doing this, sign up a DeepAI account and you will get $5 credit.
-```
+    ```shell
+    # Step 1: Prepare
+    git clone https://github.com/CyFeng16/MVIMP.git
+    cd MVIMP
+    # Step 2: Infernece
+    python3 inference_dain.py -key quickstart-QUdJIGlzIGNvbWluZy4uLi4K
+    # This trial code (`quickstart-QUdJIGlzIGNvbWluZy4uLi4K`) will be invalid after a few times. If you wanna keep doing this, sign up a DeepAI account and you will get $5 credit.
+    ```
 
 2. Description of Parameters
 
-- `--api_key`or`-key`: the API key of DeepAI, please sign up first.
+   - `--api_key`or`-key`: the API key of DeepAI, please sign up first.
 
 # TODO
 - [x] Chinese Document
