@@ -17,6 +17,7 @@ from networks import DAIN_slowmotion
 from my_args import args
 from scipy.misc import imread, imsave
 import shutil
+from tqdm import tqdm
 
 
 def continue_frames_insertion_helper(input_dir: str, output_dir: str, time_step: float):
@@ -33,7 +34,7 @@ def continue_frames_insertion_helper(input_dir: str, output_dir: str, time_step:
     # Todo(C.Feng, Mar 30): More precise string processing.
     all_frames.sort()
     frames_num = len(all_frames)
-    for num in range(frames_num - 1):
+    for num in tqdm(range(frames_num - 1)):
         begin_frame = os.path.join(input_dir, f"{all_frames[num]}")
         end_frame = os.path.join(input_dir, f"{all_frames[num+1]}")
         frames_insertion_helper(
@@ -48,7 +49,7 @@ def continue_frames_insertion_helper(input_dir: str, output_dir: str, time_step:
         os.path.join(input_dir, f"{all_frames[-1]}"),
         os.path.join(output_dir, f"{all_frames[-1].split('.')[0]}00.png"),
     )
-    print(f"************** current image {all_frames[-1]} processed. **************")
+    # print(f"************** current image {all_frames[-1]} processed. **************")
 
 
 def frames_insertion_helper(
@@ -104,7 +105,7 @@ def frames_insertion_helper(
     del y_0
     torch.cuda.empty_cache()
 
-    print(f"************** current image {begin_frame} processed. **************")
+    # print(f"************** current image {begin_frame} processed. **************")
 
 
 def model_inference_helper(x_0: np.array, x_1: np.array):
