@@ -3,8 +3,7 @@ The basic function of DeOldify comes from https://deepai.org/machine-learning-mo
 
 Todo(C.Feng, 20200511): Use original DeOldify instead of SaaS provided by DeepAI.
 """
-
-
+from mvimp_utils.file_op_helper import clean_folder
 from mvimp_utils.location import *
 import requests
 import os
@@ -43,3 +42,4 @@ if __name__ == "__main__":
 
     deoldify_saas(src=input_data_dir, key=args.api_key, dst=output_data_dir)
     print("Process completed.")
+    clean_folder(input_data_dir)
