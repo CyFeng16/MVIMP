@@ -90,7 +90,11 @@ def photo_inpainting_3d_preparation():
 if __name__ == "__main__":
     args = config()
     if not args.function:
-        raise ValueError("Please select correct function to prepare.")
+        print(
+            f"Only create Data folder at {input_data_dir} and {output_data_dir}.\n"
+            f"Make sure you have selected correct function to prepare."
+        )
+        # raise ValueError("Please select correct function to prepare.")
     elif args.function == "animegan":
         anime_preparation()
     elif args.function == "dain":
