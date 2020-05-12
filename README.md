@@ -183,6 +183,8 @@ Usage:
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
 - [ ] MMSR for image and video super-resolution
 
+You are welcomed to discuss future features in [this issue](https://github.com/CyFeng16/MVIMP/issues/2).
+
 # Acknowledgment
 
 This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting), [baowenbo/DAIN](https://github.com/baowenbo/DAIN) and [jantic/DeOldify](https://github.com/jantic/DeOldify). Thanks to the contributors of those project.
