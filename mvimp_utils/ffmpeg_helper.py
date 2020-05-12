@@ -30,15 +30,26 @@ def frames_info(src: str) -> int:
 
 def video_extract(src: str, dst: str, thread: int) -> None:
     """pre-processing video to png"""
-    cmd = f"ffmpeg -threads {thread} -i {src} {dst}/%8d.png"
+    cmd = (
+        f"ffmpeg -hide_banner -loglevel warning "
+        f"-threads {thread} "
+        f"-i {src} "
+        f"{dst}/%8d.png"
+    )
     print(cmd)
     os.system(cmd)
+    print("The video-image extracting job is done.")
 
 
 def video_fusion(src: str, dst: str, fps: float, thread: int) -> None:
     """post-processing png to video"""
     cmd = (
-        f"ffmpeg -threads {thread} -r {fps} -f image2 -i {src} -y -vcodec libx264 {dst}"
+        f"ffmpeg -hide_banner -loglevel warning "
+        f"-threads {thread} "
+        f"-r {fps} "
+        f"-f image2 -i {src} "
+        f"-y -vcodec libx264 {dst}"
     )
     print(cmd)
     os.system(cmd)
+    print("The image-video fusion job is done.")
