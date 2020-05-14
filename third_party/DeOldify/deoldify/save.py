@@ -25,5 +25,5 @@ class GANSaveCallback(LearnerCallback):
             self._save_gen_learner(iteration=iteration, epoch=epoch)
 
     def _save_gen_learner(self, iteration: int, epoch: int):
-        filename = '{}_{}_{}'.format(self.filename, epoch, iteration)
+        filename = "{}_{}_{}".format(self.filename, epoch, iteration)
         self.learn_gen.save(filename)

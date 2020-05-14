@@ -7,7 +7,7 @@ from fastai.vision import *
 
 # The code below is meant to be merged into fastaiv1 ideally
 
-__all__ = ['DynamicUnetDeep', 'DynamicUnetWide']
+__all__ = ["DynamicUnetDeep", "DynamicUnetWide"]
 
 
 def _get_sfs_idxs(sizes: Sizes) -> List[int]:
@@ -86,7 +86,7 @@ class UnetBlockDeep(nn.Module):
         up_out = self.shuf(up_in)
         ssh = s.shape[-2:]
         if ssh != up_out.shape[-2:]:
-            up_out = F.interpolate(up_out, s.shape[-2:], mode='nearest')
+            up_out = F.interpolate(up_out, s.shape[-2:], mode="nearest")
         cat_x = self.relu(torch.cat([up_out, self.bn(s)], dim=1))
         return self.conv2(self.conv1(cat_x))
 
@@ -200,7 +200,7 @@ class UnetBlockWide(nn.Module):
         up_out = self.shuf(up_in)
         ssh = s.shape[-2:]
         if ssh != up_out.shape[-2:]:
-            up_out = F.interpolate(up_out, s.shape[-2:], mode='nearest')
+            up_out = F.interpolate(up_out, s.shape[-2:], mode="nearest")
         cat_x = self.relu(torch.cat([up_out, self.bn(s)], dim=1))
         return self.conv(cat_x)
 

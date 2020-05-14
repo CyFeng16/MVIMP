@@ -47,17 +47,19 @@ class BaseFilter(IFilter):
         x = x.to(self.device)
         x.div_(255)
         x, y = self.norm((x, x), do_x=True)
-        
+
         try:
             result = self.learn.pred_batch(
                 ds_type=DatasetType.Valid, batch=(x[None], y[None]), reconstruct=True
             )
         except RuntimeError as rerr:
-            if 'memory' not in str(rerr):
+            if "memory" not in str(rerr):
                 raise rerr
-            print('Warning: render_factor was set too high, and out of memory error resulted. Returning original image.')
+            print(
+                "Warning: render_factor was set too high, and out of memory error resulted. Returning original image."
+            )
             return model_image
-            
+
         out = result[0]
         out = self.denorm(out.px, do_x=False)
         out = image2np(out * 255).astype(np.uint8)
@@ -75,7 +77,12 @@ class ColorizerFilter(BaseFilter):
         self.render_base = 16
 
     def filter(
-        self, orig_image: PilImage, filtered_image: PilImage, render_factor: int, post_process: bool = True) -> PilImage:
+        self,
+        orig_image: PilImage,
+        filtered_image: PilImage,
+        render_factor: int,
+        post_process: bool = True,
+    ) -> PilImage:
         render_sz = render_factor * self.render_base
         model_image = self._model_process(orig=filtered_image, sz=render_sz)
         raw_color = self._unsquare(model_image, orig_image)
@@ -86,7 +93,7 @@ class ColorizerFilter(BaseFilter):
             return raw_color
 
     def _transform(self, image: PilImage) -> PilImage:
-        return image.convert('LA').convert('RGB')
+        return image.convert("LA").convert("RGB")
 
     # This takes advantage of the fact that human eyes are much less sensitive to
     # imperfections in chrominance compared to luminance.  This means we can
@@ -112,9 +119,16 @@ class MasterFilter(BaseFilter):
         self.render_factor = render_factor
 
     def filter(
-        self, orig_image: PilImage, filtered_image: PilImage, render_factor: int = None, post_process: bool = True) -> PilImage:
+        self,
+        orig_image: PilImage,
+        filtered_image: PilImage,
+        render_factor: int = None,
+        post_process: bool = True,
+    ) -> PilImage:
         render_factor = self.render_factor if render_factor is None else render_factor
         for filter in self.filters:
-            filtered_image = filter.filter(orig_image, filtered_image, render_factor, post_process)
+            filtered_image = filter.filter(
+                orig_image, filtered_image, render_factor, post_process
+            )
 
         return filtered_image

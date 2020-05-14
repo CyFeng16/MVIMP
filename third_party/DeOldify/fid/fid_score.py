@@ -58,24 +58,24 @@ from .inception import InceptionV3
 
 parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
 parser.add_argument(
-    'path',
+    "path",
     type=str,
     nargs=2,
-    help=('Path to the generated images or ' 'to .npz statistic files'),
+    help=("Path to the generated images or " "to .npz statistic files"),
 )
-parser.add_argument('--batch-size', type=int, default=50, help='Batch size to use')
+parser.add_argument("--batch-size", type=int, default=50, help="Batch size to use")
 parser.add_argument(
-    '--dims',
+    "--dims",
     type=int,
     default=2048,
     choices=list(InceptionV3.BLOCK_INDEX_BY_DIM),
     help=(
-        'Dimensionality of Inception features to use. '
-        'By default, uses pool3 features'
+        "Dimensionality of Inception features to use. "
+        "By default, uses pool3 features"
     ),
 )
 parser.add_argument(
-    '-c', '--gpu', default='', type=str, help='GPU to use (leave blank for CPU only)'
+    "-c", "--gpu", default="", type=str, help="GPU to use (leave blank for CPU only)"
 )
 
 
@@ -118,15 +118,15 @@ def get_activations(
     if len(files) % batch_size != 0:
         print(
             (
-                'Warning: number of images is not a multiple of the '
-                'batch size. Some samples are going to be ignored.'
+                "Warning: number of images is not a multiple of the "
+                "batch size. Some samples are going to be ignored."
             )
         )
     if batch_size > len(files):
         print(
             (
-                'Warning: batch size is bigger than the data size. '
-                'Setting batch size to data size'
+                "Warning: batch size is bigger than the data size. "
+                "Setting batch size to data size"
             )
         )
         batch_size = len(files)
@@ -138,7 +138,7 @@ def get_activations(
 
     for i in tqdm(range(n_batches)):
         if verbose:
-            print('\rPropagating batch %d/%d' % (i + 1, n_batches), end='', flush=True)
+            print("\rPropagating batch %d/%d" % (i + 1, n_batches), end="", flush=True)
         start = i * batch_size
         end = start + batch_size
 
@@ -166,7 +166,7 @@ def get_activations(
         pred_arr[start:end] = pred.cpu().data.numpy().reshape(batch_size, -1)
 
     if verbose:
-        print(' done')
+        print(" done")
 
     return pred_arr
 
@@ -201,10 +201,10 @@ def calculate_frechet_distance(mu1, sigma1, mu2, sigma2, eps=1e-6):
 
     assert (
         mu1.shape == mu2.shape
-    ), 'Training and test mean vectors have different lengths'
+    ), "Training and test mean vectors have different lengths"
     assert (
         sigma1.shape == sigma2.shape
-    ), 'Training and test covariances have different dimensions'
+    ), "Training and test covariances have different dimensions"
 
     diff = mu1 - mu2
 
@@ -212,8 +212,8 @@ def calculate_frechet_distance(mu1, sigma1, mu2, sigma2, eps=1e-6):
     covmean, _ = linalg.sqrtm(sigma1.dot(sigma2), disp=False)
     if not np.isfinite(covmean).all():
         msg = (
-            'fid calculation produces singular product; '
-            'adding %s to diagonal of cov estimates'
+            "fid calculation produces singular product; "
+            "adding %s to diagonal of cov estimates"
         ) % eps
         print(msg)
         offset = np.eye(sigma1.shape[0]) * eps
@@ -223,7 +223,7 @@ def calculate_frechet_distance(mu1, sigma1, mu2, sigma2, eps=1e-6):
     if np.iscomplexobj(covmean):
         if not np.allclose(np.diagonal(covmean).imag, 0, atol=1e-3):
             m = np.max(np.abs(covmean.imag))
-            raise ValueError('Imaginary component {}'.format(m))
+            raise ValueError("Imaginary component {}".format(m))
         covmean = covmean.real
 
     tr_covmean = np.trace(covmean)
@@ -258,13 +258,13 @@ def calculate_activation_statistics(
 
 
 def _compute_statistics_of_path(path, model, batch_size, dims, cuda):
-    if path.endswith('.npz'):
+    if path.endswith(".npz"):
         f = np.load(path)
-        m, s = f['mu'][:], f['sigma'][:]
+        m, s = f["mu"][:], f["sigma"][:]
         f.close()
     else:
         path = pathlib.Path(path)
-        files = list(path.glob('*.jpg')) + list(path.glob('*.png'))
+        files = list(path.glob("*.jpg")) + list(path.glob("*.png"))
         m, s = calculate_activation_statistics(files, model, batch_size, dims, cuda)
 
     return m, s
@@ -274,7 +274,7 @@ def calculate_fid_given_paths(paths, batch_size, cuda, dims):
     """Calculates the FID of two paths"""
     for p in paths:
         if not os.path.exists(p):
-            raise RuntimeError('Invalid path: %s' % p)
+            raise RuntimeError("Invalid path: %s" % p)
 
     block_idx = InceptionV3.BLOCK_INDEX_BY_DIM[dims]
 
@@ -289,11 +289,11 @@ def calculate_fid_given_paths(paths, batch_size, cuda, dims):
     return fid_value
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args = parser.parse_args()
-    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
+    os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
 
     fid_value = calculate_fid_given_paths(
-        args.path, args.batch_size, args.gpu != '', args.dims
+        args.path, args.batch_size, args.gpu != "", args.dims
     )
-    print('FID: ', fid_value)
+    print("FID: ", fid_value)

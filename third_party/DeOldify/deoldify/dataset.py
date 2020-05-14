@@ -17,9 +17,9 @@ def get_colorize_data(
     stats: tuple = imagenet_stats,
     xtra_tfms=[],
 ) -> ImageDataBunch:
-    
+
     src = (
-        ImageImageList.from_folder(crappy_path, convert_mode='RGB')
+        ImageImageList.from_folder(crappy_path, convert_mode="RGB")
         .use_partial_data(sample_pct=keep_pct, seed=random_seed)
         .split_by_rand_pct(0.1, seed=random_seed)
     )
@@ -42,7 +42,7 @@ def get_colorize_data(
 
 
 def get_dummy_databunch() -> ImageDataBunch:
-    path = Path('./dummy/')
+    path = Path("./dummy/")
     return get_colorize_data(
         sz=1, bs=1, crappy_path=path, good_path=path, keep_pct=0.001
     )

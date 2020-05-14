@@ -20,7 +20,7 @@ class FeatureLoss(nn.Module):
         self.loss_features = [self.m_feat[i] for i in layer_ids]
         self.hooks = hook_outputs(self.loss_features, detach=False)
         self.wgts = layer_wgts
-        self.metric_names = ['pixel'] + [f'feat_{i}' for i in range(len(layer_ids))]
+        self.metric_names = ["pixel"] + [f"feat_{i}" for i in range(len(layer_ids))]
         self.base_loss = F.l1_loss
 
     def _make_features(self, x, clone=False):
@@ -60,9 +60,9 @@ class WassFeatureLoss(nn.Module):
         self.wgts = layer_wgts
         self.wass_wgts = wass_wgts
         self.metric_names = (
-            ['pixel']
-            + [f'feat_{i}' for i in range(len(layer_ids))]
-            + [f'wass_{i}' for i in range(len(layer_ids))]
+            ["pixel"]
+            + [f"feat_{i}" for i in range(len(layer_ids))]
+            + [f"wass_{i}" for i in range(len(layer_ids))]
         )
         self.base_loss = F.l1_loss
 

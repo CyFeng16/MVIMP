@@ -26,20 +26,19 @@ from pathlib import Path
 import traceback
 
 
-torch.backends.cudnn.benchmark=True
+torch.backends.cudnn.benchmark = True
 
 
-os.environ['CUDA_VISIBLE_DEVICES']='0'
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 app = Flask(__name__)
-
 
 
 # define a predict function as an endpoint
 @app.route("/process", methods=["POST"])
 def process_image():
 
-    input_path = generate_random_filename(upload_directory,"jpeg")
+    input_path = generate_random_filename(upload_directory, "jpeg")
     output_path = os.path.join(results_img_directory, os.path.basename(input_path))
 
     try:
@@ -49,49 +48,60 @@ def process_image():
         download(url, input_path)
 
         try:
-            image_colorizer.plot_transformed_image(path=input_path, figsize=(20,20),
-                render_factor=render_factor, display_render_factor=True, compare=False)
+            image_colorizer.plot_transformed_image(
+                path=input_path,
+                figsize=(20, 20),
+                render_factor=render_factor,
+                display_render_factor=True,
+                compare=False,
+            )
         except:
             convertToJPG(input_path)
-            image_colorizer.plot_transformed_image(path=input_path, figsize=(20,20),
-            render_factor=render_factor, display_render_factor=True, compare=False)
+            image_colorizer.plot_transformed_image(
+                path=input_path,
+                figsize=(20, 20),
+                render_factor=render_factor,
+                display_render_factor=True,
+                compare=False,
+            )
 
-        callback = send_file(output_path, mimetype='image/jpeg')
-        
+        callback = send_file(output_path, mimetype="image/jpeg")
+
         return callback, 200
 
     except:
         traceback.print_exc()
-        return {'message': 'input error'}, 400
+        return {"message": "input error"}, 400
 
     finally:
         pass
-        clean_all([
-            input_path,
-            output_path
-            ])
+        clean_all([input_path, output_path])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     global upload_directory
     global results_img_directory
     global image_colorizer
 
-    upload_directory = '/data/upload/'
+    upload_directory = "/data/upload/"
     create_directory(upload_directory)
 
-    results_img_directory = '/data/result_images/'
+    results_img_directory = "/data/result_images/"
     create_directory(results_img_directory)
 
-    model_directory = '/data/models/'
+    model_directory = "/data/models/"
     create_directory(model_directory)
-    
-    artistic_model_url = 'https://www.dropbox.com/s/zkehq1uwahhbc2o/ColorizeArtistic_gen.pth?dl=0'
-    get_model_bin(artistic_model_url, os.path.join(model_directory, 'ColorizeArtistic_gen.pth'))
 
+    artistic_model_url = (
+        "https://www.dropbox.com/s/zkehq1uwahhbc2o/ColorizeArtistic_gen.pth?dl=0"
+    )
+    get_model_bin(
+        artistic_model_url, os.path.join(model_directory, "ColorizeArtistic_gen.pth")
+    )
 
     image_colorizer = get_image_colorizer(artistic=True)
-    
+
     port = 5000
-    host = '0.0.0.0'
+    host = "0.0.0.0"
 
     app.run(host=host, port=port, threaded=False)
