@@ -10,6 +10,7 @@ import os
 from tqdm import tqdm
 import argparse
 from third_party.DeOldify.deoldify.visualize import get_image_colorizer
+from third_party.DeOldify.deoldify.visualize import   get_artistic_image_colorizer
 
 
 def config():
@@ -29,7 +30,10 @@ def config():
 if __name__ == "__main__":
     args = config()
 
-    colorizer = get_image_colorizer(artistic=args.artistic)
+    if args.artistic:
+        colorizer = get_artistic_image_colorizer(
+            root_folder=Path(DeOldify),
+        )
 
     file_list = os.listdir(input_data_dir)
     for file in tqdm(file_list):
