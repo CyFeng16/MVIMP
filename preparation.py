@@ -92,12 +92,15 @@ def deoldify_preparation():
 
     models_dir = os.path.join(DeOldify, "models")
     os.makedirs(models_dir, exist_ok=True)
-    model_weights_url = (
-        "https://www.dropbox.com/s/zkehq1uwahhbc2o/ColorizeArtistic_gen.pth?dl=0"
-    )
-    os.system(
-        f"wget {model_weights_url} -O {os.path.join(models_dir, 'ColorizeArtistic_gen.pth')}"
-    )
+
+    model_weights = {
+        "stable": "https://www.dropbox.com/s/mwjep3vyqk5mkjc/ColorizeStable_gen.pth",
+        "artistic": "https://www.dropbox.com/s/zkehq1uwahhbc2o/ColorizeArtistic_gen.pth",
+    }
+    os.system(f"wget {model_weights['stable']} " f"{model_weights['artistic']} ")
+
+    shutil.move("ColorizeStable_gen.pth", "models")
+    shutil.move("ColorizeArtistic_gen.pth", "models")
 
     os.system(f"pip install -r colab_requirements.txt")
 

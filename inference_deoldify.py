@@ -1,16 +1,12 @@
-"""
-The basic function of DeOldify comes from https://deepai.org/machine-learning-model/colorizer
-
-Todo(C.Feng, 20200511): Use original DeOldify instead of SaaS provided by DeepAI.
-"""
 from pathlib import Path
 from mvimp_utils.file_op_helper import clean_folder
 from mvimp_utils.location import *
+import shutil
 import os
 from tqdm import tqdm
 import argparse
-from third_party.DeOldify.deoldify.visualize import get_image_colorizer
-from third_party.DeOldify.deoldify.visualize import   get_artistic_image_colorizer
+from third_party.DeOldify.deoldify.visualize import get_artistic_image_colorizer
+from third_party.DeOldify.deoldify.visualize import get_stable_image_colorizer
 
 
 def config():
@@ -31,9 +27,9 @@ if __name__ == "__main__":
     args = config()
 
     if args.artistic:
-        colorizer = get_artistic_image_colorizer(
-            root_folder=Path(DeOldify),
-        )
+        colorizer = get_artistic_image_colorizer(root_folder=Path(DeOldify))
+    else:
+        colorizer = get_stable_image_colorizer(root_folder=Path(DeOldify))
 
     file_list = os.listdir(input_data_dir)
     for file in tqdm(file_list):
@@ -44,3 +40,7 @@ if __name__ == "__main__":
             watermarked=args.watermarked,
         )
         colored_image.save(os.path.join(output_data_dir, file))
+
+    shutil.rmtree(os.path.join(LOC, "dummy"))
+    shutil.rmtree(os.path.join(LOC, "result_images"))
+    clean_folder(input_data_dir)
