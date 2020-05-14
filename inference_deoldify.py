@@ -5,11 +5,12 @@ Todo(C.Feng, 20200511): Use original DeOldify instead of SaaS provided by DeepAI
 """
 from mvimp_utils.file_op_helper import clean_folder
 from mvimp_utils.location import *
-import requests
 import os
 from tqdm import tqdm
 import argparse
 
+import fastai
+from deoldify.visualize import *
 
 def config():
     parser = argparse.ArgumentParser()
