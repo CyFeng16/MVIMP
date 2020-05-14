@@ -1,3 +1,5 @@
+"""Todo(C.Feng, 20200515): Video format"""
+
 from pathlib import Path
 from mvimp_utils.file_op_helper import clean_folder
 from mvimp_utils.location import *
@@ -12,13 +14,28 @@ from third_party.DeOldify.deoldify.visualize import get_stable_image_colorizer
 def config():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--artistic", "-art", default=True, type=bool, help=" ",  # TODO
+        "--artistic",
+        "-art",
+        default=True,
+        type=bool,
+        help="Artistic model achieves the highest quality results in image coloration, "
+        "in terms of interesting details and vibrance."
+        "Stable model achieves the best results with landscapes and portraits.",
     )
     parser.add_argument(
-        "--render_factor", "-factor", default=35, type=int, help=" ",  # TODO
+        "--render_factor",
+        "-factor",
+        default=35,
+        type=int,
+        help="Between 7 and 40, try more times for better performance.",
     )
     parser.add_argument(
-        "--watermarked", "-mark", default=False, type=bool, help=" ",  # TODO
+        "--watermarked",
+        "-mark",
+        default=False,
+        type=bool,
+        help="I respect the spirit of the original author adding a watermark to distinguish AI works, "
+        "but setting it to False is more convenient for use in a production environment.",
     )
     return parser.parse_args()
 
