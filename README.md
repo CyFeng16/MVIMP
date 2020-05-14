@@ -13,8 +13,6 @@ English | [简体中文](docs/README_zh-Hans.md)
 
 I realize that training a good-performance AI model is kind of just one side of the story, make it easy to use for others is the other thing. So, this repository tries to embrace out-of-the-box AI ability to manipulate multimedia, also, I wish you have fun!
 
-[中文文档请移步/更新会延迟一些](https://cyfeng.science/2020/05/05/introduce-to-MVIMP/)
-
 | Parallel |  Input | Output |        Parallel        |
 |:--------:|:------:|:------:|:----------------------:|
 | AnimeGAN | Images | Images |          True          |
