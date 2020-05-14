@@ -5,13 +5,15 @@
     <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" />
 </p>
 
+English | [简体中文](docs/README_zh-Hans.md)
+
 # MVIMP
 
 **M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram
 
 I realize that training a good-performance AI model is kind of just one side of the story, make it easy to use for others is the other thing. So, this repository tries to embrace out-of-the-box AI ability to manipulate multimedia, also, I wish you have fun!
 
-[中文文档请移步](https://cyfeng.science/2020/05/05/introduce-to-MVIMP/)
+[中文文档请移步/更新会延迟一些](https://cyfeng.science/2020/05/05/introduce-to-MVIMP/)
 
 | Parallel |  Input | Output |        Parallel        |
 |:--------:|:------:|:------:|:----------------------:|

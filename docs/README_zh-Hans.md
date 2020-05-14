@@ -5,6 +5,8 @@
     <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" />
 </p>
 
+[English](./README.md) | 简体中文
+
 # MVIMP
 
 `MVIMP`(**M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram)名字的灵感来自于`GIMP`(**G**NU **I**mage **M**anipulation **P**rogram),也希望更多的人可以尝试使用它w
