@@ -97,11 +97,11 @@ Other Python dependencies listed in `requirements.txt`, and will be auto install
 
 3. Description of Parameters
 
-    | params            | abbr. | Description                                              |
-    |-------------------|-------|----------------------------------------------------------|
-    | --fps             | -f    | The FPS of output video.                                 |
-    | --frames          | -n    | The number of frames of output video.                    |
-    | --longer_side_len | -l    | The longer side of output video(either height or width). |
+    | params            | abbr. | Default | Description                                              |
+    |-------------------|-------|---------|----------------------------------------------------------|
+    | --fps             | -f    | 40      | The FPS of output video.                                 |
+    | --frames          | -n    | 240     | The number of frames of output video.                    |
+    | --longer_side_len | -l    | 960     | The longer side of output video(either height or width). |
 
 ## DAIN
 
@@ -150,17 +150,21 @@ sudo ln -snf /usr/local/cuda-10.0 /usr/local/cuda
 
 3. Description of Parameters
 
-    | params            | abbr.  | Description                                                                                                                  |
-    |-------------------|--------|------------------------------------------------------------------------------------------------------------------------------|
-    | --input_video     | -input | The input video name.                                                                                                        |
-    | --time_step       | -ts    | Set the frame multiplier.<br>0.5 corresponds to 2X;<br>0.25 corresponds to 4X;<br>0.125 corresponds to 8X.                   |
-    | --high_resolution | -hr    | Default is False.<br>Set it to True when you handling FHD videos,<br>A frame-splitting process will reduce GPU memory usage. |
+    | params            | abbr.  | Default    | Description                                                                                                                                 |
+    |-------------------|--------|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+    | --input_video     | -input | /          | The input video name.                                                                                                                       |
+    | --time_step       | -ts    | 0.5        | Set the frame multiplier.<br>0.5 corresponds to 2X;<br>0.25 corresponds to 4X;<br>0.125 corresponds to 8X.                                  |
+    | --high_resolution | -hr    | store_true | Default is False(action:store_true).<br>Turn it on when you handling FHD videos,<br>A frame-splitting process will reduce GPU memory usage. |
 
 ## DeOldify
 
 Original repository: [jantic/DeOldify](https://github.com/jantic/DeOldify)
 
-DeOldify is a Deep Learning based project for colorizing and restoring old images and video! ~~We currently try the easiest way to colorize images using DeOldify, which is using SaaS service provided by DeepAI(**For Now**). You must sign up DeepAI.~~ We are now integrating the inference capabilities of the DeOldify model (both Artistic and Stable, no Video) with our MVIMP repository, and keeping the input and output interfaces consistent.
+DeOldify is a Deep Learning based project for colorizing and restoring old images and video! 
+
+~~We currently try the easiest way to colorize images using DeOldify, which is using SaaS service provided by DeepAI(**For Now**). You must sign up DeepAI.~~
+
+We are now integrating the inference capabilities of the DeOldify model (both Artistic and Stable, no Video) with our MVIMP repository, and keeping the input and output interfaces consistent.
 
 |  Dependency  |           Version          |
 |:------------:|:--------------------------:|
@@ -187,7 +191,7 @@ Other Python dependencies listed in `colab_requirements.txt`, and will be auto i
 
     Or you can try following shared colab in playground mode:
 
-    https://colab.research.google.com/drive/1pIPHQAu7z4Z3LXztCUXiDyBaIlOqy4Me?usp=sharing
+    https://colab.research.google.com/drive/156StQ1WdErl-_213pCQV-ysX2FT_vtjm?usp=sharing
 
 3. Description of Parameters
 
