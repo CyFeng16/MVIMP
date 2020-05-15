@@ -61,7 +61,7 @@ This is the Open source of the paper <AnimeGAN: a novel lightweight GAN for phot
 
 Original repository: [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting)
 
-a method for converting a single RGB-D input image into a 3D photo, i.e., a multi-layer representation for novel view synthesis that contains hallucinated color and depth structures in regions occluded in the original view. 
+The method for converting a single RGB-D input image into a 3D photo, i.e., a multi-layer representation for novel view synthesis that contains hallucinated color and depth structures in regions occluded in the original view. 
 
 |  Dependency  |           Version          |
 |:------------:|:--------------------------:|
@@ -160,7 +160,15 @@ sudo ln -snf /usr/local/cuda-10.0 /usr/local/cuda
 
 Original repository: [jantic/DeOldify](https://github.com/jantic/DeOldify)
 
-DeOldify is a Deep Learning based project for colorizing and restoring old images and video! We currently try the easiest way to colorize images using DeOldify, which is using SaaS service provided by DeepAI(**For Now**). You must sign up DeepAI.
+DeOldify is a Deep Learning based project for colorizing and restoring old images and video! ~~We currently try the easiest way to colorize images using DeOldify, which is using SaaS service provided by DeepAI(**For Now**). You must sign up DeepAI.~~ We are now integrating the inference capabilities of the DeOldify model (both Artistic and Stable, no Video) with our MVIMP repository, and keeping the input and output interfaces consistent.
+
+|  Dependency  |           Version          |
+|:------------:|:--------------------------:|
+|    PyTroch   |            1.5.0           |
+| CUDA Toolkit | 10.1(tested locally/colab) |
+|    Python    |         3.6.8(3.6+)        |
+
+Other Python dependencies listed in `colab_requirements.txt`, and will be auto installed while running `preparation.py`.
 
 **Usage**:
 
@@ -170,23 +178,31 @@ DeOldify is a Deep Learning based project for colorizing and restoring old image
     # Step 1: Prepare
     git clone https://github.com/CyFeng16/MVIMP.git
     cd MVIMP
-    python3 preparation.py
+    python3 preparation.py -f deoldify
     # Step 2: Infernece
-    python3 inference_deoldify.py -key quickstart-QUdJIGlzIGNvbWluZy4uLi4K
-    # This trial code (`quickstart-QUdJIGlzIGNvbWluZy4uLi4K`) will be invalid after a few times. If you wanna keep doing this, sign up a DeepAI account and you will get $5 credit.
+    python3 inference_deoldify.py -st
     ```
 
-2. Description of Parameters
+2. `Colab`
 
-    | params    | abbr. | Description                                     |
-    |-----------|-------|-------------------------------------------------|
-    | --api_key | -key  | the API key of DeepAI.<br>please sign up first. |
+    Or you can try following shared colab in playground mode:
+
+    https://colab.research.google.com/drive/1pIPHQAu7z4Z3LXztCUXiDyBaIlOqy4Me?usp=sharing
+
+3. Description of Parameters
+
+    | params          | abbr.   | Default    | Description                                                                                                                                                                     |
+    |-----------------|---------|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | --artistic      | -art    | store_true | The artistic model achieves the highest quality results in image coloration, <br>in terms of interesting details and vibrance.                                                  |
+    | --stable        | -st     | store_true | Stable model achieves the best results with landscapes and portraits.                                                                                                           |
+    | --render_factor | -factor | 35         | Between 7 and 40, try more times for better performance.                                                                                                                        |
+    | --watermarked   | -mark   | store_true | I respect the spirit of the original author adding a watermark to distinguish AI works, <br>but setting it to False may be more convenient for use in a production environment. |
 
 # TODO
 - [x] Chinese Document
 - [x] DeOldify for colorizing and restoring old images and videos
 - [x] tqdm instead of print loop
-- [ ] Original DeOldify local as well as Colab
+- [x] Original DeOldify local as well as Colab
 - [ ] Dockerized deployment.
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
 - [ ] MMSR for image and video super-resolution
