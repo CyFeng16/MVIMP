@@ -42,6 +42,11 @@ def config():
 
 if __name__ == "__main__":
     args = config()
+    assert 7 <= args.render_factor <= 40, "Render factor out of range!"
+    print(f"Current config is:\n"
+          f"Using {'artistic' if args.artistic else 'stable'} colorizer;\n"
+          f"Render factor is set to {args.render_factor};\n"
+          f"Watermark will {'' if args.watermarked else 'not'} be added after processing.\n")
 
     if args.artistic:
         colorizer = get_artistic_image_colorizer(root_folder=Path(DeOldify))
