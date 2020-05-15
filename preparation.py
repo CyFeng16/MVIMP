@@ -87,6 +87,24 @@ def photo_inpainting_3d_preparation():
     os.system(f"pip install -r requirements.txt")
 
 
+def deoldify_preparation():
+    os.chdir(DeOldify)
+
+    models_dir = os.path.join(DeOldify, "models")
+    os.makedirs(models_dir, exist_ok=True)
+
+    model_weights = {
+        "stable": "https://www.dropbox.com/s/mwjep3vyqk5mkjc/ColorizeStable_gen.pth",
+        "artistic": "https://www.dropbox.com/s/zkehq1uwahhbc2o/ColorizeArtistic_gen.pth",
+    }
+    os.system(f"wget {model_weights['stable']} " f"{model_weights['artistic']} ")
+
+    shutil.move("ColorizeStable_gen.pth", "models")
+    shutil.move("ColorizeArtistic_gen.pth", "models")
+
+    os.system(f"pip install -r colab_requirements.txt")
+
+
 if __name__ == "__main__":
     args = config()
     if not args.function:
@@ -101,6 +119,8 @@ if __name__ == "__main__":
         dain_preparation()
     elif args.function == "photo3d":
         photo_inpainting_3d_preparation()
+    elif args.function == "deoldify":
+        deoldify_preparation()
     elif args.function == "all":
         anime_preparation()
         dain_preparation()

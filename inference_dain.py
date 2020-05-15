@@ -18,13 +18,17 @@ def config():
         "--input_video", "-input", type=str, help="indicate the input files",
     )
     parser.add_argument(
-        "--time_step", "-ts", type=float, default=0.5, help="choose the time steps"
+        "--time_step",
+        "-ts",
+        type=float,
+        default=0.5,
+        choices=[0.5, 0.25, 0.125],
+        help="Choose the time steps, time step must be one of 0.5/0.25/0.125.",
     )
     parser.add_argument(
         "--high_resolution",
         "-hr",
-        default=False,
-        type=bool,
+        action="store_true",
         help="split the frames when handling 1080p+ videos",
     )
     return parser.parse_args()
@@ -34,11 +38,6 @@ if __name__ == "__main__":
     os.chdir(DAIN_PREFIX)
     print(f"Current PyTorch version is {torch.__version__}")
     args = config()
-    assert args.time_step in [
-        0.5,
-        0.25,
-        0.125,
-    ], "Time step must be one of 0.5/0.25/0.125."
 
     # STAGE 1: video pre-processing
     if len(os.listdir(input_data_dir)) > 1:

@@ -5,20 +5,20 @@
     <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" />
 </p>
 
+English | [简体中文](docs/README_zh-Hans.md)
+
 # MVIMP
 
 **M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram
 
 I realize that training a good-performance AI model is kind of just one side of the story, make it easy to use for others is the other thing. So, this repository tries to embrace out-of-the-box AI ability to manipulate multimedia, also, I wish you have fun!
 
-[中文文档请移步](https://cyfeng.science/2020/05/05/introduce-to-MVIMP/)
-
 | Parallel |  Input | Output |        Parallel        |
 |:--------:|:------:|:------:|:----------------------:|
-| AnimeGAN | Images | Images |          True          |
-|   DAIN   |  Video |  Video |          False         |
-|  Photo3D | Images | Videos | True(not recommmended) |
-| DeOldify | Images | Images |          True          |
+| [AnimeGAN](https://github.com/CyFeng16/MVIMP/tree/cyfeng-0315-DeOldify#animegan) | Images | Images |          True          |
+|   [DAIN](https://github.com/CyFeng16/MVIMP/tree/cyfeng-0315-DeOldify#dain)   |  Video |  Video |          False         |
+|  [Photo3D](https://github.com/CyFeng16/MVIMP/tree/cyfeng-0315-DeOldify#photo3d) | Images | Videos | True(not recommmended) |
+| [DeOldify](https://github.com/CyFeng16/MVIMP/tree/cyfeng-0315-DeOldify#deoldify) | Images | Images |          True          |
 
 ## AnimeGAN
 
@@ -26,17 +26,18 @@ Original repository: [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYos
 
 This is the Open source of the paper <AnimeGAN: a novel lightweight GAN for photo animation>, which uses the GAN framwork to transform real-world photos into anime images.
 
-Requirements:
-- TensorFLow 1.15.2
-- CUDA 10.0(tested locally) / 10.1(colab)
-- Python 3.6.8(3.6+/3.7+/3.8+)
-- opencv
-- tqdm
-- numpy
-- glob
-- argparse
+|  Dependency  |               Version              |
+|:------------:|:----------------------------------:|
+|  TensorFLow  |               1.15.2               |
+| CUDA Toolkit | 10.0(tested locally) / 10.1(colab) |
+|    Python    |             3.6.8(3.6+)            |
+|    opencv    |                  -                 |
+|     tqdm     |                  -                 |
+|     numpy    |                  -                 |
+|     glob     |                  -                 |
+|   argparse   |                  -                 |
 
-Usage:
+**Usage**:
 
 1. `Local`
 
@@ -60,15 +61,17 @@ Usage:
 
 Original repository: [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting)
 
-a method for converting a single RGB-D input image into a 3D photo, i.e., a multi-layer representation for novel view synthesis that contains hallucinated color and depth structures in regions occluded in the original view. 
+The method for converting a single RGB-D input image into a 3D photo, i.e., a multi-layer representation for novel view synthesis that contains hallucinated color and depth structures in regions occluded in the original view. 
 
-Requirements:
-- PyTroch 1.5.0
-- CUDA 10.1(tested locally/colab)
-- Python 3.6.8(3.6+/3.7+/3.8+)
-- Other Python dependencies listed in requirements.txt (will be auto prepared through running `preparation.py`)
+|  Dependency  |           Version          |
+|:------------:|:--------------------------:|
+|    PyTroch   |            1.5.0           |
+| CUDA Toolkit | 10.1(tested locally/colab) |
+|    Python    |         3.6.8(3.6+)        |
 
-Usage:
+Other Python dependencies listed in `requirements.txt`, and will be auto installed while running `preparation.py`.
+
+**Usage**:
 
 1. `Local`
 
@@ -88,13 +91,17 @@ Usage:
 
     https://colab.research.google.com/drive/1VAFCN8Wh4DAY_HDcwI-miNIBomx_MZc5?usp=sharing
 
-    P.S. Massive memory is occupied during operation(grows with `-l`). `Higher memory` runtime helps if you are Colab Pro user.
+    P.S. Massive memory is occupied during operation(grows with `-l`). 
+    
+    `Higher memory` runtime helps if you are Colab Pro user.
 
 3. Description of Parameters
 
-   - `--fps`or`-f`: setup the FPS of output video.
-   - `--frames`or`-n`: setup the number of frames of output video.
-   - `--longer_side_len`or`-l`: set the longer side of output video(either height or width).
+    | params            | abbr. | Default | Description                                              |
+    |-------------------|-------|---------|----------------------------------------------------------|
+    | --fps             | -f    | 40      | The FPS of output video.                                 |
+    | --frames          | -n    | 240     | The number of frames of output video.                    |
+    | --longer_side_len | -l    | 960     | The longer side of output video(either height or width). |
 
 ## DAIN
 
@@ -102,12 +109,12 @@ Original repository: [baowenbo/DAIN](https://github.com/baowenbo/DAIN)
 
 Depth-Aware video frame INterpolation (DAIN) model explicitly detect the occlusion by exploring the depth cue. We develop a depth-aware flow projection layer to synthesize intermediate flows that preferably sample closer objects than farther ones. 
 
-Requirements:
-- FFmpeg
-- PyTroch 1.4.0
-- CUDA 10.0(tested locally/colab)
-- Python 3.6.8(3.6+/3.7+/3.8+)
-- GCC 7.5 (Compiling PyTorch 1.4.0 extension files (.c/.cu))
+|  Dependency  |                        Version                        |
+|:------------:|:-----------------------------------------------------:|
+|    PyTroch   |                         1.4.0                         |
+| CUDA Toolkit |               10.0(tested locally/colab)              |
+|    Python    |                      3.6.8(3.6+)                      |
+|      GCC     | 7.5(Compiling PyTorch 1.4.0 extension files (.c/.cu)) |
 
 P.S. Make sure your virtual env has torch-1.4.0+cu100 and torchvision-0.5.0+cu100.
 You can use the following [command](https://github.com/baowenbo/DAIN/issues/44#issuecomment-624025613):
@@ -121,7 +128,7 @@ sudo ln -snf /usr/local/cuda-10.0 /usr/local/cuda
 # After that we can perform a complete compilation.
 ```
 
-Usage:
+**Usage**:
 
 1. `Local`
 
@@ -143,20 +150,31 @@ Usage:
 
 3. Description of Parameters
 
-   - `--input_video`or`-input`: set the input video name.
-   - `--time_step`or`-ts`: set the frame multiplier, 0.5 corresponds to 2X, 0.25 corresponds to 4X, and 0.125 corresponds to 8X.
-   - `--high_resolution`or`-hr`: Default is False. Pascal V100 has not enough memory to run DAIN for the FHD video, set `-hr` True to split a single frame into four blocks and process them separately in order to reduce GPU memory usage.
+    | params            | abbr.  | Default    | Description                                                                                                                                 |
+    |-------------------|--------|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+    | --input_video     | -input | /          | The input video name.                                                                                                                       |
+    | --time_step       | -ts    | 0.5        | Set the frame multiplier.<br>0.5 corresponds to 2X;<br>0.25 corresponds to 4X;<br>0.125 corresponds to 8X.                                  |
+    | --high_resolution | -hr    | store_true | Default is False(action:store_true).<br>Turn it on when you handling FHD videos,<br>A frame-splitting process will reduce GPU memory usage. |
 
 ## DeOldify
 
 Original repository: [jantic/DeOldify](https://github.com/jantic/DeOldify)
 
-DeOldify is a Deep Learning based project for colorizing and restoring old images and video! We currently try the easiest way to colorize images using DeOldify, which is using SaaS service provided by DeepAI(**For Now**). You must sign up DeepAI.
+DeOldify is a Deep Learning based project for colorizing and restoring old images and video! 
 
-Requirements:
-- None
+~~We currently try the easiest way to colorize images using DeOldify, which is using SaaS service provided by DeepAI(**For Now**). You must sign up DeepAI.~~
 
-Usage:
+We are now integrating the inference capabilities of the DeOldify model (both Artistic and Stable, no Video) with our MVIMP repository, and keeping the input and output interfaces consistent.
+
+|  Dependency  |           Version          |
+|:------------:|:--------------------------:|
+|    PyTroch   |            1.5.0           |
+| CUDA Toolkit | 10.1(tested locally/colab) |
+|    Python    |         3.6.8(3.6+)        |
+
+Other Python dependencies listed in `colab_requirements.txt`, and will be auto installed while running `preparation.py`.
+
+**Usage**:
 
 1. `Local`
 
@@ -164,21 +182,31 @@ Usage:
     # Step 1: Prepare
     git clone https://github.com/CyFeng16/MVIMP.git
     cd MVIMP
-    python3 preparation.py
+    python3 preparation.py -f deoldify
     # Step 2: Infernece
-    python3 inference_deoldify.py -key quickstart-QUdJIGlzIGNvbWluZy4uLi4K
-    # This trial code (`quickstart-QUdJIGlzIGNvbWluZy4uLi4K`) will be invalid after a few times. If you wanna keep doing this, sign up a DeepAI account and you will get $5 credit.
+    python3 inference_deoldify.py -st
     ```
 
-2. Description of Parameters
+2. `Colab`
 
-   - `--api_key`or`-key`: the API key of DeepAI, please sign up first.
+    Or you can try following shared colab in playground mode:
+
+    https://colab.research.google.com/drive/156StQ1WdErl-_213pCQV-ysX2FT_vtjm?usp=sharing
+
+3. Description of Parameters
+
+    | params          | abbr.   | Default    | Description                                                                                                                                                                     |
+    |-----------------|---------|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | --artistic      | -art    | store_true | The artistic model achieves the highest quality results in image coloration, <br>in terms of interesting details and vibrance.                                                  |
+    | --stable        | -st     | store_true | Stable model achieves the best results with landscapes and portraits.                                                                                                           |
+    | --render_factor | -factor | 35         | Between 7 and 40, try more times for better performance.                                                                                                                        |
+    | --watermarked   | -mark   | store_true | I respect the spirit of the original author adding a watermark to distinguish AI works, <br>but setting it to False may be more convenient for use in a production environment. |
 
 # TODO
 - [x] Chinese Document
 - [x] DeOldify for colorizing and restoring old images and videos
 - [x] tqdm instead of print loop
-- [ ] Original DeOldify local as well as Colab
+- [x] Original DeOldify local as well as Colab
 - [ ] Dockerized deployment.
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
 - [ ] MMSR for image and video super-resolution

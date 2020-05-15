@@ -1,9 +1,0 @@
-[submodule "DAIN"]
-	path = DAIN
-	url = https://github.com/baowenbo/DAIN.git
-[submodule "AnimeGAN"]
-	path = AnimeGAN
-	url = https://github.com/TachibanaYoshino/AnimeGAN.git
-[submodule "3d-photo-inpainting"]
-	path = 3d-photo-inpainting
-	url = https://github.com/vt-vl-lab/3d-photo-inpainting.git
