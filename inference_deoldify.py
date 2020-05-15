@@ -43,15 +43,20 @@ def config():
 if __name__ == "__main__":
     args = config()
     assert 7 <= args.render_factor <= 40, "Render factor out of range!"
-    print(f"Current config is:\n"
-          f"Using {'artistic' if args.artistic else 'stable'} colorizer;\n"
-          f"Render factor is set to {args.render_factor};\n"
-          f"Watermark will {'' if args.watermarked else 'not'} be added after processing.\n")
+    print(f"--------Current config is:--------")
 
     if args.artistic:
         colorizer = get_artistic_image_colorizer(root_folder=Path(DeOldify))
+        print("Using artistic colorizer;")
     else:
         colorizer = get_stable_image_colorizer(root_folder=Path(DeOldify))
+        print("Using stable colorizer;")
+
+    print(f"Render factor is set to {args.render_factor};")
+    if args.watermarked:
+        print(f"Watermark will be added after processing.")
+    else:
+        print(f"Watermark will not be added after processing.")
 
     file_list = os.listdir(input_data_dir)
     for file in tqdm(file_list):
