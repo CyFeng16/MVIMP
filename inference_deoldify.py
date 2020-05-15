@@ -60,7 +60,7 @@ if __name__ == "__main__":
         f"\n--------------------CURR CFG--------------------\n"
         f"Current model version is {'Artistic' if args.artistic else 'Stable'},\n"
         f"The render factor is set at {args.render_factor},\n"
-        f"Watermark will{' ' if args.watermarked else ' not'}be added after processing.\n"
+        f"Watermark will{' ' if args.watermarked else ' not'} be added after processing.\n"
         f"--------------------NOW END--------------------\n\n"
     )
 
