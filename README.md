@@ -15,7 +15,7 @@ I realize that training a good-performance AI model is kind of just one side of 
 
 | Parallel |  Input | Output |        Parallel        |
 |:--------:|:------:|:------:|:----------------------:|
-| AnimeGAN | Images | Images |          True          |
+| [AnimeGAN](https://github.com/CyFeng16/MVIMP/tree/cyfeng-0315-DeOldify#animegan) | Images | Images |          True          |
 |   DAIN   |  Video |  Video |          False         |
 |  Photo3D | Images | Videos | True(not recommmended) |
 | DeOldify | Images | Images |          True          |
