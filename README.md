@@ -5,7 +5,7 @@
     <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" />
 </p>
 
-English | [简体中文](docs/README_zh-Hans.md)
+English | [简体中文](docs/README_zh-Hans.md) | [Español](docs/README_es.md)
 
 # MVIMP
 
@@ -13,7 +13,7 @@ English | [简体中文](docs/README_zh-Hans.md)
 
 I realize that training a good-performance AI model is kind of just one side of the story, make it easy to use for others is the other thing. So, this repository tries to embrace out-of-the-box AI ability to manipulate multimedia, also, I wish you have fun!
 
-| Parallel |  Input | Output |        Parallel        |
+| Model |  Input | Output |        Parallel        |
 |:--------:|:------:|:------:|:----------------------:|
 | [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Images | Images |          True          |
 |   [DAIN](https://github.com/CyFeng16/MVIMP#dain)   |  Video |  Video |          False         |
