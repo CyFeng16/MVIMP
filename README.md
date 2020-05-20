@@ -1,9 +1,5 @@
-<p align="center">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/CyFeng16/MVIMP" />
-    <img alt="GitHub issues" src="https://img.shields.io/github/issues/CyFeng16/MVIMP" />
-    <img alt="GitHub License" src="https://img.shields.io/github/license/cyfeng16/MVIMP" />
-    <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" />
-</p>
+#forked from CyFeng16/MVIMP
+
 
 English | [简体中文](docs/README_zh-Hans.md)
 
