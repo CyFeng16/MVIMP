@@ -48,7 +48,7 @@ def video_fusion(src: str, dst: str, fps: float, thread: int) -> None:
         f"-threads {thread} "
         f"-r {fps} "
         f"-f image2 -i {src} "
-        f"-y -vcodec libx264 {dst}"
+        f"-y -c:v libx264 -preset slow -crf 8 {dst}"
     )
     print(cmd)
     os.system(cmd)
