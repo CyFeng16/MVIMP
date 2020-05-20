@@ -5,7 +5,7 @@
     <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" />
 </p>
 
-English | [简体中文](docs/README_zh-Hans.md)
+English | [简体中文](docs/README_zh-Hans.md) | [Español](docs/README_es.md)
 
 # MVIMP
 
