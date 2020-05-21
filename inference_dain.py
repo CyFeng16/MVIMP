@@ -42,35 +42,40 @@ if __name__ == "__main__":
     args = config()
 
     # STAGE 1: video pre-processing
-    if len(os.listdir(input_data_dir)) > 1:
-        raise FileExistsError("You can only process one video at a time..")
+    input_files_list = os.listdir(input_data_dir)
+    if args.input_video not in input_files_list:
+        raise FileExistsError(f"{args.input_video} does not exist.")
     video_file_link = os.path.join(input_data_dir, args.input_video)
     frame_num = frames_info(video_file_link)
-    if frame_num < 2:
-        raise FileNotFoundError(
-            "You need more than 2 frames in the video to generate insertion."
-        )
+    assert (
+        frame_num >= 2
+    ), "You need more than 2 frames in the video to generate insertion."
     fps = fps_info(video_file_link)
     target_fps = float(fps) / args.time_step
     video_extract(src=video_file_link, dst=input_data_dir, thread=4)
-    os.remove(video_file_link)
+    # More aggressively exclude possible errors
+    for input_file in input_files_list:
+        os.remove(os.path.join(input_data_dir, input_file))
     print(
         f"\n--------------------SUMMARY--------------------\n"
         f"Current input video file is {args.input_video},\n"
         f"{args.input_video}'s fps is {fps},\n"
         f"{args.input_video} has {frame_num} frames.\n"
         f"Now we will process this video to {target_fps} fps.\n"
+        f"Frame split method will {'be' if args.high_resolution else 'not be'} used.\n"
         f"--------------------NOW END--------------------\n\n"
     )
 
     # STAGE 2: Inference
-    os.system(
+    cmd = (
         f"python3 -W ignore vfi_helper.py "
         f"--src {input_data_dir} "
         f"--dst {output_data_dir} "
-        f"--high_resolution {args.high_resolution} "
         f"--time_step {args.time_step} "
+        f"{'--high_resolution' if args.high_resolution else ''} "
     )
+    print(cmd)
+    os.system(cmd)
 
     # STAGE 3: Resize hotfix
 
@@ -92,7 +97,7 @@ if __name__ == "__main__":
             root, ext = os.path.splitext(post_images)
             img_link = os.path.join(output_data_dir, post_images)
             # Only handle DAIN-inference imgs
-            if root[-1] != '0' and ext == 'png':
+            if root[-1] != "0" and ext == "png":
                 img = cv2.imread(img_link)
                 dimension = (img.shape[1] + 2, img.shape[0] + 2)
                 resized = cv2.resize(img, dimension, interpolation=cv2.INTER_LANCZOS4)
