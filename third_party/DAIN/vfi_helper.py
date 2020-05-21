@@ -1,7 +1,7 @@
 """It's a helper for video continues frames insertion.
 
 # Todo(C.Feng, 202004291900, UTC+08)
-# Use scipy ver 1.1.0, for now. Switch to `imageio` sometime.
+# Use scipy ver 1.4.1. Switch to `imageio` sometime.
 
 Input: A series of frames(images);
 Output: A series of frames(images).
@@ -15,7 +15,7 @@ import numpy as np
 import numpy
 from networks import DAIN_slowmotion
 from my_args import args
-from scipy.misc import imread, imsave
+from scipy.imageio import imread, imsave
 import shutil
 from tqdm import tqdm
 
