@@ -15,10 +15,8 @@ parser = argparse.ArgumentParser(description="Using custom DAIN configuration ar
 
 parser.add_argument(
     "--high_resolution",
-    "-hr",
-    default=False,
-    type=bool,
-    help="split the frames when handling 1080p+ videos",
+    action="store_true",
+    help="split the frames when handling 720+ videos",
 )
 
 parser.add_argument(

@@ -53,8 +53,6 @@ def dain_preparation():
     os.chdir(model_weights_dir)
     os.system("wget http://vllab1.ucmerced.edu/~wenbobao/DAIN/best.pth")
 
-    os.system("pip install Pillow scipy==1.1.0")
-
 
 def photo_inpainting_3d_preparation():
     os.chdir(Photo_3D)

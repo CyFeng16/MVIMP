@@ -1,7 +1,5 @@
-"""It's a helper for video continues frames insertion.
-
-# Todo(C.Feng, 202004291900, UTC+08)
-# Use scipy ver 1.1.0, for now. Switch to `imageio` sometime.
+"""
+It's a helper for video continues frames insertion.
 
 Input: A series of frames(images);
 Output: A series of frames(images).
@@ -15,9 +13,9 @@ import numpy as np
 import numpy
 from networks import DAIN_slowmotion
 from my_args import args
-from scipy.misc import imread, imsave
 import shutil
 from tqdm import tqdm
+import cv2
 
 
 def continue_frames_insertion_helper(input_dir: str, output_dir: str, time_step: float):
@@ -27,6 +25,9 @@ def continue_frames_insertion_helper(input_dir: str, output_dir: str, time_step:
     print(f"************** current handling frame from {input_dir}. **************")
     print(f"************** current time_step is {time_step} **************")
     print(f"************** current output_dir is {output_dir} **************")
+    print(
+        f"************** high resolution method{' ' if args.high_resolution else ' not '}used. **************"
+    )
 
     # curr all_frame is out of order.
     all_frames = os.listdir(input_dir)
@@ -49,7 +50,6 @@ def continue_frames_insertion_helper(input_dir: str, output_dir: str, time_step:
         os.path.join(input_dir, f"{all_frames[-1]}"),
         os.path.join(output_dir, f"{all_frames[-1].split('.')[0]}00.png"),
     )
-    # print(f"************** current image {all_frames[-1]} processed. **************")
 
 
 def frames_insertion_helper(
@@ -65,9 +65,8 @@ def frames_insertion_helper(
         ),
     )
 
-    im_0 = imread(begin_frame)
-    im_1 = imread(end_frame)
-    # [720, 1280, 3]
+    im_0 = cv2.imread(begin_frame)
+    im_1 = cv2.imread(end_frame)
     h, w, c = im_0.shape
     assert im_0.shape == im_1.shape
 
@@ -92,20 +91,16 @@ def frames_insertion_helper(
 
         del ym_0_0, ym_0_1, ym_1_0, ym_1_1
 
-    # numFrames = int(1.0 / time_step) - 1
-    # time_offsets = [kk * time_step for kk in range(1, 1 + numFrames, 1)]
-
     for i, item in enumerate(y_0):
         curr_output_tail = (
             f"{os.path.split(begin_frame)[-1].split('.')[0]}{i+1:02d}.png"
         )
-        arguments_strOut = os.path.join(output_dir, curr_output_tail)
-        imsave(arguments_strOut, np.round(item).astype(numpy.uint8))
+        cv2.imwrite(
+            os.path.join(output_dir, curr_output_tail),
+            np.round(item).astype(numpy.uint8),
+        )
 
     del y_0
-    torch.cuda.empty_cache()
-
-    # print(f"************** current image {begin_frame} processed. **************")
 
 
 def model_inference_helper(x_0: np.array, x_1: np.array):
@@ -154,8 +149,6 @@ def model_inference_helper(x_0: np.array, x_1: np.array):
     # y_s, offset, filter = model(torch.stack((X0, X1), dim=0))
     y_s, _, _ = model(torch.stack((x_0, x_1), dim=0))
     y_0 = y_s[args.save_which]
-
-    torch.cuda.empty_cache()
 
     if not isinstance(y_0, list):
         y_0 = y_0.data.cpu().numpy()
