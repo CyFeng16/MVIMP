@@ -13,9 +13,10 @@ from torch.autograd import Variable
 import torch
 import numpy as np
 import numpy
+import imageio
 from networks import DAIN_slowmotion
 from my_args import args
-from scipy.imageio import imread, imsave
+from imageio import imread, imsave
 import shutil
 from tqdm import tqdm
 
