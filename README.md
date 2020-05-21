@@ -122,7 +122,6 @@ You can use the following [command](https://github.com/baowenbo/DAIN/issues/44#i
 ```shell
 # Install PyTorch 1.4.0 with CUDA 10.0
 pip install torch==1.4.0+cu100 torchvision==0.5.0+cu100 -f https://download.pytorch.org/whl/torch_stable.html
-pip install scipy==1.1.0
 # Then set the softlink to CUDA 10.0
 sudo ln -snf /usr/local/cuda-10.0 /usr/local/cuda
 # After that we can perform a complete compilation.
@@ -139,7 +138,7 @@ sudo ln -snf /usr/local/cuda-10.0 /usr/local/cuda
     python3 preparation.py -f dain
     # Step 2: Put a single video file into ./Data/Input/
     # Step 3: Infernece
-    python3 inference_dain.py -input your_input.mp4 -ts 0.5 -hr False
+    python3 inference_dain.py -input your_input.mp4 -ts 0.5 -hr
     ```
 
 2. `Colab`
