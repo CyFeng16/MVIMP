@@ -17,10 +17,10 @@ Entrenar un modelo de IA de buen rendimiento, es solo una parte de la historia, 
 
 | Modelo |  Entrada | Salida |        Paralelo?        |
 |:--------:|:------:|:------:|:----------------------:|
-| [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Imagenes | Imagenes |          Si          |
-|   [DAIN](https://github.com/CyFeng16/MVIMP#dain)   |  Video |  Video |          No         |
-|  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d) | Imágenes | Video | Si (No se recomienda) |
-| [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Imágenes | Imágenes |          Si          |
+| [AnimeGAN](README_es.md#animegan) | Imagenes | Imagenes |          Si          |
+|   [DAIN](README_es.md#dain)   |  Video |  Video |          No         |
+|  [Photo3D](README_es.md#photo3d) | Imágenes | Video | Si (No se recomienda) |
+| [DeOldify](README_es.md#deoldify) | Imágenes | Imágenes |          Si          |
 
 ## AnimeGAN
 
