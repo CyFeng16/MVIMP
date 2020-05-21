@@ -198,17 +198,6 @@ Other Python dependencies listed in `colab_requirements.txt`, and will be auto i
     | --render_factor | -factor | 35         | Between 7 and 40, try more times for better performance.                                                                                                                        |
     | --watermarked   | -mark   | store_true | I respect the spirit of the original author adding a watermark to distinguish AI works, <br>but setting it to False may be more convenient for use in a production environment. |
 
-# TODO
-- [x] Chinese Document
-- [x] DeOldify for colorizing and restoring old images and videos
-- [x] tqdm instead of print loop
-- [x] Original DeOldify local as well as Colab
-- [ ] Dockerized deployment.
-- [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
-- [ ] MMSR for image and video super-resolution
-
-You are welcomed to discuss future features in [this issue](https://github.com/CyFeng16/MVIMP/issues/2).
-
 # Acknowledgment
 
 This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting), [baowenbo/DAIN](https://github.com/baowenbo/DAIN) and [jantic/DeOldify](https://github.com/jantic/DeOldify). Thanks to the contributors of those project.
