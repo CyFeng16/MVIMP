@@ -24,10 +24,10 @@
 
 |   模型   |   输入  |   输出  |    是否并行    |
 |:--------:|:-------:|:-------:|:--------------:|
-| AnimeGAN | 图片(s) | 图片(s) |     可并行     |
-|   DAIN   |   视频  |   视频  |    不可并行    |
-|  Photo3D | 图片(s) |   视频  | 可并行(不推荐) |
-| DeOldify | 图片(s) | 图片(s) |     可并行     |
+| [AnimeGAN](README_zh-Hans.md#animegan) | 图片(s) | 图片(s) |     可并行     |
+|   [DAIN](README_zh-Hans.md#dain)   |   视频  |   视频  |    不可并行    |
+|  [Photo3D](README_zh-Hans.md#photo3d) | 图片(s) |   视频  | 可并行(不推荐) |
+| [DeOldify](README_zh-Hans.md#deoldify) | 图片(s) | 图片(s) |     可并行     |
 
 ## AnimeGAN
 
