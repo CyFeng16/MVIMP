@@ -9,11 +9,9 @@ English | [简体中文](docs/README_zh-Hans.md) | [Español](docs/README_es.md)
 
 # MVIMP
 
-**M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram
+The name `MVIMP` (**M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram) was inspired by the name` GIMP` (**G**NU **I**mage **M**anipulation **P**rogram), which hope it can help more people.
 
-The name `MVIMP` (** M ** ixed ** V ** ideo and ** I ** mage ** M ** anipulation ** P ** rogram) was inspired by the name` GIMP` (** G ** NU ** I ** mage ** M ** anipulation ** P ** rogram), also hope it can help more people.
-
-I realize that training a good-performance AI model is kind of just one side of the story, make it easy to use for others is the other thing. So, this repository tries to embrace out-of-the-box AI ability to manipulate multimedia, and last but not least, **wish you have fun**!
+I realize that training a good-performance AI model is kind of just one side of the story, make it easy to use for others is the other thing. Thus, this repository built to embrace out-of-the-box AI ability to manipulate multimedia. Last but not least, **wish you have fun**!
 
 | Model |  Input | Output |        Parallel        |
 |:--------:|:------:|:------:|:----------------------:|
