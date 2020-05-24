@@ -17,10 +17,12 @@ I realize that training a good-performance AI model is kind of just one side of 
 |:--------:|:------:|:------:|:----------------------:|
 | [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Images | Images |          True          |
 |   [DAIN](https://github.com/CyFeng16/MVIMP#dain)   |  Video |  Video |          False         |
-|  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d) | Images | Videos | True(not recommmended) |
 | [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Images | Images |          True          |
+|  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d) | Images | Videos | True(not recommmended) |
 
 ## AnimeGAN
+
+![](docs/assets/animegan.png.webp)
 
 Original repository: [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN)
 
@@ -31,11 +33,6 @@ This is the Open source of the paper <AnimeGAN: a novel lightweight GAN for phot
 |  TensorFLow  |               1.15.2               |
 | CUDA Toolkit | 10.0(tested locally) / 10.1(colab) |
 |    Python    |             3.6.8(3.6+)            |
-|    opencv    |                  -                 |
-|     tqdm     |                  -                 |
-|     numpy    |                  -                 |
-|     glob     |                  -                 |
-|   argparse   |                  -                 |
 
 **Usage**:
 
@@ -57,57 +54,15 @@ This is the Open source of the paper <AnimeGAN: a novel lightweight GAN for phot
 
     https://colab.research.google.com/drive/1bpwUFcr5i38_P3a0r3Qm9Dvkl-MS_Y1y?usp=sharing
 
-## Photo3D
-
-Original repository: [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting)
-
-The method for converting a single RGB-D input image into a 3D photo, i.e., a multi-layer representation for novel view synthesis that contains hallucinated color and depth structures in regions occluded in the original view. 
-
-|  Dependency  |           Version          |
-|:------------:|:--------------------------:|
-|    PyTroch   |            1.5.0           |
-| CUDA Toolkit | 10.1(tested locally/colab) |
-|    Python    |         3.6.8(3.6+)        |
-
-Other Python dependencies listed in `requirements.txt`, and will be auto installed while running `preparation.py`.
-
-**Usage**:
-
-1. `Local`
-
-    ```shell
-    # Step 1: Prepare
-    git clone https://github.com/CyFeng16/MVIMP.git
-    cd MVIMP
-    python3 preparation.py -f photo3d
-    # Step 2: Put your photos into ./Data/Input/
-    # Step 3: Infernece
-    python3 inference_photo3d.py -f 40 -n 240 -l 960
-    ```
-
-2. `Colab`
-
-    Or you can try following shared colab in playground mode:
-
-    https://colab.research.google.com/drive/1VAFCN8Wh4DAY_HDcwI-miNIBomx_MZc5?usp=sharing
-
-    P.S. Massive memory is occupied during operation(grows with `-l`). 
-    
-    `Higher memory` runtime helps if you are Colab Pro user.
-
-3. Description of Parameters
-
-    | params            | abbr. | Default | Description                                              |
-    |-------------------|-------|---------|----------------------------------------------------------|
-    | --fps             | -f    | 40      | The FPS of output video.                                 |
-    | --frames          | -n    | 240     | The number of frames of output video.                    |
-    | --longer_side_len | -l    | 960     | The longer side of output video(either height or width). |
-
 ## DAIN
+
+![](docs/assets/dain.gif)
 
 Original repository: [baowenbo/DAIN](https://github.com/baowenbo/DAIN)
 
 Depth-Aware video frame INterpolation (DAIN) model explicitly detect the occlusion by exploring the depth cue. We develop a depth-aware flow projection layer to synthesize intermediate flows that preferably sample closer objects than farther ones. 
+
+This method achieves SOTA performance on the Middlebury dataset. Video are provided [here](https://www.youtube.com/watch?v=-f8f0igQi5I).
 
 The current version of DAIN (in this repo) can smoothly run 1080p video frame insertion even on GTX-1080 GPU card, as long as you turn `-hr` on (see `Description of Parameters` below).
 
@@ -159,6 +114,8 @@ sudo ln -snf /usr/local/cuda-10.0 /usr/local/cuda
 
 ## DeOldify
 
+![](docs/assets/deoldify.png.webp)
+
 Original repository: [jantic/DeOldify](https://github.com/jantic/DeOldify)
 
 DeOldify is a Deep Learning based project for colorizing and restoring old images and video! 
@@ -200,6 +157,54 @@ Other Python dependencies listed in `colab_requirements.txt`, and will be auto i
     | --stable        | -st     | store_true | Stable model achieves the best results with landscapes and portraits.                                                                                                           |
     | --render_factor | -factor | 35         | Between 7 and 40, try more times for better performance.                                                                                                                        |
     | --watermarked   | -mark   | store_true | I respect the spirit of the original author adding a watermark to distinguish AI works, <br>but setting it to False may be more convenient for use in a production environment. |
+
+## Photo3D
+
+![](docs/assets/photo3d.jpeg.webp)
+
+Original repository: [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting)
+
+The method for converting a single RGB-D input image into a 3D photo, i.e., a multi-layer representation for novel view synthesis that contains hallucinated color and depth structures in regions occluded in the original view. 
+
+|  Dependency  |           Version          |
+|:------------:|:--------------------------:|
+|    PyTroch   |            1.5.0           |
+| CUDA Toolkit | 10.1(tested locally/colab) |
+|    Python    |         3.6.8(3.6+)        |
+
+Other Python dependencies listed in `requirements.txt`, and will be auto installed while running `preparation.py`.
+
+**Usage**:
+
+1. `Local`
+
+    ```shell
+    # Step 1: Prepare
+    git clone https://github.com/CyFeng16/MVIMP.git
+    cd MVIMP
+    python3 preparation.py -f photo3d
+    # Step 2: Put your photos into ./Data/Input/
+    # Step 3: Infernece
+    python3 inference_photo3d.py -f 40 -n 240 -l 960
+    ```
+
+2. `Colab`
+
+    Or you can try following shared colab in playground mode:
+
+    https://colab.research.google.com/drive/1VAFCN8Wh4DAY_HDcwI-miNIBomx_MZc5?usp=sharing
+
+    P.S. Massive memory is occupied during operation(grows with `-l`). 
+    
+    `Higher memory` runtime helps if you are Colab Pro user.
+
+3. Description of Parameters
+
+    | params            | abbr. | Default | Description                                              |
+    |-------------------|-------|---------|----------------------------------------------------------|
+    | --fps             | -f    | 40      | The FPS of output video.                                 |
+    | --frames          | -n    | 240     | The number of frames of output video.                    |
+    | --longer_side_len | -l    | 960     | The longer side of output video(either height or width). |
 
 # TODO
 - [ ] Dockerized deployment.
