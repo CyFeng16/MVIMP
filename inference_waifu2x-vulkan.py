@@ -9,13 +9,19 @@ from subprocess import run, DEVNULL
 def config():
     parser = argparse.ArgumentParser(description="Inference waifu2x-ncnn-vulkan.")
     parser.add_argument(
-        "--scale", "-s", default=2, type=int, help="Scale image. 1 or 2. Default is 2"
+        "--scale",
+        "-s",
+        type=int,
+        default=2,
+        choices=[1, 2],
+        help="Scale image. 1 or 2. Default is 2",
     )
     parser.add_argument(
         "--noise",
         "-n",
-        default=0,
         type=int,
+        default=0,
+        choices=[-1, 0, 1, 2, 3],
         help="Reduce the image noise. Between -1 and 3. Default is 0",
     )
     parser.add_argument(
@@ -28,9 +34,10 @@ def config():
     parser.add_argument(
         "--model",
         "-m",
-        default="cunet",
         type=str,
-        help="Model to use. cunet (defaul) / photo / animeart",
+        default="cunet",
+        choices=["cunet", "photo", "animeart"],
+        help="Model to use. Default is cunet.",
     )
     return parser.parse_args()
 
@@ -41,18 +48,13 @@ if __name__ == "__main__":
     build_dir = os.path.join(waifu2x_vulkan, "build")
     bin_dir = os.path.join(build_dir, "./waifu2x-ncnn-vulkan")
 
-    assert 1 <= args.scale <= 2, "Scale is out of range!"
-    assert -1 <= args.noise <= 3, "Noise is out of range!"
     assert 32 <= args.tilesize <= 19327352831, "Tile size is out of range!"
-    model_version = ""
-    if args.model == "cunet":
-        model_version = os.path.join(build_dir, "models-cunet")
-    elif args.model == "photo":
-        model_version = os.path.join(build_dir, "models-upconv_7_photo")
-    elif args.model == "animeart":
-        model_version = os.path.join(build_dir, "models-upconv_7_anime_style_art_rgb")
-    else:
-        print("Model not available")
+    model_version = {
+        "cunet": "models-cunet",
+        "photo": "models-upconv_7_photo",
+        "animeart": "models-upconv_7_anime_style_art_rgb",
+    }
+    model_version = os.path.join(build_dir, model_version[args.model])
 
     print(
         f"\n--------------------CURR CFG--------------------\n"
