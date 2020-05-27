@@ -54,7 +54,7 @@ This is the Open source of the paper <AnimeGAN: a novel lightweight GAN for phot
 
 ## DAIN
 
-![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/dain.gif)
+![](docs/assets/dain.gif)
 
 Original repository: [baowenbo/DAIN](https://github.com/baowenbo/DAIN)
 
@@ -205,3 +205,4 @@ You are welcomed to discuss future features in [this issue](https://github.com/C
 This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting), [baowenbo/DAIN](https://github.com/baowenbo/DAIN) and [jantic/DeOldify](https://github.com/jantic/DeOldify). Thanks to the contributors of those project.
 
 @EtianAM provides our Spanish guide.
+@BrokenSilence improves DAIN's performance.
