@@ -109,14 +109,16 @@ def waifu2x_vulkan_ncnn_preparation():
     build_dir = os.path.join(waifu2x_vulkan, "build")
     os.makedirs(build_dir, exist_ok=True)
 
-    os.system("wget -O vulkansdk.tar.gz https://sdk.lunarg.com/sdk/download/1.2.135.0/linux/vulkansdk-linux-x86_64-1.2.135.0.tar.gz")
+    os.system(
+        "wget -O vulkansdk.tar.gz https://sdk.lunarg.com/sdk/download/1.2.135.0/linux/vulkansdk-linux-x86_64-1.2.135.0.tar.gz"
+    )
     os.system("tar -xvf vulkansdk.tar.gz")
     os.rename("1.2.135.0", "vulkansdk")
     os.remove("vulkansdk.tar.gz")
     os.environ["VULKAN_SDK"] = os.path.join(waifu2x_vulkan, "vulkansdk/x86_64")
-    os.environ["PATH"] += os.pathsep + '$VULKAN_SDK/bin'
-    os.environ["LD_LIBRARY_PATH"] +=	os.pathsep + '$VULKAN_SDK/lib'
-    os.environ["VK_LAYER_PATH"] =	'$VULKAN_SDK/etc/vulkan/explicit_layer.d'
+    os.environ["PATH"] += os.pathsep + "$VULKAN_SDK/bin"
+    os.environ["LD_LIBRARY_PATH"] += os.pathsep + "$VULKAN_SDK/lib"
+    os.environ["VK_LAYER_PATH"] = "$VULKAN_SDK/etc/vulkan/explicit_layer.d"
 
     os.chdir(build_dir)
     os.system("cmake ../src")

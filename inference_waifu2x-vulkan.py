@@ -5,35 +5,32 @@ import argparse
 from tqdm import tqdm
 from subprocess import run, DEVNULL
 
+
 def config():
     parser = argparse.ArgumentParser(description="Inference waifu2x-ncnn-vulkan.")
     parser.add_argument(
-        "--scale",
-        "-s",
-        default=2,
-        type=int,
-        help="Scale image. 1 or 2. Default is 2"
+        "--scale", "-s", default=2, type=int, help="Scale image. 1 or 2. Default is 2"
     )
     parser.add_argument(
         "--noise",
         "-n",
         default=0,
         type=int,
-        help="Reduce the image noise. Between -1 and 3. Default is 0"
+        help="Reduce the image noise. Between -1 and 3. Default is 0",
     )
     parser.add_argument(
         "--tilesize",
         "-t",
         default=400,
         type=int,
-        help="Tile size. Between 32 and 19327352831. No appreciable effect. Default is 400"
+        help="Tile size. Between 32 and 19327352831. No appreciable effect. Default is 400",
     )
     parser.add_argument(
         "--model",
         "-m",
         default="cunet",
         type=str,
-        help="Model to use. cunet (defaul) / photo / animeart"
+        help="Model to use. cunet (defaul) / photo / animeart",
     )
     return parser.parse_args()
 
@@ -47,6 +44,7 @@ if __name__ == "__main__":
     assert 1 <= args.scale <= 2, "Scale is out of range!"
     assert -1 <= args.noise <= 3, "Noise is out of range!"
     assert 32 <= args.tilesize <= 19327352831, "Tile size is out of range!"
+    model_version = ""
     if args.model == "cunet":
         model_version = os.path.join(build_dir, "models-cunet")
     elif args.model == "photo":
@@ -69,8 +67,7 @@ if __name__ == "__main__":
     for file in tqdm(file_list):
         input_file = os.path.join(input_data_dir, file)
         output_file = os.path.join(output_data_dir, file)
-        cmd = bin_dir + " -i " + input_file + " -o " + output_file + " -m " + model_version
-        cmd = cmd + " -s " + str(args.scale) + " -n " + str(args.noise) + " -t " + str(args.tilesize)
+        cmd = f"{bin_dir} -i {input_file} -o {output_file} -m {model_version} -s {args.scale} -n {args.noise} -t {args.tilesize}"
         run(cmd, shell=True, stdin=DEVNULL, stdout=DEVNULL, stderr=DEVNULL)
 
     clean_folder(input_data_dir)
