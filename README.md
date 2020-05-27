@@ -13,12 +13,12 @@ The name `MVIMP` (**M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram
 
 I realize that training a good-performance AI model is kind of just one side of the story, make it easy to use for others is the other thing. Thus, this repository built to embrace out-of-the-box AI ability to manipulate multimedia. Last but not least, **wish you have fun**!
 
-| Model |  Input | Output |        Parallel        |
-|:--------:|:------:|:------:|:----------------------:|
-| [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Images | Images |          True          |
-|   [DAIN](https://github.com/CyFeng16/MVIMP#dain)   |  Video |  Video |          False         |
-| [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Images | Images |          True          |
-|  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d) | Images | Videos | True(not recommmended) |
+|                          Model                         |  Input | Output |        Parallel        |                                                 Colab Link                                                 |
+|:------------------------------------------------------:|:------:|:------:|:----------------------:|:----------------------------------------------------------------------------------------------------------:|
+| [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGAN_Demo.ipynb) |
+|     [DAIN](https://github.com/CyFeng16/MVIMP#dain)     |  Video |  Video |          False         |   [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DAIN_Demo.ipynb)   |
+| [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DeOldify_Demo.ipynb) |
+|  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d)  | Images | Videos | True(not recommmended) |  [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Photo3D_Demo.ipynb) |
 
 ## AnimeGAN
 
