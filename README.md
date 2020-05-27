@@ -22,7 +22,7 @@ I realize that training a good-performance AI model is kind of just one side of 
 
 ## AnimeGAN
 
-![](docs/assets/animegan.png.webp)
+![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/animegan.png.webp)
 
 Original repository: [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN)
 
@@ -36,7 +36,11 @@ This is the Open source of the paper <AnimeGAN: a novel lightweight GAN for phot
 
 **Usage**:
 
-1. `Local`
+1. `Colab`
+
+    You can open our jupyter notebook through [colab link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGAN_Demo.ipynb).
+
+2. `Local`
 
     ```shell
     # Step 1: Prepare
@@ -48,15 +52,9 @@ This is the Open source of the paper <AnimeGAN: a novel lightweight GAN for phot
     python3 inference_animegan.py
     ```
 
-2. `Colab`
-
-    Or you can try following shared colab in playground mode:
-
-    https://colab.research.google.com/drive/1bpwUFcr5i38_P3a0r3Qm9Dvkl-MS_Y1y?usp=sharing
-
 ## DAIN
 
-![](docs/assets/dain.gif)
+![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/dain.gif)
 
 Original repository: [baowenbo/DAIN](https://github.com/baowenbo/DAIN)
 
@@ -68,25 +66,23 @@ The current version of DAIN (in this repo) can smoothly run 1080p video frame in
 
 |  Dependency  |                        Version                        |
 |:------------:|:-----------------------------------------------------:|
-|    PyTroch   |                         1.4.0                         |
-| CUDA Toolkit |               10.0(tested locally/colab)              |
+|    PyTroch   |                         1.0.0                         |
+| CUDA Toolkit |               9.0(colab tested)              |
 |    Python    |                      3.6.8(3.6+)                      |
-|      GCC     | 7.5(Compiling PyTorch 1.4.0 extension files (.c/.cu)) |
+|      GCC     | 4.9(Compiling PyTorch 1.0.0 extension files (.c/.cu)) |
 
-P.S. Make sure your virtual env has torch-1.4.0+cu100 and torchvision-0.5.0+cu100.
-You can use the following [command](https://github.com/baowenbo/DAIN/issues/44#issuecomment-624025613):
-
-```shell
-# Install PyTorch 1.4.0 with CUDA 10.0
-pip install torch==1.4.0+cu100 torchvision==0.5.0+cu100 -f https://download.pytorch.org/whl/torch_stable.html
-# Then set the softlink to CUDA 10.0
-sudo ln -snf /usr/local/cuda-10.0 /usr/local/cuda
-# After that we can perform a complete compilation.
-```
+P.S. Make sure your virtual env has torch-1.0.0 and torchvision-0.2.1 with CUDA-9.0 .
+~~You can use the following [command](https://github.com/baowenbo/DAIN/issues/44#issuecomment-624025613):~~
+You can find out dependencies issue at #5  and #16 .
 
 **Usage**:
 
-1. `Local`
+1. `Colab`
+
+    You can open our jupyter notebook through [colab link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DAIN_Demo.ipynb).
+
+
+2. `Local`
 
     ```shell
     # Step 1: Prepare
@@ -98,12 +94,6 @@ sudo ln -snf /usr/local/cuda-10.0 /usr/local/cuda
     python3 inference_dain.py -input your_input.mp4 -ts 0.5 -hr
     ```
 
-2. `Colab`
-
-    Or you can try following shared colab in playground mode:
-
-    https://colab.research.google.com/drive/1pIPHQAu7z4Z3LXztCUXiDyBaIlOqy4Me?usp=sharing
-
 3. Description of Parameters
 
     | params            | abbr.  | Default    | Description                                                                                                                                 |
@@ -114,7 +104,7 @@ sudo ln -snf /usr/local/cuda-10.0 /usr/local/cuda
 
 ## DeOldify
 
-![](docs/assets/deoldify.png.webp)
+![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/deoldify.png.webp)
 
 Original repository: [jantic/DeOldify](https://github.com/jantic/DeOldify)
 
@@ -132,7 +122,11 @@ Other Python dependencies listed in `colab_requirements.txt`, and will be auto i
 
 **Usage**:
 
-1. `Local`
+1. `Colab`
+
+    You can open our jupyter notebook through [colab link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DeOldify_Demo.ipynb).
+
+2. `Local`
 
     ```shell
     # Step 1: Prepare
@@ -140,14 +134,8 @@ Other Python dependencies listed in `colab_requirements.txt`, and will be auto i
     cd MVIMP
     python3 preparation.py -f deoldify
     # Step 2: Infernece
-    python3 inference_deoldify.py -st
+    python3 -W ignore inference_deoldify.py -art
     ```
-
-2. `Colab`
-
-    Or you can try following shared colab in playground mode:
-
-    https://colab.research.google.com/drive/156StQ1WdErl-_213pCQV-ysX2FT_vtjm?usp=sharing
 
 3. Description of Parameters
 
@@ -160,7 +148,7 @@ Other Python dependencies listed in `colab_requirements.txt`, and will be auto i
 
 ## Photo3D
 
-![](docs/assets/photo3d.jpeg.webp)
+![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/photo3d.jpeg.webp)
 
 Original repository: [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting)
 
@@ -176,7 +164,15 @@ Other Python dependencies listed in `requirements.txt`, and will be auto install
 
 **Usage**:
 
-1. `Local`
+1. `Colab`
+
+    You can open our jupyter notebook through [colab link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Photo3D_Demo.ipynb).
+
+    P.S. Massive memory is occupied during operation(grows with `-l`). 
+    
+    `Higher memory` runtime helps if you are Colab Pro user.
+
+2. `Local`
 
     ```shell
     # Step 1: Prepare
@@ -187,16 +183,6 @@ Other Python dependencies listed in `requirements.txt`, and will be auto install
     # Step 3: Infernece
     python3 inference_photo3d.py -f 40 -n 240 -l 960
     ```
-
-2. `Colab`
-
-    Or you can try following shared colab in playground mode:
-
-    https://colab.research.google.com/drive/1VAFCN8Wh4DAY_HDcwI-miNIBomx_MZc5?usp=sharing
-
-    P.S. Massive memory is occupied during operation(grows with `-l`). 
-    
-    `Higher memory` runtime helps if you are Colab Pro user.
 
 3. Description of Parameters
 
@@ -218,4 +204,4 @@ You are welcomed to discuss future features in [this issue](https://github.com/C
 
 This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting), [baowenbo/DAIN](https://github.com/baowenbo/DAIN) and [jantic/DeOldify](https://github.com/jantic/DeOldify). Thanks to the contributors of those project.
 
-@EtianAM who provides our Spanish guide.
+@EtianAM provides our Spanish guide.
