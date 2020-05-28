@@ -39,6 +39,13 @@ def config():
         choices=["cunet", "photo", "animeart"],
         help="Model to use. Default is cunet.",
     )
+    parser.add_argument(
+        "--tta",
+        "-x",
+        action="store_true",
+        help="TTA mode able to reduce several types of artifacts but it's 8x slower than the non-TTA mode."
+        "See https://github.com/nagadomi/waifu2x/issues/148#issuecomment-255754265 for details",
+    )
     return parser.parse_args()
 
 
@@ -62,14 +69,17 @@ if __name__ == "__main__":
         f"Scale is set at {args.scale},\n"
         f"Noise reduction is set at {args.noise},\n"
         f"Tile size is set at {args.tilesize}.\n"
+        f"TTA mode is {'on' if args.tta else 'off'}.\n"
         f"--------------------NOW END--------------------\n\n"
     )
 
     file_list = os.listdir(input_data_dir)
     for file in tqdm(file_list):
         input_file = os.path.join(input_data_dir, file)
-        output_file = os.path.join(output_data_dir, file)
+        output_file = os.path.join(output_data_dir, f"{file.split('.')[0]}.png")
         cmd = f"{bin_dir} -i {input_file} -o {output_file} -m {model_version} -s {args.scale} -n {args.noise} -t {args.tilesize}"
+        if args.tta:
+            cmd = cmd + " -x"
         run(cmd, shell=True, stdin=DEVNULL, stdout=DEVNULL, stderr=DEVNULL)
 
     clean_folder(input_data_dir)
