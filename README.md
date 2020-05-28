@@ -227,12 +227,13 @@ We are now integrating the inference capabilities of the waifu2x model ("cunet",
 
 3. Description of Parameters
 
-    | params     | abbr. | Default | Description                                                      |
-    |------------|-------|---------|------------------------------------------------------------------|
-    | --scale    | -s    | 2       | upscale ratio (1/2, default=2)                                   |
-    | --noise    | -n    | 0       | denoise level (-1/0/1/2/3, default=0)                            |
-    | --tilesize | -t    | 400     | Tile size. Between 32 and 19327352831, no appreciable effect.    |
-    | --model    | -m    | cunet   | Model to use. You can choose in "cunet", "photo" and "animeart". |
+    | params     | abbr. | Default                     | Description                                                                                                                                                                               |
+    |------------|-------|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | --scale    | -s    | 2                           | upscale ratio (1/2, default=2)                                                                                                                                                            |
+    | --noise    | -n    | 0                           | denoise level (-1/0/1/2/3, default=0)                                                                                                                                                     |
+    | --tilesize | -t    | 400                         | Tile size. Between 32 and 19327352831, no appreciable effect.                                                                                                                             |
+    | --model    | -m    | cunet                       | Model to use. You can choose in "cunet", "photo" and "animeart".                                                                                                                          |
+    | --tta      | -x    | store_true<br>(True if set) | TTA mode able to reduce several types of artifacts but it's 8x slower than the non-TTA mode.<br>See for [details](https://github.com/nagadomi/waifu2x/issues/148#issuecomment-255754265). |
 
 # TODO
 - [ ] Dockerized deployment.
