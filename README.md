@@ -13,12 +13,13 @@ The name `MVIMP` (**M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram
 
 I realize that training a good-performance AI model is kind of just one side of the story, make it easy to use for others is the other thing. Thus, this repository built to embrace out-of-the-box AI ability to manipulate multimedia. Last but not least, **wish you have fun**!
 
-|                          Model                         |  Input | Output |        Parallel        |                                                 Colab Link                                                 |
-|:------------------------------------------------------:|:------:|:------:|:----------------------:|:----------------------------------------------------------------------------------------------------------:|
-| [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGAN_Demo.ipynb) |
-|     [DAIN](https://github.com/CyFeng16/MVIMP#dain)     |  Video |  Video |          False         |   [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DAIN_Demo.ipynb)   |
-| [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DeOldify_Demo.ipynb) |
-|  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d)  | Images | Videos | True(not recommmended) |  [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Photo3D_Demo.ipynb) |
+|                          Model                         |  Input | Output |        Parallel        |                                                       Colab Link                                                      |
+|:------------------------------------------------------:|:------:|:------:|:----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
+| [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Images | Images |          True          |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGAN_Demo.ipynb)      |
+|     [DAIN](https://github.com/CyFeng16/MVIMP#dain)     |  Video |  Video |          False         |         [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DAIN_Demo.ipynb)        |
+| [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Images | Images |          True          |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DeOldify_Demo.ipynb)      |
+|  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d)  | Images | Videos | True(not recommmended) |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Photo3D_Demo.ipynb)       |
+|  [Waifu2x](https://github.com/CyFeng16/MVIMP#waifu2x)  | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Waifu2x-ncnn-Vulkan_Demo.ipynb) |
 
 ## AnimeGAN
 
@@ -192,6 +193,48 @@ Other Python dependencies listed in `requirements.txt`, and will be auto install
     | --frames          | -n    | 240     | The number of frames of output video.                    |
     | --longer_side_len | -l    | 960     | The longer side of output video(either height or width). |
 
+## Waifu2x
+
+![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/waifu2x.png.webp)
+
+Original repository: [nihui/waifu2x-ncnn-vulkan](https://github.com/nihui/waifu2x-ncnn-vulkan)
+
+waifu2x-ncnn-vulkan is a ncnn implementation of waifu2x, which could runs fast on Intel/AMD/Nvidia with Vulkan API.
+
+We are now integrating the inference capabilities of the waifu2x model ("cunet", "photo" and "animeart") with our MVIMP repository, and keeping the input and output interfaces consistent.
+
+|  Dependency  |           Version          |
+|:------------:|:--------------------------:|
+| CUDA Toolkit | 10.1(tested locally/colab) |
+|    Python    |         3.6.8(3.6+)        |
+
+**Usage**:
+
+1. `Colab`
+
+    You can open our jupyter notebook through [colab link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Waifu2x_ncnn_Vulkan_Demo.ipynb).
+
+2. `Local`
+
+    ```shell
+    # Step 1: Prepare
+    git clone https://github.com/CyFeng16/MVIMP.git
+    cd MVIMP
+    python3 preparation.py -f waifu2x-vulkan
+    # Step 2: Infernece
+    python3 inference_waifu2x-vulkan.py -s 2 -n 0
+    ```
+
+3. Description of Parameters
+
+    | params     | abbr. | Default                     | Description                                                                                                                                                                               |
+    |------------|-------|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | --scale    | -s    | 2                           | upscale ratio (1/2, default=2)                                                                                                                                                            |
+    | --noise    | -n    | 0                           | denoise level (-1/0/1/2/3, default=0)                                                                                                                                                     |
+    | --tilesize | -t    | 400                         | Tile size. Between 32 and 19327352831, no appreciable effect.                                                                                                                             |
+    | --model    | -m    | cunet                       | Model to use. You can choose in "cunet", "photo" and "animeart".                                                                                                                          |
+    | --tta      | -x    | store_true<br>(True if set) | TTA mode able to reduce several types of artifacts but it's 8x slower than the non-TTA mode.<br>See for [details](https://github.com/nagadomi/waifu2x/issues/148#issuecomment-255754265). |
+
 # TODO
 - [ ] Dockerized deployment.
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
@@ -202,7 +245,7 @@ You are welcomed to discuss future features in [this issue](https://github.com/C
 
 # Acknowledgment
 
-This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting), [baowenbo/DAIN](https://github.com/baowenbo/DAIN) and [jantic/DeOldify](https://github.com/jantic/DeOldify). Thanks to the contributors of those project.
+This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting), [baowenbo/DAIN](https://github.com/baowenbo/DAIN), [jantic/DeOldify](https://github.com/jantic/DeOldify) and [nihui/waifu2x-ncnn-vulkan](https://github.com/nihui/waifu2x-ncnn-vulkan). Thanks to the contributors of those project.
 
 @EtianAM provides our Spanish guide.
 @BrokenSilence improves DAIN's performance.

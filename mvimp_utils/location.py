@@ -12,6 +12,7 @@ ANIMEGAN_PREFIX = os.path.join(LOC, "third_party/AnimeGAN")
 DAIN_PREFIX = os.path.join(LOC, "third_party/DAIN")
 Photo_3D = os.path.join(LOC, "third_party/Photo3D")
 DeOldify = os.path.join(LOC, "third_party/DeOldify")
+waifu2x_vulkan = os.path.join(LOC, "third_party/waifu2x-ncnn-vulkan")
 
 input_data_dir = os.path.join(LOC, "Data/Input")
 output_data_dir = os.path.join(LOC, "Data/Output")
