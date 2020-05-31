@@ -19,7 +19,7 @@ I realize that training a good-performance AI model is kind of just one side of 
 |     [DAIN](https://github.com/CyFeng16/MVIMP#dain)     |  Video |  Video |          False         |         [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DAIN_Demo.ipynb)        |
 | [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Images | Images |          True          |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DeOldify_Demo.ipynb)      |
 |  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d)  | Images | Videos | True(not recommmended) |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Photo3D_Demo.ipynb)       |
-|  [Waifu2x](https://github.com/CyFeng16/MVIMP#waifu2x)  | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Waifu2x-ncnn-Vulkan_Demo.ipynb) |
+|  [Waifu2x](https://github.com/CyFeng16/MVIMP#waifu2x)  | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Waifu2x_ncnn_Vulkan_Demo.ipynb) |
 
 ## AnimeGAN
 
