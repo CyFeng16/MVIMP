@@ -237,8 +237,8 @@ We are now integrating the inference capabilities of the waifu2x model ("cunet",
 
 # TODO
 - [ ] Dockerized deployment.
+- [ ] Two cartoonization / animation network, [SystemErrorWang/White-box-Cartoonization](https://github.com/SystemErrorWang/White-box-Cartoonization) and [TachibanaYoshino/AnimeGANv2](https://github.com/TachibanaYoshino/AnimeGANv2), WIP.
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
-- [ ] Image and video super-resolution(still selecting candidates.)
 - [ ] https://lllyasviel.github.io/PaintingLight/
 
 You are welcomed to discuss future features in [this issue](https://github.com/CyFeng16/MVIMP/issues/2).
