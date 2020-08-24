@@ -238,6 +238,7 @@ We are now integrating the inference capabilities of the waifu2x model ("cunet",
 # TODO
 - [ ] Dockerized deployment.
 - [ ] Two cartoonization / animation network, [SystemErrorWang/White-box-Cartoonization](https://github.com/SystemErrorWang/White-box-Cartoonization) and [TachibanaYoshino/AnimeGANv2](https://github.com/TachibanaYoshino/AnimeGANv2), WIP.
+- [ ]Portrait Shadow Manipulation, [google/portrait-shadow-manipulation](https://github.com/google/portrait-shadow-manipulation)
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
 - [ ] https://lllyasviel.github.io/PaintingLight/
 
