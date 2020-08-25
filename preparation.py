@@ -16,7 +16,7 @@ def anime_preparation():
 
     pretrain_model_url = (
         "https://github.com/TachibanaYoshino/AnimeGAN/"
-        "releases/download/Haoyao-style_V1.0/Haoyao-style.zip"
+        "releases/download/Haoyao-style_v1.0/Haoyao-style.zip"
     )
     pretrain_model_dir = "./checkpoint"
     pretrain_model_file = os.path.join(pretrain_model_dir, "Haoyao-style.zip")
