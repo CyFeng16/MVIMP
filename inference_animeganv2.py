@@ -11,7 +11,7 @@ def config():
         "--style",
         "-s",
         type=str,
-        choices=["Hayao", "Shikai", "Paprika"],
+        choices=["Hayao", "Shinkai", "Paprika"],
         help="what style you want to get",
     )
     return parser.parse_args()
