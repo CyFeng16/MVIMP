@@ -24,11 +24,11 @@ if __name__ == "__main__":
     print(f"Current TensorFlow version is {tf.__version__}")
     args = config()
     generator_weights = {
-        "Hayao": "generator_Hayao_weight",
-        "Shikai": "generator_Shinkai_weight",
-        "Paprika": "generator_Paprika_weight",
+        "Hayao": "./checkpoint/generator_Hayao_weight",
+        "Shinkai": "./checkpoint/generator_Shinkai_weight",
+        "Paprika": "./checkpoint/generator_Paprika_weight",
     }
-    checkpoint_dir = f"./checkpoint/{generator_weights[args.style]}"
+    checkpoint_dir = generator_weights[args.style]
 
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     os.environ["TF_ENABLE_GPU_GARBAGE_COLLECTION"] = "true"
