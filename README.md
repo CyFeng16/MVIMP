@@ -60,7 +60,12 @@ This is the Open source of the paper <AnimeGAN: a novel lightweight GAN for phot
 
 Original repository: [TachibanaYoshino/AnimeGANv2](https://github.com/TachibanaYoshino/AnimeGANv2)
 
-The improved version of AnimeGAN, which converts landscape photos/videos(todo) to anime.
+The improved version of AnimeGAN, which converts landscape photos/videos(todo) to anime. The improvement directions of AnimeGANv2 mainly include the following 4 points:  
+
+ 1. Solve the problem of high-frequency artifacts in the generated image.
+ 2. It is easy to train and directly achieve the effects in the paper.
+ 3. Further, reduce the number of parameters of the generator network. (generator size: 8.17 Mb), The lite version has a smaller generator model.
+ 4. Use new high-quality style data, which come from BD movies as much as possible.
 
 |  Dependency  |               Version              |
 |:------------:|:----------------------------------:|
