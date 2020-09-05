@@ -16,10 +16,60 @@ I realize that training a good-performance AI model is kind of just one side of 
 |                          Model                         |  Input | Output |        Parallel        |                                                       Colab Link                                                      |
 |:------------------------------------------------------:|:------:|:------:|:----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
 | [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Images | Images |          True          |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGAN_Demo.ipynb)      |
+| [AnimeGANv2](https://github.com/CyFeng16/MVIMP#animeganv2) | Images | Images |          True          |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGANv2_Demo.ipynb)      |
 |     [DAIN](https://github.com/CyFeng16/MVIMP#dain)     |  Video |  Video |          False         |         [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DAIN_Demo.ipynb)        |
 | [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Images | Images |          True          |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DeOldify_Demo.ipynb)      |
 |  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d)  | Images | Videos | True(not recommmended) |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Photo3D_Demo.ipynb)       |
 |  [Waifu2x](https://github.com/CyFeng16/MVIMP#waifu2x)  | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Waifu2x_ncnn_Vulkan_Demo.ipynb) |
+
+## AnimeGANv2
+
+![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/animeganv2.png.webp)
+
+Original repository: [TachibanaYoshino/AnimeGANv2](https://github.com/TachibanaYoshino/AnimeGANv2)
+
+The improved version of AnimeGAN, which converts landscape photos/videos(todo) to anime. The improvement directions of AnimeGANv2 mainly include the following 4 points:  
+
+ 1. Solve the problem of high-frequency artifacts in the generated image.
+ 2. It is easy to train and directly achieve the effects in the paper.
+ 3. Further, reduce the number of parameters of the generator network. (generator size: 8.17 Mb), The lite version has a smaller generator model.
+ 4. Use new high-quality style data, which come from BD movies as much as possible.
+
+|  Dependency  |               Version              |
+|:------------:|:----------------------------------:|
+|  TensorFLow  |               1.15.2               |
+| CUDA Toolkit | 10.0(tested locally) / 10.1(colab) |
+|    Python    |             3.6.8(3.6+)            |
+
+**Usage**:
+
+1. `Colab`
+
+    You can open our jupyter notebook through [colab link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGANv2_Demo.ipynb).
+
+2. `Local`
+
+    ```shell
+    # Step 1: Prepare
+    git clone https://github.com/CyFeng16/MVIMP.git
+    cd MVIMP
+    python3 preparation.py
+    # Step 2: Put your photos into ./Data/Input/
+    # Step 3: Infernece
+    python3 inference_animeganv2.py -s {The_Style_You_Choose}
+    ```
+
+3. Description of Parameters
+
+    | params 	| abbr. 	| Default 	| Description 	|
+    |-	|-	|-	|-	|
+    | --style 	| -s 	| Hayao 	| The anime style you want to get. 	|
+
+    | Style name 	| Anime style 	|
+    |-	|-	|
+    | Hayao 	| Miyazaki Hayao 	|
+    | Shinkai 	| Makoto Shinkai 	|
+    | Paprika 	| Kon Satoshi 	|
 
 ## AnimeGAN
 

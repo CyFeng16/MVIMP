@@ -13,7 +13,8 @@ def file_order(src: str, dst: str) -> None:
     frames_list = sorted(os.listdir(src))
     for i in range(len(frames_list)):
         shutil.copy(
-            os.path.join(src, frames_list[i]), os.path.join(dst, f"{i + 1:010d}.png"),
+            os.path.join(src, frames_list[i]),
+            os.path.join(dst, f"{i + 1:010d}.png"),
         )
         os.remove(os.path.join(src, frames_list[i]))
 

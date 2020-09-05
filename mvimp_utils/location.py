@@ -9,6 +9,7 @@ if LOC.split("/")[-1] != "MVIMP":
     raise ValueError("Please change directory to the root of MVIMP.")
 
 ANIMEGAN_PREFIX = os.path.join(LOC, "third_party/AnimeGAN")
+ANIMEGANv2_PREFIX = os.path.join(LOC, "third_party/AnimeGANv2")
 DAIN_PREFIX = os.path.join(LOC, "third_party/DAIN")
 Photo_3D = os.path.join(LOC, "third_party/Photo3D")
 DeOldify = os.path.join(LOC, "third_party/DeOldify")
