@@ -11,6 +11,7 @@ def config():
         "--style",
         "-s",
         type=str,
+        default='Hayao',
         choices=["Hayao", "Shinkai", "Paprika"],
         help="what style you want to get",
     )
