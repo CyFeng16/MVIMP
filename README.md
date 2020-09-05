@@ -24,7 +24,7 @@ I realize that training a good-performance AI model is kind of just one side of 
 
 ## AnimeGANv2
 
-![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/animeganv2.png.webp)
+![](docs/assets/animeganv2.png.webp)
 
 Original repository: [TachibanaYoshino/AnimeGANv2](https://github.com/TachibanaYoshino/AnimeGANv2)
 
@@ -73,7 +73,7 @@ The improved version of AnimeGAN, which converts landscape photos/videos(todo) t
 
 ## AnimeGAN
 
-![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/animegan.png.webp)
+![](docs/assets/animegan.png.webp)
 
 Original repository: [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN)
 
@@ -155,7 +155,7 @@ You can find out dependencies issue at #5  and #16 .
 
 ## DeOldify
 
-![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/deoldify.png.webp)
+![](docs/assets/deoldify.png.webp)
 
 Original repository: [jantic/DeOldify](https://github.com/jantic/DeOldify)
 
@@ -199,7 +199,7 @@ Other Python dependencies listed in `colab_requirements.txt`, and will be auto i
 
 ## Photo3D
 
-![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/photo3d.jpeg.webp)
+![](docs/assets/photo3d.jpeg.webp)
 
 Original repository: [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting)
 
@@ -245,7 +245,7 @@ Other Python dependencies listed in `requirements.txt`, and will be auto install
 
 ## Waifu2x
 
-![](https://cdn.jsdelivr.net/gh/CyFeng16/MVIMP/docs/assets/waifu2x.png.webp)
+![](docs/assets/waifu2x.png.webp)
 
 Original repository: [nihui/waifu2x-ncnn-vulkan](https://github.com/nihui/waifu2x-ncnn-vulkan)
 
@@ -287,7 +287,7 @@ We are now integrating the inference capabilities of the waifu2x model ("cunet",
 
 # TODO
 - [ ] Dockerized deployment.
-- [ ] Two cartoonization / animation network, [SystemErrorWang/White-box-Cartoonization](https://github.com/SystemErrorWang/White-box-Cartoonization) and [TachibanaYoshino/AnimeGANv2](https://github.com/TachibanaYoshino/AnimeGANv2), WIP.
+- [ ] Two cartoonization / animation network, [SystemErrorWang/White-box-Cartoonization](https://github.com/SystemErrorWang/White-box-Cartoonization) ~~and [TachibanaYoshino/AnimeGANv2](https://github.com/TachibanaYoshino/AnimeGANv2)~~, WIP.
 - [ ]Portrait Shadow Manipulation, [google/portrait-shadow-manipulation](https://github.com/google/portrait-shadow-manipulation)
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
 - [ ] https://lllyasviel.github.io/PaintingLight/
