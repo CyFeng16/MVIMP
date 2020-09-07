@@ -288,15 +288,16 @@ We are now integrating the inference capabilities of the waifu2x model ("cunet",
 # TODO
 - [ ] Dockerized deployment.
 - [ ] Two cartoonization / animation network, [SystemErrorWang/White-box-Cartoonization](https://github.com/SystemErrorWang/White-box-Cartoonization) ~~and [TachibanaYoshino/AnimeGANv2](https://github.com/TachibanaYoshino/AnimeGANv2)~~, WIP.
-- [ ]Portrait Shadow Manipulation, [google/portrait-shadow-manipulation](https://github.com/google/portrait-shadow-manipulation)
+- [ ] Portrait Shadow Manipulation, [google/portrait-shadow-manipulation](https://github.com/google/portrait-shadow-manipulation)
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
 - [ ] https://lllyasviel.github.io/PaintingLight/
+- [ ] [High-Fidelity Generative Image Compression](https://hific.github.io/)
 
 You are welcomed to discuss future features in [this issue](https://github.com/CyFeng16/MVIMP/issues/2).
 
 # Acknowledgment
 
-This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting), [baowenbo/DAIN](https://github.com/baowenbo/DAIN), [jantic/DeOldify](https://github.com/jantic/DeOldify) and [nihui/waifu2x-ncnn-vulkan](https://github.com/nihui/waifu2x-ncnn-vulkan). Thanks to the contributors of those project.
+This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/TachibanaYoshino/AnimeGAN), [TachibanaYoshino/AnimeGANv2](https://github.com/TachibanaYoshino/AnimeGANv2), [vt-vl-lab/3d-photo-inpainting](https://github.com/vt-vl-lab/3d-photo-inpainting), [baowenbo/DAIN](https://github.com/baowenbo/DAIN), [jantic/DeOldify](https://github.com/jantic/DeOldify) and [nihui/waifu2x-ncnn-vulkan](https://github.com/nihui/waifu2x-ncnn-vulkan). Thanks to the contributors of those project.
 
 @EtianAM provides our Spanish guide.
 @BrokenSilence improves DAIN's performance.
