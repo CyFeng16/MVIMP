@@ -2,36 +2,56 @@ import shutil
 from mvimp_utils.location import *
 import argparse
 
+# version 0907
+external_links = {
+    # AnimeGANv1
+    "animeganv1-pretrain-model": "https://www.dropbox.com/s/063uot56vfreeli/0907-Haoyao-style.zip",
+    "animeganv1-vgg-weights": "https://www.dropbox.com/s/qkmlp88zbizz24b/0907-vgg19.npy",
+    # DAIN
+    "dain-best-model": "https://www.dropbox.com/s/yw7qw5ygrvixinc/0907-best.pth",
+    # photo_inpainting_3d
+    "3d-photo-inpainting-color-model": "https://www.dropbox.com/s/xncj03jiafx7yep/0907-color-model.pth",
+    "3d-photo-inpainting-depth-model": "https://www.dropbox.com/s/3qymi6xpnoj7b28/0907-depth-model.pth",
+    "3d-photo-inpainting-edge-model": "https://www.dropbox.com/s/5g9d4pkw8vgptim/0907-edge-model.pth",
+    "3d-photo-inpainting-MiDaS-model": "https://www.dropbox.com/s/4njb4djtd86sk4z/0907-model.pt",
+    # deoldify
+    "deoldify-stable-model": "https://www.dropbox.com/s/mwjep3vyqk5mkjc/ColorizeStable_gen.pth",
+    "deoldify-artistic-model": "https://www.dropbox.com/s/zkehq1uwahhbc2o/ColorizeArtistic_gen.pth",
+    # waifu2x_vulkan_ncnn
+    "waifu2x-vulkan-ncnn-setup": "https://www.dropbox.com/s/hnyj19i258915lx/0907-vulkansdk-linux-x86_64-1.2.135.0.tar.gz",
+}
+
+
+def downloader(link: str, name: str) -> None:
+    os.system(f"wget {link} -O {name}")
+
 
 def config():
     parser = argparse.ArgumentParser(description="MVIMP configuration.")
     parser.add_argument(
-        "--function", "-f", type=str, help="Function or functions your wanna prepare.",
+        "--function",
+        "-f",
+        type=str,
+        help="Function or functions your wanna prepare.",
     )
     return parser.parse_args()
 
 
-def anime_preparation():
+def animeganv1_preparation():
     os.chdir(ANIMEGAN_PREFIX)
 
-    pretrain_model_url = (
-        "https://github.com/TachibanaYoshino/AnimeGAN/"
-        "releases/download/Haoyao-style_v1.0/Haoyao-style.zip"
-    )
     pretrain_model_dir = "./checkpoint"
     pretrain_model_file = os.path.join(pretrain_model_dir, "Haoyao-style.zip")
 
-    vgg_url = "https://github.com/TachibanaYoshino/AnimeGAN/releases/download/vgg16%2F19.npy/vgg19.npy"
     vgg_dir = "./vgg19_weight"
     vgg_file = os.path.join(vgg_dir, "vgg19.npy")
 
     os.makedirs(pretrain_model_dir, exist_ok=True)
     os.makedirs(vgg_dir, exist_ok=True)
 
-    os.system(f"wget -N {pretrain_model_url} -O {pretrain_model_file}")
+    downloader(external_links["animeganv1-pretrain-model"], pretrain_model_file)
+    downloader(external_links["animeganv1-pretrain-model"], vgg_file)
     os.system(f"unzip {pretrain_model_file} -d {pretrain_model_dir}")
-    os.system(f"wget {vgg_url} -O {vgg_file}")
-
     os.system(f"rm {pretrain_model_file}")
 
 
@@ -51,7 +71,7 @@ def dain_preparation():
 
     os.makedirs(model_weights_dir)
     os.chdir(model_weights_dir)
-    os.system("wget http://vllab1.ucmerced.edu/~wenbobao/DAIN/best.pth")
+    downloader(external_links["dain-best-model"], "best.pth")
 
 
 def photo_inpainting_3d_preparation():
@@ -64,18 +84,10 @@ def photo_inpainting_3d_preparation():
     os.makedirs(images_dir, exist_ok=True)
     os.makedirs(videos_dir, exist_ok=True)
 
-    model_weights = {
-        "color-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/color-model.pth",
-        "depth-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/depth-model.pth",
-        "edge-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/edge-model.pth",
-        "MiDaS-model": "https://filebox.ece.vt.edu/~jbhuang/project/3DPhoto/model/model.pt",
-    }
-    os.system(
-        f"wget {model_weights['color-model']} "
-        f"{model_weights['depth-model']} "
-        f"{model_weights['edge-model']} "
-        f"{model_weights['MiDaS-model']}"
-    )
+    downloader(external_links["3d-photo-inpainting-color-model"], "color-model.pth")
+    downloader(external_links["3d-photo-inpainting-depth-model"], "depth-model.pth")
+    downloader(external_links["3d-photo-inpainting-edge-model"], "edge-model.pth")
+    downloader(external_links["3d-photo-inpainting-MiDaS-model"], "model.pt")
 
     shutil.move("color-model.pth", "checkpoints")
     shutil.move("depth-model.pth", "checkpoints")
@@ -91,11 +103,8 @@ def deoldify_preparation():
     models_dir = os.path.join(DeOldify, "models")
     os.makedirs(models_dir, exist_ok=True)
 
-    model_weights = {
-        "stable": "https://www.dropbox.com/s/mwjep3vyqk5mkjc/ColorizeStable_gen.pth",
-        "artistic": "https://www.dropbox.com/s/zkehq1uwahhbc2o/ColorizeArtistic_gen.pth",
-    }
-    os.system(f"wget {model_weights['stable']} " f"{model_weights['artistic']} ")
+    downloader(external_links["deoldify-stable-model"], "ColorizeStable_gen.pth")
+    downloader(external_links["deoldify-artistic-model"], "ColorizeArtistic_gen.pth")
 
     shutil.move("ColorizeStable_gen.pth", "models")
     shutil.move("ColorizeArtistic_gen.pth", "models")
@@ -109,9 +118,7 @@ def waifu2x_vulkan_ncnn_preparation():
     build_dir = os.path.join(waifu2x_vulkan, "build")
     os.makedirs(build_dir, exist_ok=True)
 
-    os.system(
-        "wget -O vulkansdk.tar.gz https://sdk.lunarg.com/sdk/download/1.2.135.0/linux/vulkansdk-linux-x86_64-1.2.135.0.tar.gz"
-    )
+    downloader(external_links["waifu2x-vulkan-ncnn-setup"], "vulkansdk.tar.gz")
     os.system("tar -xvf vulkansdk.tar.gz")
     os.rename("1.2.135.0", "vulkansdk")
     os.remove("vulkansdk.tar.gz")
@@ -136,7 +143,7 @@ if __name__ == "__main__":
         )
         # raise ValueError("Please select correct function to prepare.")
     elif args.function == "animegan":
-        anime_preparation()
+        animeganv1_preparation()
     elif args.function == "dain":
         dain_preparation()
     elif args.function == "photo3d":
@@ -146,7 +153,7 @@ if __name__ == "__main__":
     elif args.function == "waifu2x-vulkan":
         waifu2x_vulkan_ncnn_preparation()
     elif args.function == "all":
-        anime_preparation()
+        animeganv1_preparation()
         dain_preparation()
         photo_inpainting_3d_preparation()
         deoldify_preparation()
