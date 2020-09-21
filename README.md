@@ -22,6 +22,8 @@ I realize that training a good-performance AI model is kind of just one side of 
 |  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d)  | Images | Videos | True(not recommmended) |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Photo3D_Demo.ipynb)       |
 |  [Waifu2x](https://github.com/CyFeng16/MVIMP#waifu2x)  | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Waifu2x_ncnn_Vulkan_Demo.ipynb) |
 
+You are welcomed to discuss future features in [this issue](https://github.com/CyFeng16/MVIMP/issues/2).
+
 ## AnimeGANv2
 
 ![](docs/assets/animeganv2.png.webp)
@@ -292,8 +294,6 @@ We are now integrating the inference capabilities of the waifu2x model ("cunet",
 - [ ] https://roxanneluo.github.io/Consistent-Video-Depth-Estimation/
 - [ ] https://lllyasviel.github.io/PaintingLight/
 - [ ] [High-Fidelity Generative Image Compression](https://hific.github.io/)
-
-You are welcomed to discuss future features in [this issue](https://github.com/CyFeng16/MVIMP/issues/2).
 
 # Acknowledgment
 
