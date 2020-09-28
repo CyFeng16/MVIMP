@@ -7,7 +7,7 @@
 
 English | [简体中文](docs/README_zh-Hans.md) | [Español](docs/README_es.md)
 
-# MVIMP
+# Welcome to MVIMP 👋
 
 The name `MVIMP` (**M**ixed **V**ideo and **I**mage **M**anipulation **P**rogram) was inspired by the name` GIMP` (**G**NU **I**mage **M**anipulation **P**rogram), which hope it can help more people.
 
@@ -15,12 +15,12 @@ I realize that training a good-performance AI model is kind of just one side of 
 
 |                          Model                         |  Input | Output |        Parallel        |                                                       Colab Link                                                      |
 |:------------------------------------------------------:|:------:|:------:|:----------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-| [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Images | Images |          True          |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGAN_Demo.ipynb)      |
-| [AnimeGANv2](https://github.com/CyFeng16/MVIMP#animeganv2) | Images | Images |          True          |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGANv2_Demo.ipynb)      |
-|     [DAIN](https://github.com/CyFeng16/MVIMP#dain)     |  Video |  Video |          False         |         [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DAIN_Demo.ipynb)        |
-| [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Images | Images |          True          |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_DeOldify_Demo.ipynb)      |
-|  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d)  | Images | Videos | True(not recommmended) |       [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Photo3D_Demo.ipynb)       |
-|  [Waifu2x](https://github.com/CyFeng16/MVIMP#waifu2x)  | Images | Images |          True          | [link](https://colab.research.google.com/github/CyFeng16/MVIMP/blob/master/docs/MVIMP_Waifu2x_ncnn_Vulkan_Demo.ipynb) |
+| [AnimeGAN](https://github.com/CyFeng16/MVIMP#animegan) | Images | Images |          True          |       [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGAN_Demo.ipynb)      |
+| [AnimeGANv2](https://github.com/CyFeng16/MVIMP#animeganv2) | Images | Images |          True          |       [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CyFeng16/MVIMP/blob/master/docs/MVIMP_AnimeGANv2_Demo.ipynb)      |
+|     [DAIN](https://github.com/CyFeng16/MVIMP#dain)     |  Video |  Video |          False         |         [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CyFeng16/MVIMP/blob/master/docs/MVIMP_DAIN_Demo.ipynb)        |
+| [DeOldify](https://github.com/CyFeng16/MVIMP#deoldify) | Images | Images |          True          |       [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CyFeng16/MVIMP/blob/master/docs/MVIMP_DeOldify_Demo.ipynb)      |
+|  [Photo3D](https://github.com/CyFeng16/MVIMP#photo3d)  | Images | Videos | True(not recommmended) |       [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CyFeng16/MVIMP/blob/master/docs/MVIMP_Photo3D_Demo.ipynb)       |
+|  [Waifu2x](https://github.com/CyFeng16/MVIMP#waifu2x)  | Images | Images |          True          | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CyFeng16/MVIMP/blob/master/docs/MVIMP_Waifu2x_ncnn_Vulkan_Demo.ipynb) |
 
 You are welcomed to discuss future features in [this issue](https://github.com/CyFeng16/MVIMP/issues/2).
 
