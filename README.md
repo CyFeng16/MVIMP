@@ -301,3 +301,7 @@ This code is based on the [TachibanaYoshino/AnimeGAN](https://github.com/Tachiba
 
 @EtianAM provides our Spanish guide.
 @BrokenSilence improves DAIN's performance.
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/CyFeng16/MVIMP.svg)](https://starchart.cc/CyFeng16/MVIMP)
